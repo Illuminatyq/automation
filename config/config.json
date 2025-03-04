@@ -1,0 +1,15 @@
+{
+    "baseUrl": "https://liner.dstepanyuk.dev.smte.am/auth/",
+    "browser": "chrome",
+    "timeout": 10,
+    "credentials": {
+      "valid_user": {
+        "email": "dstepanyuk@southmedia.io",
+        "password": "Fb4-uXM-uCx-3Gi"
+      },
+      "invalid_user": {
+        "email": "wrong@example.com",
+        "password": "wrong_password"
+      }
+    }
+  }
