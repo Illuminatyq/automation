@@ -1,0 +1,1387 @@
+2025-03-07 21:02:39,651 - INFO - ============================= test session starts =============================
+2025-03-07 21:02:39,653 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-07 21:02:39,655 - INFO - cachedir: .pytest_cache
+2025-03-07 21:02:39,657 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-07 21:02:39,658 - INFO - rootdir: E:\automation
+2025-03-07 21:02:39,660 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-07 21:02:39,668 - INFO - collecting ... collected 3 items
+2025-03-07 21:02:39,669 - INFO - 
+2025-03-07 21:02:52,109 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login FAILED     [ 33%]
+2025-03-07 21:03:26,192 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login FAILED        [ 66%]
+2025-03-07 21:03:57,852 - INFO - tests/test_ui_layout.py::TestUILayout::test_visual_layout ERROR          [100%]
+2025-03-07 21:03:57,852 - INFO - 
+2025-03-07 21:03:57,852 - INFO - =================================== ERRORS ====================================
+2025-03-07 21:03:57,853 - INFO - ______________ ERROR at setup of TestUILayout.test_visual_layout ______________
+2025-03-07 21:03:57,853 - INFO - 
+2025-03-07 21:03:57,855 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-07 21:03:57,857 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-07 21:03:57,858 - INFO - 
+2025-03-07 21:03:57,859 - INFO - @pytest.fixture
+2025-03-07 21:03:57,861 - INFO - def authenticated_page(page, config):
+2025-03-07 21:03:57,863 - INFO - """пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"""
+2025-03-07 21:03:57,864 - INFO - from pages.login_page import LoginPage
+2025-03-07 21:03:57,865 - INFO - 
+2025-03-07 21:03:57,866 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-07 21:03:57,868 - INFO - login_page.navigate()
+2025-03-07 21:03:57,869 - INFO - 
+2025-03-07 21:03:57,870 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-07 21:03:57,871 - INFO - >       login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-07 21:03:57,872 - INFO - 
+2025-03-07 21:03:57,873 - INFO - conftest.py:66:
+2025-03-07 21:03:57,874 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:57,876 - INFO - pages\login_page.py:43: in login
+2025-03-07 21:03:57,877 - INFO - self.enter_email(email)
+2025-03-07 21:03:57,878 - INFO - pages\login_page.py:21: in enter_email
+2025-03-07 21:03:57,879 - INFO - self.email_field.fill(email)
+2025-03-07 21:03:57,880 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:15808: in fill
+2025-03-07 21:03:57,882 - INFO - self._sync(
+2025-03-07 21:03:57,883 - INFO - .venv\Lib\site-packages\playwright\_impl\_locator.py:208: in fill
+2025-03-07 21:03:57,884 - INFO - return await self._frame.fill(self._selector, strict=True, **params)
+2025-03-07 21:03:57,887 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:527: in fill
+2025-03-07 21:03:57,888 - INFO - await self._channel.send("fill", locals_to_params(locals()))
+2025-03-07 21:03:57,889 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:61: in send
+2025-03-07 21:03:57,890 - INFO - return await self._connection.wrap_api_call(
+2025-03-07 21:03:57,891 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:57,892 - INFO - 
+2025-03-07 21:03:57,893 - INFO - self = <playwright._impl._connection.Connection object at 0x0000019CC50F6C10>
+2025-03-07 21:03:57,894 - INFO - cb = <function Channel.send.<locals>.<lambda> at 0x0000019CC5694FE0>
+2025-03-07 21:03:57,895 - INFO - is_internal = False
+2025-03-07 21:03:57,896 - INFO - 
+2025-03-07 21:03:57,897 - INFO - async def wrap_api_call(
+2025-03-07 21:03:57,898 - INFO - self, cb: Callable[[], Any], is_internal: bool = False
+2025-03-07 21:03:57,900 - INFO - ) -> Any:
+2025-03-07 21:03:57,901 - INFO - if self._api_zone.get():
+2025-03-07 21:03:57,902 - INFO - return await cb()
+2025-03-07 21:03:57,903 - INFO - task = asyncio.current_task(self._loop)
+2025-03-07 21:03:57,904 - INFO - st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+2025-03-07 21:03:57,905 - INFO - parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+2025-03-07 21:03:57,906 - INFO - self._api_zone.set(parsed_st)
+2025-03-07 21:03:57,907 - INFO - try:
+2025-03-07 21:03:57,908 - INFO - return await cb()
+2025-03-07 21:03:57,910 - INFO - except Exception as error:
+2025-03-07 21:03:57,911 - INFO - >           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+2025-03-07 21:03:57,912 - INFO - E           playwright._impl._errors.TimeoutError: Locator.fill: Timeout 30000ms exceeded.
+2025-03-07 21:03:57,913 - INFO - E           Call log:
+2025-03-07 21:03:57,914 - INFO - E             - waiting for locator("input[name='login']")
+2025-03-07 21:03:57,915 - INFO - 
+2025-03-07 21:03:57,917 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:528: TimeoutError
+2025-03-07 21:03:57,918 - INFO - ================================== FAILURES ===================================
+2025-03-07 21:03:57,919 - INFO - __________________ TestAuthentication.test_successful_login ___________________
+2025-03-07 21:03:57,920 - INFO - 
+2025-03-07 21:03:57,921 - INFO - self = <tests.test_auth.TestAuthentication object at 0x0000019CC5057910>
+2025-03-07 21:03:57,923 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-07 21:03:57,924 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-07 21:03:57,925 - INFO - 
+2025-03-07 21:03:57,926 - INFO - @allure.story("Successful login")
+2025-03-07 21:03:57,927 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-07 21:03:57,928 - INFO - def test_successful_login(self, page, config):
+2025-03-07 21:03:57,929 - INFO - """пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"""
+2025-03-07 21:03:57,930 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-07 21:03:57,932 - INFO - 
+2025-03-07 21:03:57,933 - INFO - with allure.step("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:03:57,934 - INFO - login_page.navigate()
+2025-03-07 21:03:57,935 - INFO - 
+2025-03-07 21:03:57,937 - INFO - with allure.step("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ"):
+2025-03-07 21:03:57,939 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-07 21:03:57,940 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-07 21:03:57,941 - INFO - 
+2025-03-07 21:03:57,943 - INFO - with allure.step("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:03:57,944 - INFO - # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+2025-03-07 21:03:57,945 - INFO - >           page.wait_for_url("**/*dashboard*", timeout=10000)
+2025-03-07 21:03:57,946 - INFO - 
+2025-03-07 21:03:57,950 - INFO - tests\test_auth.py:23:
+2025-03-07 21:03:57,952 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:57,953 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-07 21:03:57,954 - INFO - self._sync(
+2025-03-07 21:03:57,956 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-07 21:03:57,957 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-07 21:03:57,958 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-07 21:03:57,959 - INFO - async with self.expect_navigation(
+2025-03-07 21:03:57,960 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-07 21:03:57,961 - INFO - await self._future
+2025-03-07 21:03:57,962 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:57,963 - INFO - 
+2025-03-07 21:03:57,964 - INFO - async def continuation() -> Optional[Response]:
+2025-03-07 21:03:57,965 - INFO - >       event = await waiter.result()
+2025-03-07 21:03:57,966 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-07 21:03:57,967 - INFO - E       =========================== logs ===========================
+2025-03-07 21:03:57,968 - INFO - E       waiting for navigation to "**/*dashboard*" until 'load'
+2025-03-07 21:03:57,970 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-07 21:03:57,971 - INFO - E       ============================================================
+2025-03-07 21:03:57,972 - INFO - 
+2025-03-07 21:03:57,974 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-07 21:03:57,975 - INFO - ____________________ TestAuthentication.test_invalid_login ____________________
+2025-03-07 21:03:57,976 - INFO - 
+2025-03-07 21:03:57,977 - INFO - self = <tests.test_auth.TestAuthentication object at 0x0000019CC50E3650>
+2025-03-07 21:03:57,979 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-07 21:03:57,980 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-07 21:03:57,982 - INFO - 
+2025-03-07 21:03:57,983 - INFO - @allure.story("Invalid login")
+2025-03-07 21:03:57,984 - INFO - @allure.severity(allure.severity_level.NORMAL)
+2025-03-07 21:03:57,986 - INFO - def test_invalid_login(self, page, config):
+2025-03-07 21:03:57,987 - INFO - """пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"""
+2025-03-07 21:03:57,990 - INFO - # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+2025-03-07 21:03:57,992 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-07 21:03:57,993 - INFO - 
+2025-03-07 21:03:57,995 - INFO - with allure.step("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:03:57,996 - INFO - login_page.navigate()
+2025-03-07 21:03:57,998 - INFO - 
+2025-03-07 21:03:58,000 - INFO - with allure.step("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:03:58,001 - INFO - invalid_credentials = config['credentials']['invalid_user']
+2025-03-07 21:03:58,003 - INFO - >           login_page.login(invalid_credentials['email'], invalid_credentials['password'])
+2025-03-07 21:03:58,004 - INFO - 
+2025-03-07 21:03:58,006 - INFO - tests\test_auth.py:38:
+2025-03-07 21:03:58,007 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:58,008 - INFO - pages\login_page.py:43: in login
+2025-03-07 21:03:58,011 - INFO - self.enter_email(email)
+2025-03-07 21:03:58,013 - INFO - pages\login_page.py:21: in enter_email
+2025-03-07 21:03:58,014 - INFO - self.email_field.fill(email)
+2025-03-07 21:03:58,015 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:15808: in fill
+2025-03-07 21:03:58,016 - INFO - self._sync(
+2025-03-07 21:03:58,017 - INFO - .venv\Lib\site-packages\playwright\_impl\_locator.py:208: in fill
+2025-03-07 21:03:58,018 - INFO - return await self._frame.fill(self._selector, strict=True, **params)
+2025-03-07 21:03:58,020 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:527: in fill
+2025-03-07 21:03:58,021 - INFO - await self._channel.send("fill", locals_to_params(locals()))
+2025-03-07 21:03:58,023 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:61: in send
+2025-03-07 21:03:58,024 - INFO - return await self._connection.wrap_api_call(
+2025-03-07 21:03:58,026 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:03:58,027 - INFO - 
+2025-03-07 21:03:58,028 - INFO - self = <playwright._impl._connection.Connection object at 0x0000019CC50F6C10>
+2025-03-07 21:03:58,029 - INFO - cb = <function Channel.send.<locals>.<lambda> at 0x0000019CC54AFE20>
+2025-03-07 21:03:58,030 - INFO - is_internal = False
+2025-03-07 21:03:58,031 - INFO - 
+2025-03-07 21:03:58,032 - INFO - async def wrap_api_call(
+2025-03-07 21:03:58,033 - INFO - self, cb: Callable[[], Any], is_internal: bool = False
+2025-03-07 21:03:58,034 - INFO - ) -> Any:
+2025-03-07 21:03:58,035 - INFO - if self._api_zone.get():
+2025-03-07 21:03:58,036 - INFO - return await cb()
+2025-03-07 21:03:58,036 - INFO - task = asyncio.current_task(self._loop)
+2025-03-07 21:03:58,038 - INFO - st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+2025-03-07 21:03:58,039 - INFO - parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+2025-03-07 21:03:58,040 - INFO - self._api_zone.set(parsed_st)
+2025-03-07 21:03:58,041 - INFO - try:
+2025-03-07 21:03:58,042 - INFO - return await cb()
+2025-03-07 21:03:58,043 - INFO - except Exception as error:
+2025-03-07 21:03:58,044 - INFO - >           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+2025-03-07 21:03:58,045 - INFO - E           playwright._impl._errors.TimeoutError: Locator.fill: Timeout 30000ms exceeded.
+2025-03-07 21:03:58,046 - INFO - E           Call log:
+2025-03-07 21:03:58,047 - INFO - E             - waiting for locator("input[name='login']")
+2025-03-07 21:03:58,051 - INFO - 
+2025-03-07 21:03:58,052 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:528: TimeoutError
+2025-03-07 21:03:58,053 - INFO - ============================== warnings summary ===============================
+2025-03-07 21:03:58,055 - INFO - tests\test_ui_layout.py:6
+2025-03-07 21:03:58,056 - INFO - E:\automation\tests\test_ui_layout.py:6: PytestUnknownMarkWarning: Unknown pytest.mark.visual - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+2025-03-07 21:03:58,058 - INFO - @pytest.mark.visual
+2025-03-07 21:03:58,059 - INFO - 
+2025-03-07 21:03:58,060 - INFO - -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2025-03-07 21:03:58,061 - INFO - =========================== short test summary info ===========================
+2025-03-07 21:03:58,062 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login - playwr...
+2025-03-07 21:03:58,064 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_invalid_login - playwrigh...
+2025-03-07 21:03:58,065 - INFO - ERROR tests/test_ui_layout.py::TestUILayout::test_visual_layout - playwright....
+2025-03-07 21:03:58,066 - INFO - ============== 2 failed, 1 warning, 1 error in 78.20s (0:01:18) ===============
+2025-03-07 21:03:58,067 - INFO - ========================================
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 1
+========================================
+2025-03-07 21:10:30,457 - INFO - ============================= test session starts =============================
+2025-03-07 21:10:30,459 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-07 21:10:30,460 - INFO - cachedir: .pytest_cache
+2025-03-07 21:10:30,463 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-07 21:10:30,464 - INFO - rootdir: E:\automation
+2025-03-07 21:10:30,466 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-07 21:10:30,479 - INFO - collecting ... collected 2 items
+2025-03-07 21:10:30,480 - INFO - 
+2025-03-07 21:10:44,078 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login FAILED     [ 50%]
+2025-03-07 21:10:47,037 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [100%]
+2025-03-07 21:10:47,038 - INFO - 
+2025-03-07 21:10:47,040 - INFO - ================================== FAILURES ===================================
+2025-03-07 21:10:47,041 - INFO - __________________ TestAuthentication.test_successful_login ___________________
+2025-03-07 21:10:47,042 - INFO - 
+2025-03-07 21:10:47,044 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000001A76A7DFB10>
+2025-03-07 21:10:47,046 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-07 21:10:47,050 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-07 21:10:47,051 - INFO - 
+2025-03-07 21:10:47,052 - INFO - @allure.story("Successful login")
+2025-03-07 21:10:47,054 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-07 21:10:47,055 - INFO - def test_successful_login(self, page, config):
+2025-03-07 21:10:47,056 - INFO - """пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"""
+2025-03-07 21:10:47,058 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-07 21:10:47,059 - INFO - 
+2025-03-07 21:10:47,060 - INFO - with allure.step("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:10:47,062 - INFO - login_page.navigate()
+2025-03-07 21:10:47,063 - INFO - 
+2025-03-07 21:10:47,064 - INFO - with allure.step("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ"):
+2025-03-07 21:10:47,067 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-07 21:10:47,071 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-07 21:10:47,072 - INFO - 
+2025-03-07 21:10:47,073 - INFO - with allure.step("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"):
+2025-03-07 21:10:47,075 - INFO - >           page.wait_for_url("**/*office*", timeout=10000)
+2025-03-07 21:10:47,077 - INFO - 
+2025-03-07 21:10:47,078 - INFO - tests\test_auth.py:22:
+2025-03-07 21:10:47,079 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:10:47,081 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-07 21:10:47,082 - INFO - self._sync(
+2025-03-07 21:10:47,083 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-07 21:10:47,084 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-07 21:10:47,086 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-07 21:10:47,087 - INFO - async with self.expect_navigation(
+2025-03-07 21:10:47,088 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-07 21:10:47,089 - INFO - await self._future
+2025-03-07 21:10:47,090 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-07 21:10:47,091 - INFO - 
+2025-03-07 21:10:47,092 - INFO - async def continuation() -> Optional[Response]:
+2025-03-07 21:10:47,094 - INFO - >       event = await waiter.result()
+2025-03-07 21:10:47,094 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-07 21:10:47,099 - INFO - E       =========================== logs ===========================
+2025-03-07 21:10:47,100 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-07 21:10:47,101 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=07.03.2025%20-%2007.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-07 21:10:47,102 - INFO - E       ============================================================
+2025-03-07 21:10:47,103 - INFO - 
+2025-03-07 21:10:47,105 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-07 21:10:47,106 - INFO - =========================== short test summary info ===========================
+2025-03-07 21:10:47,110 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login - playwr...
+2025-03-07 21:10:47,111 - INFO - ======================== 1 failed, 1 passed in 16.58s =========================
+2025-03-07 21:10:47,112 - INFO - ========================================
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 1
+========================================
+2025-03-09 15:44:09,879 - INFO - ============================= test session starts =============================
+2025-03-09 15:44:09,881 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 15:44:09,882 - INFO - cachedir: .pytest_cache
+2025-03-09 15:44:09,883 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 15:44:09,884 - INFO - rootdir: E:\automation
+2025-03-09 15:44:09,885 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 15:44:09,923 - INFO - collecting ... collected 2 items
+2025-03-09 15:44:09,924 - INFO - 
+2025-03-09 15:44:29,607 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login FAILED     [ 50%]
+2025-03-09 15:44:32,671 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [100%]
+2025-03-09 15:44:32,671 - INFO - 
+2025-03-09 15:44:32,672 - INFO - ================================== FAILURES ===================================
+2025-03-09 15:44:32,673 - INFO - __________________ TestAuthentication.test_successful_login ___________________
+2025-03-09 15:44:32,673 - INFO - 
+2025-03-09 15:44:32,674 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000001DF34BFF810>
+2025-03-09 15:44:32,675 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 15:44:32,679 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 15:44:32,680 - INFO - 
+2025-03-09 15:44:32,681 - INFO - @allure.story("Successful login")
+2025-03-09 15:44:32,682 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 15:44:32,684 - INFO - def test_successful_login(self, page, config):
+2025-03-09 15:44:32,686 - INFO - """Проверка успешной авторизации с правильными учетными данными"""
+2025-03-09 15:44:32,688 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 15:44:32,689 - INFO - 
+2025-03-09 15:44:32,690 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 15:44:32,691 - INFO - login_page.navigate()
+2025-03-09 15:44:32,692 - INFO - 
+2025-03-09 15:44:32,694 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 15:44:32,698 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 15:44:32,701 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 15:44:32,702 - INFO - 
+2025-03-09 15:44:32,703 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 15:44:32,705 - INFO - >           page.wait_for_url("**/*office*", timeout=10000)
+2025-03-09 15:44:32,706 - INFO - 
+2025-03-09 15:44:32,708 - INFO - tests\test_auth.py:22:
+2025-03-09 15:44:32,709 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:44:32,710 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 15:44:32,711 - INFO - self._sync(
+2025-03-09 15:44:32,713 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 15:44:32,714 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 15:44:32,715 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 15:44:32,717 - INFO - async with self.expect_navigation(
+2025-03-09 15:44:32,718 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 15:44:32,719 - INFO - await self._future
+2025-03-09 15:44:32,720 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:44:32,721 - INFO - 
+2025-03-09 15:44:32,723 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 15:44:32,724 - INFO - >       event = await waiter.result()
+2025-03-09 15:44:32,725 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 15:44:32,726 - INFO - E       =========================== logs ===========================
+2025-03-09 15:44:32,728 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-09 15:44:32,729 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-09 15:44:32,730 - INFO - E       ============================================================
+2025-03-09 15:44:32,731 - INFO - 
+2025-03-09 15:44:32,732 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 15:44:32,734 - INFO - =========================== short test summary info ===========================
+2025-03-09 15:44:32,735 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login - playwr...
+2025-03-09 15:44:32,736 - INFO - ======================== 1 failed, 1 passed in 22.79s =========================
+2025-03-09 15:44:32,737 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 15:46:02,438 - INFO - ============================= test session starts =============================
+2025-03-09 15:46:02,440 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 15:46:02,441 - INFO - cachedir: .pytest_cache
+2025-03-09 15:46:02,443 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 15:46:02,444 - INFO - rootdir: E:\automation
+2025-03-09 15:46:02,446 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 15:46:02,452 - INFO - collecting ... collected 2 items
+2025-03-09 15:46:02,453 - INFO - 
+2025-03-09 15:46:07,910 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login PASSED     [ 50%]
+2025-03-09 15:46:10,760 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [100%]
+2025-03-09 15:46:10,762 - INFO - 
+2025-03-09 15:46:10,763 - INFO - ============================== 2 passed in 8.33s ==============================
+2025-03-09 15:46:10,793 - INFO - ========================================
+Команда выполнена. Код возврата: 0
+========================================
+2025-03-09 15:52:52,155 - INFO - ============================= test session starts =============================
+2025-03-09 15:52:52,156 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 15:52:52,158 - INFO - cachedir: .pytest_cache
+2025-03-09 15:52:52,160 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 15:52:52,161 - INFO - rootdir: E:\automation
+2025-03-09 15:52:52,163 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 15:52:52,177 - INFO - collecting ... collected 4 items
+2025-03-09 15:52:52,179 - INFO - 
+2025-03-09 15:52:57,506 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login PASSED     [ 25%]
+2025-03-09 15:53:00,399 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 50%]
+2025-03-09 15:53:13,234 - INFO - tests/test_auth.py::TestAuthentication::test_successful_logout ERROR     [ 75%]
+2025-03-09 15:53:26,038 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery FAILED    [100%]
+2025-03-09 15:53:26,039 - INFO - 
+2025-03-09 15:53:26,041 - INFO - =================================== ERRORS ====================================
+2025-03-09 15:53:26,042 - INFO - _________ ERROR at setup of TestAuthentication.test_successful_logout _________
+2025-03-09 15:53:26,043 - INFO - 
+2025-03-09 15:53:26,045 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 15:53:26,049 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 15:53:26,050 - INFO - 
+2025-03-09 15:53:26,051 - INFO - @pytest.fixture
+2025-03-09 15:53:26,052 - INFO - def authenticated_page(page, config):
+2025-03-09 15:53:26,055 - INFO - """Фикстура, возвращающая аутентифицированную страницу"""
+2025-03-09 15:53:26,056 - INFO - from pages.login_page import LoginPage
+2025-03-09 15:53:26,057 - INFO - 
+2025-03-09 15:53:26,058 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-09 15:53:26,059 - INFO - login_page.navigate()
+2025-03-09 15:53:26,061 - INFO - 
+2025-03-09 15:53:26,062 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 15:53:26,063 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 15:53:26,066 - INFO - 
+2025-03-09 15:53:26,068 - INFO - # Ждем успешного входа
+2025-03-09 15:53:26,069 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-09 15:53:26,070 - INFO - 
+2025-03-09 15:53:26,072 - INFO - conftest.py:72:
+2025-03-09 15:53:26,073 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:53:26,074 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 15:53:26,075 - INFO - self._sync(
+2025-03-09 15:53:26,076 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 15:53:26,078 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 15:53:26,079 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 15:53:26,080 - INFO - async with self.expect_navigation(
+2025-03-09 15:53:26,082 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 15:53:26,083 - INFO - await self._future
+2025-03-09 15:53:26,084 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:53:26,085 - INFO - 
+2025-03-09 15:53:26,086 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 15:53:26,088 - INFO - >       event = await waiter.result()
+2025-03-09 15:53:26,089 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 15:53:26,090 - INFO - E       =========================== logs ===========================
+2025-03-09 15:53:26,091 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-09 15:53:26,093 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-09 15:53:26,095 - INFO - E       ============================================================
+2025-03-09 15:53:26,096 - INFO - 
+2025-03-09 15:53:26,097 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 15:53:26,098 - INFO - ================================== FAILURES ===================================
+2025-03-09 15:53:26,100 - INFO - __________________ TestAuthentication.test_password_recovery __________________
+2025-03-09 15:53:26,101 - INFO - 
+2025-03-09 15:53:26,102 - INFO - self = <tests.test_auth.TestAuthentication object at 0x00000258D6112490>
+2025-03-09 15:53:26,103 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/forgot/'>
+2025-03-09 15:53:26,105 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 15:53:26,106 - INFO - 
+2025-03-09 15:53:26,108 - INFO - @allure.story("Password recovery request")
+2025-03-09 15:53:26,109 - INFO - @allure.severity(allure.severity_level.NORMAL)
+2025-03-09 15:53:26,110 - INFO - def test_password_recovery(self, page, config):
+2025-03-09 15:53:26,112 - INFO - """Проверка запроса восстановления пароля"""
+2025-03-09 15:53:26,114 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 15:53:26,115 - INFO - 
+2025-03-09 15:53:26,117 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 15:53:26,118 - INFO - login_page.navigate()
+2025-03-09 15:53:26,122 - INFO - 
+2025-03-09 15:53:26,123 - INFO - with allure.step("Нажатие на ссылку 'Забыли пароль?'"):
+2025-03-09 15:53:26,124 - INFO - login_page.click_forgot_password()
+2025-03-09 15:53:26,125 - INFO - page.wait_for_load_state("networkidle")
+2025-03-09 15:53:26,127 - INFO - 
+2025-03-09 15:53:26,128 - INFO - with allure.step("Заполнение email для восстановления"):
+2025-03-09 15:53:26,129 - INFO - recovery_email_field = page.locator("input[name='email']")
+2025-03-09 15:53:26,131 - INFO - recovery_submit_button = page.locator("button[type='submit']")
+2025-03-09 15:53:26,132 - INFO - >           recovery_email_field.wait_for(state="visible", timeout=10000)
+2025-03-09 15:53:26,133 - INFO - 
+2025-03-09 15:53:26,134 - INFO - tests\test_auth.py:77:
+2025-03-09 15:53:26,135 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:53:26,137 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:17862: in wait_for
+2025-03-09 15:53:26,139 - INFO - self._sync(self._impl_obj.wait_for(timeout=timeout, state=state))
+2025-03-09 15:53:26,140 - INFO - .venv\Lib\site-packages\playwright\_impl\_locator.py:679: in wait_for
+2025-03-09 15:53:26,141 - INFO - await self._frame.wait_for_selector(
+2025-03-09 15:53:26,142 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:323: in wait_for_selector
+2025-03-09 15:53:26,144 - INFO - await self._channel.send("waitForSelector", locals_to_params(locals()))
+2025-03-09 15:53:26,145 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:61: in send
+2025-03-09 15:53:26,146 - INFO - return await self._connection.wrap_api_call(
+2025-03-09 15:53:26,148 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:53:26,149 - INFO - 
+2025-03-09 15:53:26,150 - INFO - self = <playwright._impl._connection.Connection object at 0x00000258D3471B10>
+2025-03-09 15:53:26,151 - INFO - cb = <function Channel.send.<locals>.<lambda> at 0x00000258D64F6D40>
+2025-03-09 15:53:26,152 - INFO - is_internal = False
+2025-03-09 15:53:26,154 - INFO - 
+2025-03-09 15:53:26,155 - INFO - async def wrap_api_call(
+2025-03-09 15:53:26,156 - INFO - self, cb: Callable[[], Any], is_internal: bool = False
+2025-03-09 15:53:26,158 - INFO - ) -> Any:
+2025-03-09 15:53:26,159 - INFO - if self._api_zone.get():
+2025-03-09 15:53:26,160 - INFO - return await cb()
+2025-03-09 15:53:26,161 - INFO - task = asyncio.current_task(self._loop)
+2025-03-09 15:53:26,162 - INFO - st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+2025-03-09 15:53:26,163 - INFO - parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+2025-03-09 15:53:26,164 - INFO - self._api_zone.set(parsed_st)
+2025-03-09 15:53:26,166 - INFO - try:
+2025-03-09 15:53:26,167 - INFO - return await cb()
+2025-03-09 15:53:26,168 - INFO - except Exception as error:
+2025-03-09 15:53:26,169 - INFO - >           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+2025-03-09 15:53:26,171 - INFO - E           playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 10000ms exceeded.
+2025-03-09 15:53:26,172 - INFO - E           Call log:
+2025-03-09 15:53:26,175 - INFO - E             - waiting for locator("input[name='email']") to be visible
+2025-03-09 15:53:26,176 - INFO - 
+2025-03-09 15:53:26,177 - INFO - .venv\Lib\site-packages\playwright\_impl\_connection.py:528: TimeoutError
+2025-03-09 15:53:26,178 - INFO - =========================== short test summary info ===========================
+2025-03-09 15:53:26,183 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_password_recovery - playw...
+2025-03-09 15:53:26,184 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_logout - playwr...
+2025-03-09 15:53:26,185 - INFO - ==================== 1 failed, 2 passed, 1 error in 33.89s ====================
+2025-03-09 15:53:26,186 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 15:55:37,841 - INFO - ============================= test session starts =============================
+2025-03-09 15:55:37,843 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 15:55:37,844 - INFO - cachedir: .pytest_cache
+2025-03-09 15:55:37,846 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 15:55:37,847 - INFO - rootdir: E:\automation
+2025-03-09 15:55:37,849 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 15:55:37,862 - INFO - collecting ... collected 4 items
+2025-03-09 15:55:37,864 - INFO - 
+2025-03-09 15:55:43,215 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login PASSED     [ 25%]
+2025-03-09 15:55:46,258 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 50%]
+2025-03-09 15:55:59,175 - INFO - tests/test_auth.py::TestAuthentication::test_successful_logout ERROR     [ 75%]
+2025-03-09 15:56:03,663 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 15:56:03,664 - INFO - 
+2025-03-09 15:56:03,665 - INFO - =================================== ERRORS ====================================
+2025-03-09 15:56:03,667 - INFO - _________ ERROR at setup of TestAuthentication.test_successful_logout _________
+2025-03-09 15:56:03,668 - INFO - 
+2025-03-09 15:56:03,670 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 15:56:03,674 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 15:56:03,675 - INFO - 
+2025-03-09 15:56:03,676 - INFO - @pytest.fixture
+2025-03-09 15:56:03,677 - INFO - def authenticated_page(page, config):
+2025-03-09 15:56:03,678 - INFO - """Фикстура, возвращающая аутентифицированную страницу"""
+2025-03-09 15:56:03,679 - INFO - from pages.login_page import LoginPage
+2025-03-09 15:56:03,680 - INFO - 
+2025-03-09 15:56:03,682 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-09 15:56:03,683 - INFO - login_page.navigate()
+2025-03-09 15:56:03,684 - INFO - 
+2025-03-09 15:56:03,685 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 15:56:03,686 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 15:56:03,687 - INFO - 
+2025-03-09 15:56:03,688 - INFO - # Ждем успешного входа
+2025-03-09 15:56:03,690 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-09 15:56:03,691 - INFO - 
+2025-03-09 15:56:03,692 - INFO - conftest.py:72:
+2025-03-09 15:56:03,695 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:56:03,696 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 15:56:03,697 - INFO - self._sync(
+2025-03-09 15:56:03,698 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 15:56:03,699 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 15:56:03,701 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 15:56:03,703 - INFO - async with self.expect_navigation(
+2025-03-09 15:56:03,704 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 15:56:03,705 - INFO - await self._future
+2025-03-09 15:56:03,706 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 15:56:03,707 - INFO - 
+2025-03-09 15:56:03,708 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 15:56:03,709 - INFO - >       event = await waiter.result()
+2025-03-09 15:56:03,714 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 15:56:03,715 - INFO - E       =========================== logs ===========================
+2025-03-09 15:56:03,716 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-09 15:56:03,717 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-09 15:56:03,718 - INFO - E       ============================================================
+2025-03-09 15:56:03,719 - INFO - 
+2025-03-09 15:56:03,720 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 15:56:03,722 - INFO - =========================== short test summary info ===========================
+2025-03-09 15:56:03,723 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_logout - playwr...
+2025-03-09 15:56:03,724 - INFO - ========================= 3 passed, 1 error in 25.83s =========================
+2025-03-09 15:56:03,725 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 16:41:47,795 - INFO - ============================= test session starts =============================
+2025-03-09 16:41:47,798 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 16:41:47,799 - INFO - cachedir: .pytest_cache
+2025-03-09 16:41:47,801 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 16:41:47,802 - INFO - rootdir: E:\automation
+2025-03-09 16:41:47,803 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 16:41:47,821 - INFO - collecting ... collected 4 items
+2025-03-09 16:41:47,823 - INFO - 
+2025-03-09 16:41:53,262 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login PASSED     [ 25%]
+2025-03-09 16:41:56,047 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 50%]
+2025-03-09 16:42:08,962 - INFO - tests/test_auth.py::TestAuthentication::test_successful_logout ERROR     [ 75%]
+2025-03-09 16:42:12,778 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 16:42:12,780 - INFO - 
+2025-03-09 16:42:12,781 - INFO - =================================== ERRORS ====================================
+2025-03-09 16:42:12,782 - INFO - _________ ERROR at setup of TestAuthentication.test_successful_logout _________
+2025-03-09 16:42:12,783 - INFO - 
+2025-03-09 16:42:12,785 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 16:42:12,788 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 16:42:12,790 - INFO - 
+2025-03-09 16:42:12,791 - INFO - @pytest.fixture
+2025-03-09 16:42:12,792 - INFO - def authenticated_page(page, config):
+2025-03-09 16:42:12,793 - INFO - """Фикстура, возвращающая аутентифицированную страницу"""
+2025-03-09 16:42:12,795 - INFO - from pages.login_page import LoginPage
+2025-03-09 16:42:12,797 - INFO - 
+2025-03-09 16:42:12,798 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-09 16:42:12,799 - INFO - login_page.navigate()
+2025-03-09 16:42:12,801 - INFO - 
+2025-03-09 16:42:12,802 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 16:42:12,803 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 16:42:12,804 - INFO - 
+2025-03-09 16:42:12,807 - INFO - # Ждем успешного входа
+2025-03-09 16:42:12,808 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-09 16:42:12,809 - INFO - 
+2025-03-09 16:42:12,810 - INFO - conftest.py:72:
+2025-03-09 16:42:12,812 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 16:42:12,813 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 16:42:12,814 - INFO - self._sync(
+2025-03-09 16:42:12,815 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 16:42:12,818 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 16:42:12,819 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 16:42:12,820 - INFO - async with self.expect_navigation(
+2025-03-09 16:42:12,821 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 16:42:12,823 - INFO - await self._future
+2025-03-09 16:42:12,824 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 16:42:12,825 - INFO - 
+2025-03-09 16:42:12,826 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 16:42:12,827 - INFO - >       event = await waiter.result()
+2025-03-09 16:42:12,828 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 16:42:12,829 - INFO - E       =========================== logs ===========================
+2025-03-09 16:42:12,830 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-09 16:42:12,831 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-09 16:42:12,833 - INFO - E       ============================================================
+2025-03-09 16:42:12,834 - INFO - 
+2025-03-09 16:42:12,835 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 16:42:12,836 - INFO - =========================== short test summary info ===========================
+2025-03-09 16:42:12,837 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_logout - playwr...
+2025-03-09 16:42:12,838 - INFO - ========================= 3 passed, 1 error in 24.99s =========================
+2025-03-09 16:42:12,839 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 16:47:39,016 - INFO - ============================= test session starts =============================
+2025-03-09 16:47:39,018 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 16:47:39,019 - INFO - cachedir: .pytest_cache
+2025-03-09 16:47:39,021 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 16:47:39,022 - INFO - rootdir: E:\automation
+2025-03-09 16:47:39,023 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 16:47:39,042 - INFO - collecting ... collected 3 items
+2025-03-09 16:47:39,043 - INFO - 
+2025-03-09 16:48:14,522 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 33%]
+2025-03-09 16:48:14,523 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout ERROR [ 33%]
+2025-03-09 16:48:17,338 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 66%]
+2025-03-09 16:48:17,340 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login ERROR         [ 66%]
+2025-03-09 16:48:20,968 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 16:48:20,970 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery ERROR     [100%]
+2025-03-09 16:48:20,971 - INFO - 
+2025-03-09 16:48:20,973 - INFO - =================================== ERRORS ====================================
+2025-03-09 16:48:20,974 - INFO - __ ERROR at teardown of TestAuthentication.test_successful_login_and_logout ___
+2025-03-09 16:48:20,977 - INFO - 
+2025-03-09 16:48:20,979 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 16:48:20,980 - INFO - 
+2025-03-09 16:48:20,981 - INFO - @pytest.fixture
+2025-03-09 16:48:20,982 - INFO - def page(browser_context):
+2025-03-09 16:48:20,984 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 16:48:20,985 - INFO - page = browser_context.new_page()
+2025-03-09 16:48:20,986 - INFO - yield page
+2025-03-09 16:48:20,987 - INFO - page.close()
+2025-03-09 16:48:20,988 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 16:48:20,989 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 16:48:20,990 - INFO - 
+2025-03-09 16:48:20,991 - INFO - conftest.py:58: NameError
+2025-03-09 16:48:20,992 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 16:48:20,994 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 16:48:20,995 - INFO - _________ ERROR at teardown of TestAuthentication.test_invalid_login __________
+2025-03-09 16:48:20,996 - INFO - 
+2025-03-09 16:48:20,998 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 16:48:21,001 - INFO - 
+2025-03-09 16:48:21,004 - INFO - @pytest.fixture
+2025-03-09 16:48:21,005 - INFO - def page(browser_context):
+2025-03-09 16:48:21,006 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 16:48:21,007 - INFO - page = browser_context.new_page()
+2025-03-09 16:48:21,009 - INFO - yield page
+2025-03-09 16:48:21,010 - INFO - page.close()
+2025-03-09 16:48:21,011 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 16:48:21,012 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 16:48:21,013 - INFO - 
+2025-03-09 16:48:21,014 - INFO - conftest.py:58: NameError
+2025-03-09 16:48:21,015 - INFO - _______ ERROR at teardown of TestAuthentication.test_password_recovery ________
+2025-03-09 16:48:21,016 - INFO - 
+2025-03-09 16:48:21,017 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 16:48:21,018 - INFO - 
+2025-03-09 16:48:21,020 - INFO - @pytest.fixture
+2025-03-09 16:48:21,021 - INFO - def page(browser_context):
+2025-03-09 16:48:21,022 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 16:48:21,024 - INFO - page = browser_context.new_page()
+2025-03-09 16:48:21,025 - INFO - yield page
+2025-03-09 16:48:21,026 - INFO - page.close()
+2025-03-09 16:48:21,027 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 16:48:21,028 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 16:48:21,029 - INFO - 
+2025-03-09 16:48:21,030 - INFO - conftest.py:58: NameError
+2025-03-09 16:48:21,031 - INFO - ================================== FAILURES ===================================
+2025-03-09 16:48:21,032 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-09 16:48:21,033 - INFO - 
+2025-03-09 16:48:21,034 - INFO - self = <tests.test_auth.TestAuthentication object at 0x0000024ABC216D50>
+2025-03-09 16:48:21,036 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 16:48:21,037 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 16:48:21,038 - INFO - 
+2025-03-09 16:48:21,039 - INFO - @allure.story("Successful login and logout")
+2025-03-09 16:48:21,041 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 16:48:21,042 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-09 16:48:21,043 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-09 16:48:21,044 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 16:48:21,045 - INFO - 
+2025-03-09 16:48:21,047 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 16:48:21,048 - INFO - login_page.navigate()
+2025-03-09 16:48:21,050 - INFO - 
+2025-03-09 16:48:21,051 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 16:48:21,052 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 16:48:21,053 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 16:48:21,054 - INFO - 
+2025-03-09 16:48:21,055 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 16:48:21,057 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-09 16:48:21,058 - INFO - page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-09 16:48:21,059 - INFO - assert expected_url in page.url, f"Ожидался URL с '/office/', но получен {page.url}"
+2025-03-09 16:48:21,061 - INFO - 
+2025-03-09 16:48:21,063 - INFO - with allure.step("Выполнение выхода из системы"):
+2025-03-09 16:48:21,064 - INFO - logout_success = login_page.logout()
+2025-03-09 16:48:21,066 - INFO - >           assert logout_success, "Не удалось выполнить выход из системы"
+2025-03-09 16:48:21,067 - INFO - E           AssertionError: Не удалось выполнить выход из системы
+2025-03-09 16:48:21,069 - INFO - E           assert False
+2025-03-09 16:48:21,070 - INFO - 
+2025-03-09 16:48:21,072 - INFO - tests\test_auth.py:28: AssertionError
+2025-03-09 16:48:21,074 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 16:48:21,075 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 16:48:21,076 - INFO - =========================== short test summary info ===========================
+2025-03-09 16:48:21,078 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 16:48:21,079 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 16:48:21,080 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_invalid_login - NameError:...
+2025-03-09 16:48:21,081 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_password_recovery - NameEr...
+2025-03-09 16:48:21,083 - INFO - =================== 1 failed, 2 passed, 3 errors in 41.96s ====================
+2025-03-09 16:48:21,084 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 18:03:10,198 - INFO - ============================= test session starts =============================
+2025-03-09 18:03:10,200 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 18:03:10,201 - INFO - cachedir: .pytest_cache
+2025-03-09 18:03:10,203 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 18:03:10,204 - INFO - rootdir: E:\automation
+2025-03-09 18:03:10,205 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 18:03:10,231 - INFO - collecting ... collected 4 items
+2025-03-09 18:03:10,232 - INFO - 
+2025-03-09 18:03:45,763 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 25%]
+2025-03-09 18:03:45,764 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout ERROR [ 25%]
+2025-03-09 18:03:48,516 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 50%]
+2025-03-09 18:03:48,517 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login ERROR         [ 50%]
+2025-03-09 18:03:52,081 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [ 75%]
+2025-03-09 18:03:52,082 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery ERROR     [ 75%]
+2025-03-09 18:04:05,467 - INFO - tests/test_ui_layout.py::TestUILayout::test_visual_layout ERROR          [100%]
+2025-03-09 18:04:05,470 - INFO - tests/test_ui_layout.py::TestUILayout::test_visual_layout ERROR          [100%]
+2025-03-09 18:04:05,471 - INFO - 
+2025-03-09 18:04:05,472 - INFO - =================================== ERRORS ====================================
+2025-03-09 18:04:05,473 - INFO - __ ERROR at teardown of TestAuthentication.test_successful_login_and_logout ___
+2025-03-09 18:04:05,475 - INFO - 
+2025-03-09 18:04:05,476 - INFO - self = <allure_commons._allure.fixture object at 0x000002B3B3862D50>, args = ()
+2025-03-09 18:04:05,477 - INFO - kwargs = {}
+2025-03-09 18:04:05,478 - INFO - 
+2025-03-09 18:04:05,480 - INFO - def __call__(self, *args, **kwargs):
+2025-03-09 18:04:05,482 - INFO - self.parameters = func_parameters(self._fixture_function, *args, **kwargs)
+2025-03-09 18:04:05,483 - INFO - 
+2025-03-09 18:04:05,485 - INFO - with self:
+2025-03-09 18:04:05,486 - INFO - >           return self._fixture_function(*args, **kwargs)
+2025-03-09 18:04:05,488 - INFO - 
+2025-03-09 18:04:05,489 - INFO - .venv\Lib\site-packages\allure_commons\_allure.py:221:
+2025-03-09 18:04:05,490 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,493 - INFO - 
+2025-03-09 18:04:05,494 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:04:05,495 - INFO - 
+2025-03-09 18:04:05,497 - INFO - @pytest.fixture
+2025-03-09 18:04:05,498 - INFO - def page(browser_context):
+2025-03-09 18:04:05,500 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:04:05,501 - INFO - page = browser_context.new_page()
+2025-03-09 18:04:05,502 - INFO - yield page
+2025-03-09 18:04:05,504 - INFO - page.close()
+2025-03-09 18:04:05,506 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:04:05,508 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:04:05,509 - INFO - 
+2025-03-09 18:04:05,510 - INFO - conftest.py:58: NameError
+2025-03-09 18:04:05,511 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 18:04:05,512 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 18:04:05,515 - INFO - _________ ERROR at teardown of TestAuthentication.test_invalid_login __________
+2025-03-09 18:04:05,516 - INFO - 
+2025-03-09 18:04:05,517 - INFO - self = <allure_commons._allure.fixture object at 0x000002B3B62505D0>, args = ()
+2025-03-09 18:04:05,518 - INFO - kwargs = {}
+2025-03-09 18:04:05,519 - INFO - 
+2025-03-09 18:04:05,520 - INFO - def __call__(self, *args, **kwargs):
+2025-03-09 18:04:05,521 - INFO - self.parameters = func_parameters(self._fixture_function, *args, **kwargs)
+2025-03-09 18:04:05,522 - INFO - 
+2025-03-09 18:04:05,524 - INFO - with self:
+2025-03-09 18:04:05,526 - INFO - >           return self._fixture_function(*args, **kwargs)
+2025-03-09 18:04:05,527 - INFO - 
+2025-03-09 18:04:05,528 - INFO - .venv\Lib\site-packages\allure_commons\_allure.py:221:
+2025-03-09 18:04:05,530 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,531 - INFO - 
+2025-03-09 18:04:05,533 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:04:05,533 - INFO - 
+2025-03-09 18:04:05,535 - INFO - @pytest.fixture
+2025-03-09 18:04:05,536 - INFO - def page(browser_context):
+2025-03-09 18:04:05,537 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:04:05,538 - INFO - page = browser_context.new_page()
+2025-03-09 18:04:05,539 - INFO - yield page
+2025-03-09 18:04:05,540 - INFO - page.close()
+2025-03-09 18:04:05,541 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:04:05,542 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:04:05,543 - INFO - 
+2025-03-09 18:04:05,545 - INFO - conftest.py:58: NameError
+2025-03-09 18:04:05,546 - INFO - _______ ERROR at teardown of TestAuthentication.test_password_recovery ________
+2025-03-09 18:04:05,547 - INFO - 
+2025-03-09 18:04:05,548 - INFO - self = <allure_commons._allure.fixture object at 0x000002B3B624EFD0>, args = ()
+2025-03-09 18:04:05,550 - INFO - kwargs = {}
+2025-03-09 18:04:05,550 - INFO - 
+2025-03-09 18:04:05,552 - INFO - def __call__(self, *args, **kwargs):
+2025-03-09 18:04:05,553 - INFO - self.parameters = func_parameters(self._fixture_function, *args, **kwargs)
+2025-03-09 18:04:05,553 - INFO - 
+2025-03-09 18:04:05,555 - INFO - with self:
+2025-03-09 18:04:05,556 - INFO - >           return self._fixture_function(*args, **kwargs)
+2025-03-09 18:04:05,558 - INFO - 
+2025-03-09 18:04:05,559 - INFO - .venv\Lib\site-packages\allure_commons\_allure.py:221:
+2025-03-09 18:04:05,560 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,561 - INFO - 
+2025-03-09 18:04:05,564 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:04:05,564 - INFO - 
+2025-03-09 18:04:05,566 - INFO - @pytest.fixture
+2025-03-09 18:04:05,567 - INFO - def page(browser_context):
+2025-03-09 18:04:05,569 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:04:05,570 - INFO - page = browser_context.new_page()
+2025-03-09 18:04:05,571 - INFO - yield page
+2025-03-09 18:04:05,573 - INFO - page.close()
+2025-03-09 18:04:05,575 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:04:05,576 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:04:05,577 - INFO - 
+2025-03-09 18:04:05,579 - INFO - conftest.py:58: NameError
+2025-03-09 18:04:05,580 - INFO - ______________ ERROR at setup of TestUILayout.test_visual_layout ______________
+2025-03-09 18:04:05,581 - INFO - 
+2025-03-09 18:04:05,582 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 18:04:05,584 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 18:04:05,586 - INFO - 
+2025-03-09 18:04:05,587 - INFO - @pytest.fixture
+2025-03-09 18:04:05,588 - INFO - def authenticated_page(page, config):
+2025-03-09 18:04:05,590 - INFO - """Фикстура, возвращающая аутентифицированную страницу"""
+2025-03-09 18:04:05,591 - INFO - from pages.login_page import LoginPage
+2025-03-09 18:04:05,592 - INFO - 
+2025-03-09 18:04:05,593 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-09 18:04:05,595 - INFO - login_page.navigate()
+2025-03-09 18:04:05,596 - INFO - 
+2025-03-09 18:04:05,597 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 18:04:05,599 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 18:04:05,600 - INFO - 
+2025-03-09 18:04:05,601 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-09 18:04:05,602 - INFO - 
+2025-03-09 18:04:05,603 - INFO - conftest.py:71:
+2025-03-09 18:04:05,605 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,606 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 18:04:05,607 - INFO - self._sync(
+2025-03-09 18:04:05,609 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 18:04:05,610 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 18:04:05,611 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 18:04:05,613 - INFO - async with self.expect_navigation(
+2025-03-09 18:04:05,614 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 18:04:05,615 - INFO - await self._future
+2025-03-09 18:04:05,616 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,617 - INFO - 
+2025-03-09 18:04:05,618 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 18:04:05,619 - INFO - >       event = await waiter.result()
+2025-03-09 18:04:05,620 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 18:04:05,621 - INFO - E       =========================== logs ===========================
+2025-03-09 18:04:05,622 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-09 18:04:05,625 - INFO - E         navigated to "https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all"
+2025-03-09 18:04:05,626 - INFO - E       ============================================================
+2025-03-09 18:04:05,627 - INFO - 
+2025-03-09 18:04:05,628 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 18:04:05,630 - INFO - ____________ ERROR at teardown of TestUILayout.test_visual_layout _____________
+2025-03-09 18:04:05,631 - INFO - 
+2025-03-09 18:04:05,632 - INFO - self = <allure_commons._allure.fixture object at 0x000002B3B62516D0>, args = ()
+2025-03-09 18:04:05,633 - INFO - kwargs = {}
+2025-03-09 18:04:05,635 - INFO - 
+2025-03-09 18:04:05,637 - INFO - def __call__(self, *args, **kwargs):
+2025-03-09 18:04:05,638 - INFO - self.parameters = func_parameters(self._fixture_function, *args, **kwargs)
+2025-03-09 18:04:05,639 - INFO - 
+2025-03-09 18:04:05,641 - INFO - with self:
+2025-03-09 18:04:05,643 - INFO - >           return self._fixture_function(*args, **kwargs)
+2025-03-09 18:04:05,643 - INFO - 
+2025-03-09 18:04:05,644 - INFO - .venv\Lib\site-packages\allure_commons\_allure.py:221:
+2025-03-09 18:04:05,646 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:04:05,647 - INFO - 
+2025-03-09 18:04:05,648 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:04:05,649 - INFO - 
+2025-03-09 18:04:05,650 - INFO - @pytest.fixture
+2025-03-09 18:04:05,651 - INFO - def page(browser_context):
+2025-03-09 18:04:05,653 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:04:05,654 - INFO - page = browser_context.new_page()
+2025-03-09 18:04:05,655 - INFO - yield page
+2025-03-09 18:04:05,656 - INFO - page.close()
+2025-03-09 18:04:05,658 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:04:05,659 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:04:05,660 - INFO - 
+2025-03-09 18:04:05,662 - INFO - conftest.py:58: NameError
+2025-03-09 18:04:05,663 - INFO - ================================== FAILURES ===================================
+2025-03-09 18:04:05,664 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-09 18:04:05,665 - INFO - 
+2025-03-09 18:04:05,666 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000002B3B62BD3D0>
+2025-03-09 18:04:05,668 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 18:04:05,669 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 18:04:05,670 - INFO - 
+2025-03-09 18:04:05,672 - INFO - @allure.story("Successful login and logout")
+2025-03-09 18:04:05,673 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 18:04:05,674 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-09 18:04:05,676 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-09 18:04:05,677 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 18:04:05,678 - INFO - 
+2025-03-09 18:04:05,679 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 18:04:05,680 - INFO - login_page.navigate()
+2025-03-09 18:04:05,681 - INFO - 
+2025-03-09 18:04:05,682 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 18:04:05,683 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 18:04:05,684 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 18:04:05,685 - INFO - 
+2025-03-09 18:04:05,686 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 18:04:05,688 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-09 18:04:05,689 - INFO - page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-09 18:04:05,691 - INFO - assert expected_url in page.url, f"Ожидался URL с '/office/', но получен {page.url}"
+2025-03-09 18:04:05,692 - INFO - 
+2025-03-09 18:04:05,693 - INFO - with allure.step("Выполнение выхода из системы"):
+2025-03-09 18:04:05,695 - INFO - logout_success = login_page.logout()
+2025-03-09 18:04:05,697 - INFO - >           assert logout_success, "Не удалось выполнить выход из системы"
+2025-03-09 18:04:05,698 - INFO - E           AssertionError: Не удалось выполнить выход из системы
+2025-03-09 18:04:05,700 - INFO - E           assert False
+2025-03-09 18:04:05,701 - INFO - 
+2025-03-09 18:04:05,702 - INFO - tests\test_auth.py:28: AssertionError
+2025-03-09 18:04:05,704 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 18:04:05,705 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 18:04:05,706 - INFO - =========================== short test summary info ===========================
+2025-03-09 18:04:05,708 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:04:05,709 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:04:05,711 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_invalid_login - NameError:...
+2025-03-09 18:04:05,714 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_password_recovery - NameEr...
+2025-03-09 18:04:05,715 - INFO - ERROR tests/test_ui_layout.py::TestUILayout::test_visual_layout - playwright....
+2025-03-09 18:04:05,717 - INFO - ERROR tests/test_ui_layout.py::TestUILayout::test_visual_layout - NameError: ...
+2025-03-09 18:04:05,718 - INFO - =================== 1 failed, 2 passed, 5 errors in 55.27s ====================
+2025-03-09 18:04:05,718 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 18:19:43,492 - INFO - ============================= test session starts =============================
+2025-03-09 18:19:43,494 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 18:19:43,495 - INFO - cachedir: .pytest_cache
+2025-03-09 18:19:43,497 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 18:19:43,498 - INFO - rootdir: E:\automation
+2025-03-09 18:19:43,500 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 18:19:43,509 - INFO - collecting ... collected 3 items
+2025-03-09 18:19:43,511 - INFO - 
+2025-03-09 18:20:23,428 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 33%]
+2025-03-09 18:20:23,429 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout ERROR [ 33%]
+2025-03-09 18:20:26,443 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 66%]
+2025-03-09 18:20:26,444 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login ERROR         [ 66%]
+2025-03-09 18:20:30,088 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 18:20:30,091 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery ERROR     [100%]
+2025-03-09 18:20:30,091 - INFO - 
+2025-03-09 18:20:30,092 - INFO - =================================== ERRORS ====================================
+2025-03-09 18:20:30,092 - INFO - __ ERROR at teardown of TestAuthentication.test_successful_login_and_logout ___
+2025-03-09 18:20:30,095 - INFO - 
+2025-03-09 18:20:30,097 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:20:30,098 - INFO - 
+2025-03-09 18:20:30,099 - INFO - @pytest.fixture
+2025-03-09 18:20:30,100 - INFO - def page(browser_context):
+2025-03-09 18:20:30,102 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:20:30,103 - INFO - page = browser_context.new_page()
+2025-03-09 18:20:30,105 - INFO - yield page
+2025-03-09 18:20:30,107 - INFO - page.close()
+2025-03-09 18:20:30,108 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:20:30,109 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:20:30,111 - INFO - 
+2025-03-09 18:20:30,112 - INFO - conftest.py:58: NameError
+2025-03-09 18:20:30,113 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 18:20:30,114 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 18:20:30,115 - INFO - _________ ERROR at teardown of TestAuthentication.test_invalid_login __________
+2025-03-09 18:20:30,117 - INFO - 
+2025-03-09 18:20:30,118 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:20:30,121 - INFO - 
+2025-03-09 18:20:30,122 - INFO - @pytest.fixture
+2025-03-09 18:20:30,124 - INFO - def page(browser_context):
+2025-03-09 18:20:30,125 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:20:30,127 - INFO - page = browser_context.new_page()
+2025-03-09 18:20:30,128 - INFO - yield page
+2025-03-09 18:20:30,130 - INFO - page.close()
+2025-03-09 18:20:30,131 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:20:30,132 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:20:30,134 - INFO - 
+2025-03-09 18:20:30,136 - INFO - conftest.py:58: NameError
+2025-03-09 18:20:30,136 - INFO - _______ ERROR at teardown of TestAuthentication.test_password_recovery ________
+2025-03-09 18:20:30,138 - INFO - 
+2025-03-09 18:20:30,139 - INFO - browser_context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=C:\Users\Illuminaty\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe> version=133.0.6943.16>>
+2025-03-09 18:20:30,140 - INFO - 
+2025-03-09 18:20:30,141 - INFO - @pytest.fixture
+2025-03-09 18:20:30,142 - INFO - def page(browser_context):
+2025-03-09 18:20:30,144 - INFO - """Фикстура для создания новой страницы для каждого теста"""
+2025-03-09 18:20:30,145 - INFO - page = browser_context.new_page()
+2025-03-09 18:20:30,147 - INFO - yield page
+2025-03-09 18:20:30,148 - INFO - page.close()
+2025-03-09 18:20:30,149 - INFO - >       self.page.wait_for_timeout(1000)  # Задержка 1 секунда
+2025-03-09 18:20:30,151 - INFO - E       NameError: name 'self' is not defined
+2025-03-09 18:20:30,152 - INFO - 
+2025-03-09 18:20:30,153 - INFO - conftest.py:58: NameError
+2025-03-09 18:20:30,154 - INFO - ================================== FAILURES ===================================
+2025-03-09 18:20:30,155 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-09 18:20:30,156 - INFO - 
+2025-03-09 18:20:30,158 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000001307F4DDF50>
+2025-03-09 18:20:30,159 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 18:20:30,161 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 18:20:30,162 - INFO - 
+2025-03-09 18:20:30,163 - INFO - @allure.story("Successful login and logout")
+2025-03-09 18:20:30,165 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 18:20:30,167 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-09 18:20:30,168 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-09 18:20:30,169 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 18:20:30,170 - INFO - 
+2025-03-09 18:20:30,171 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 18:20:30,173 - INFO - login_page.navigate()
+2025-03-09 18:20:30,174 - INFO - 
+2025-03-09 18:20:30,175 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 18:20:30,176 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 18:20:30,177 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 18:20:30,178 - INFO - 
+2025-03-09 18:20:30,179 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 18:20:30,180 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-09 18:20:30,182 - INFO - page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-09 18:20:30,184 - INFO - assert expected_url in page.url, f"Ожидался URL с '/office/', но получен {page.url}"
+2025-03-09 18:20:30,185 - INFO - 
+2025-03-09 18:20:30,187 - INFO - with allure.step("Выполнение выхода из системы"):
+2025-03-09 18:20:30,188 - INFO - logout_success = login_page.logout()
+2025-03-09 18:20:30,191 - INFO - >           assert logout_success, "Не удалось выполнить выход из системы"
+2025-03-09 18:20:30,192 - INFO - E           AssertionError: Не удалось выполнить выход из системы
+2025-03-09 18:20:30,194 - INFO - E           assert False
+2025-03-09 18:20:30,196 - INFO - 
+2025-03-09 18:20:30,197 - INFO - tests\test_auth.py:28: AssertionError
+2025-03-09 18:20:30,198 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 18:20:30,200 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 18:20:30,201 - INFO - =========================== short test summary info ===========================
+2025-03-09 18:20:30,203 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:20:30,204 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:20:30,205 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_invalid_login - NameError:...
+2025-03-09 18:20:30,207 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_password_recovery - NameEr...
+2025-03-09 18:20:30,208 - INFO - =================== 1 failed, 2 passed, 3 errors in 46.60s ====================
+2025-03-09 18:20:30,209 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 18:22:39,675 - INFO - ============================= test session starts =============================
+2025-03-09 18:22:39,677 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 18:22:39,678 - INFO - cachedir: .pytest_cache
+2025-03-09 18:22:39,680 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 18:22:39,682 - INFO - rootdir: E:\automation
+2025-03-09 18:22:39,683 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 18:22:39,690 - INFO - collecting ... collected 3 items
+2025-03-09 18:22:39,691 - INFO - 
+2025-03-09 18:23:15,144 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 33%]
+2025-03-09 18:23:18,010 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 66%]
+2025-03-09 18:23:21,733 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 18:23:21,735 - INFO - 
+2025-03-09 18:23:21,736 - INFO - ================================== FAILURES ===================================
+2025-03-09 18:23:21,737 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-09 18:23:21,739 - INFO - 
+2025-03-09 18:23:21,740 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000002039AA13ED0>
+2025-03-09 18:23:21,745 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/office/?&daterange=09.03.2025%20-%2009.03.2025&period=default&orders-direction=all&lead_type=all&lead_uniq=all&call-direction=all&predictive=all'>
+2025-03-09 18:23:21,746 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 18:23:21,747 - INFO - 
+2025-03-09 18:23:21,749 - INFO - @allure.story("Successful login and logout")
+2025-03-09 18:23:21,750 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 18:23:21,751 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-09 18:23:21,752 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-09 18:23:21,753 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 18:23:21,755 - INFO - 
+2025-03-09 18:23:21,756 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 18:23:21,757 - INFO - login_page.navigate()
+2025-03-09 18:23:21,758 - INFO - 
+2025-03-09 18:23:21,760 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 18:23:21,763 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 18:23:21,765 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 18:23:21,766 - INFO - 
+2025-03-09 18:23:21,767 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 18:23:21,768 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-09 18:23:21,770 - INFO - page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-09 18:23:21,772 - INFO - assert expected_url in page.url, f"Ожидался URL с '/office/', но получен {page.url}"
+2025-03-09 18:23:21,773 - INFO - 
+2025-03-09 18:23:21,775 - INFO - with allure.step("Выполнение выхода из системы"):
+2025-03-09 18:23:21,776 - INFO - logout_success = login_page.logout()
+2025-03-09 18:23:21,779 - INFO - >           assert logout_success, "Не удалось выполнить выход из системы"
+2025-03-09 18:23:21,783 - INFO - E           AssertionError: Не удалось выполнить выход из системы
+2025-03-09 18:23:21,784 - INFO - E           assert False
+2025-03-09 18:23:21,785 - INFO - 
+2025-03-09 18:23:21,787 - INFO - tests\test_auth.py:28: AssertionError
+2025-03-09 18:23:21,788 - INFO - ---------------------------- Captured stdout call -----------------------------
+2025-03-09 18:23:21,789 - INFO - Ошибка при выходе из системы: Timeout 30000ms exceeded.
+2025-03-09 18:23:21,791 - INFO - =========================== short test summary info ===========================
+2025-03-09 18:23:21,792 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:23:21,794 - INFO - ======================== 1 failed, 2 passed in 42.06s =========================
+2025-03-09 18:23:21,794 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-09 18:36:25,948 - INFO - ============================= test session starts =============================
+2025-03-09 18:36:25,950 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-09 18:36:25,951 - INFO - cachedir: .pytest_cache
+2025-03-09 18:36:25,953 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'Base URL': ''}
+2025-03-09 18:36:25,954 - INFO - rootdir: E:\automation
+2025-03-09 18:36:25,956 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-09 18:36:25,972 - INFO - collecting ... collected 3 items
+2025-03-09 18:36:25,973 - INFO - 
+2025-03-09 18:36:39,796 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 33%]
+2025-03-09 18:36:42,841 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 66%]
+2025-03-09 18:36:46,903 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-09 18:36:46,904 - INFO - 
+2025-03-09 18:36:46,906 - INFO - ================================== FAILURES ===================================
+2025-03-09 18:36:46,907 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-09 18:36:46,909 - INFO - 
+2025-03-09 18:36:46,910 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000001FCD3E83E10>
+2025-03-09 18:36:46,912 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/public/assets/js/libs/wavesurfer.timeline.js.map?'>
+2025-03-09 18:36:46,916 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-09 18:36:46,917 - INFO - 
+2025-03-09 18:36:46,918 - INFO - @allure.story("Successful login and logout")
+2025-03-09 18:36:46,920 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-09 18:36:46,921 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-09 18:36:46,923 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-09 18:36:46,924 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-09 18:36:46,926 - INFO - 
+2025-03-09 18:36:46,927 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-09 18:36:46,928 - INFO - login_page.navigate()
+2025-03-09 18:36:46,929 - INFO - 
+2025-03-09 18:36:46,931 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-09 18:36:46,932 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-09 18:36:46,934 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-09 18:36:46,937 - INFO - 
+2025-03-09 18:36:46,938 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-09 18:36:46,939 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-09 18:36:46,940 - INFO - >           page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-09 18:36:46,941 - INFO - 
+2025-03-09 18:36:46,943 - INFO - tests\test_auth.py:23:
+2025-03-09 18:36:46,944 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:36:46,945 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-09 18:36:46,946 - INFO - self._sync(
+2025-03-09 18:36:46,947 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-09 18:36:46,949 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-09 18:36:46,950 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-09 18:36:46,951 - INFO - async with self.expect_navigation(
+2025-03-09 18:36:46,952 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-09 18:36:46,954 - INFO - await self._future
+2025-03-09 18:36:46,955 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-09 18:36:46,956 - INFO - 
+2025-03-09 18:36:46,957 - INFO - async def continuation() -> Optional[Response]:
+2025-03-09 18:36:46,958 - INFO - >       event = await waiter.result()
+2025-03-09 18:36:46,960 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-09 18:36:46,961 - INFO - E       =========================== logs ===========================
+2025-03-09 18:36:46,962 - INFO - E       waiting for navigation to "**https://liner.dstepanyuk.dev.smte.am/office/*" until 'load'
+2025-03-09 18:36:46,963 - INFO - E       ============================================================
+2025-03-09 18:36:46,964 - INFO - 
+2025-03-09 18:36:46,965 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-09 18:36:46,967 - INFO - =========================== short test summary info ===========================
+2025-03-09 18:36:46,968 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-09 18:36:46,969 - INFO - ======================== 1 failed, 2 passed in 20.96s =========================
+2025-03-09 18:36:46,970 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-11 12:48:37,775 - INFO - ============================= test session starts =============================
+2025-03-11 12:48:37,778 - INFO - platform win32 -- Python 3.11.9, pytest-7.4.0, pluggy-1.5.0 -- E:\automation\.venv\Scripts\python.exe
+2025-03-11 12:48:37,780 - INFO - cachedir: .pytest_cache
+2025-03-11 12:48:37,783 - INFO - metadata: {'Python': '3.11.9', 'Platform': 'Windows-10-10.0.26100-SP0', 'Packages': {'pytest': '7.4.0', 'pluggy': '1.5.0'}, 'Plugins': {'allure-pytest': '2.13.2', 'base-url': '2.1.0', 'html': '4.1.1', 'metadata': '3.1.1', 'playwright': '0.7.0'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jre1.8.0_441', 'Base URL': ''}
+2025-03-11 12:48:37,785 - INFO - rootdir: E:\automation
+2025-03-11 12:48:37,787 - INFO - plugins: allure-pytest-2.13.2, base-url-2.1.0, html-4.1.1, metadata-3.1.1, playwright-0.7.0
+2025-03-11 12:48:37,830 - INFO - collecting ... collected 4 items
+2025-03-11 12:48:37,832 - INFO - 
+2025-03-11 12:48:58,095 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login_and_logout FAILED [ 25%]
+2025-03-11 12:49:01,659 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 50%]
+2025-03-11 12:49:06,169 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [ 75%]
+2025-03-11 12:49:19,979 - INFO - tests/test_ui_layout.py::TestUILayout::test_visual_layout ERROR          [100%]
+2025-03-11 12:49:19,981 - INFO - 
+2025-03-11 12:49:19,982 - INFO - =================================== ERRORS ====================================
+2025-03-11 12:49:19,984 - INFO - ______________ ERROR at setup of TestUILayout.test_visual_layout ______________
+2025-03-11 12:49:19,988 - INFO - 
+2025-03-11 12:49:19,991 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/public/assets/js/libs/wavesurfer.timeline.js.map?'>
+2025-03-11 12:49:19,993 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-11 12:49:19,994 - INFO - 
+2025-03-11 12:49:19,995 - INFO - @pytest.fixture
+2025-03-11 12:49:19,997 - INFO - def authenticated_page(page, config):
+2025-03-11 12:49:19,998 - INFO - """Фикстура, возвращающая аутентифицированную страницу"""
+2025-03-11 12:49:20,000 - INFO - from pages.login_page import LoginPage
+2025-03-11 12:49:20,001 - INFO - 
+2025-03-11 12:49:20,002 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-11 12:49:20,005 - INFO - login_page.navigate()
+2025-03-11 12:49:20,007 - INFO - 
+2025-03-11 12:49:20,008 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-11 12:49:20,009 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-11 12:49:20,010 - INFO - 
+2025-03-11 12:49:20,012 - INFO - # Ждем успешного входа
+2025-03-11 12:49:20,013 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-11 12:49:20,014 - INFO - 
+2025-03-11 12:49:20,016 - INFO - conftest.py:75:
+2025-03-11 12:49:20,017 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-11 12:49:20,019 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-11 12:49:20,021 - INFO - self._sync(
+2025-03-11 12:49:20,022 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-11 12:49:20,024 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-11 12:49:20,025 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-11 12:49:20,027 - INFO - async with self.expect_navigation(
+2025-03-11 12:49:20,028 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-11 12:49:20,030 - INFO - await self._future
+2025-03-11 12:49:20,031 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-11 12:49:20,032 - INFO - 
+2025-03-11 12:49:20,034 - INFO - async def continuation() -> Optional[Response]:
+2025-03-11 12:49:20,036 - INFO - >       event = await waiter.result()
+2025-03-11 12:49:20,038 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-11 12:49:20,039 - INFO - E       =========================== logs ===========================
+2025-03-11 12:49:20,041 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-11 12:49:20,042 - INFO - E       ============================================================
+2025-03-11 12:49:20,043 - INFO - 
+2025-03-11 12:49:20,044 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-11 12:49:20,046 - INFO - ================================== FAILURES ===================================
+2025-03-11 12:49:20,047 - INFO - _____________ TestAuthentication.test_successful_login_and_logout _____________
+2025-03-11 12:49:20,048 - INFO - 
+2025-03-11 12:49:20,049 - INFO - self = <tests.test_auth.TestAuthentication object at 0x0000012E87A92110>
+2025-03-11 12:49:20,051 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/public/assets/js/libs/wavesurfer.timeline.js.map?'>
+2025-03-11 12:49:20,054 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-11 12:49:20,055 - INFO - 
+2025-03-11 12:49:20,056 - INFO - @allure.story("Successful login and logout")
+2025-03-11 12:49:20,057 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-11 12:49:20,059 - INFO - def test_successful_login_and_logout(self, page, config):
+2025-03-11 12:49:20,060 - INFO - """Проверка успешной авторизации и выхода из системы"""
+2025-03-11 12:49:20,061 - INFO - login_page = LoginPage(page, config.get("baseUrl"))
+2025-03-11 12:49:20,062 - INFO - 
+2025-03-11 12:49:20,064 - INFO - with allure.step("Переход на страницу логина"):
+2025-03-11 12:49:20,065 - INFO - login_page.navigate()
+2025-03-11 12:49:20,066 - INFO - 
+2025-03-11 12:49:20,067 - INFO - with allure.step("Ввод учетных данных и вход"):
+2025-03-11 12:49:20,068 - INFO - valid_credentials = config['credentials']['valid_user']
+2025-03-11 12:49:20,070 - INFO - login_page.login(valid_credentials['email'], valid_credentials['password'])
+2025-03-11 12:49:20,071 - INFO - 
+2025-03-11 12:49:20,072 - INFO - with allure.step("Проверка успешной авторизации"):
+2025-03-11 12:49:20,073 - INFO - expected_url = "https://liner.dstepanyuk.dev.smte.am/office/"
+2025-03-11 12:49:20,074 - INFO - >           page.wait_for_url(f"**{expected_url}*", timeout=10000)
+2025-03-11 12:49:20,076 - INFO - 
+2025-03-11 12:49:20,078 - INFO - tests\test_auth.py:23:
+2025-03-11 12:49:20,080 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-11 12:49:20,081 - INFO - .venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-11 12:49:20,083 - INFO - self._sync(
+2025-03-11 12:49:20,085 - INFO - .venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-11 12:49:20,087 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-11 12:49:20,089 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-11 12:49:20,090 - INFO - async with self.expect_navigation(
+2025-03-11 12:49:20,091 - INFO - .venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-11 12:49:20,092 - INFO - await self._future
+2025-03-11 12:49:20,094 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-11 12:49:20,095 - INFO - 
+2025-03-11 12:49:20,097 - INFO - async def continuation() -> Optional[Response]:
+2025-03-11 12:49:20,098 - INFO - >       event = await waiter.result()
+2025-03-11 12:49:20,100 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-11 12:49:20,101 - INFO - E       =========================== logs ===========================
+2025-03-11 12:49:20,103 - INFO - E       waiting for navigation to "**https://liner.dstepanyuk.dev.smte.am/office/*" until 'load'
+2025-03-11 12:49:20,105 - INFO - E       ============================================================
+2025-03-11 12:49:20,107 - INFO - 
+2025-03-11 12:49:20,108 - INFO - .venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-11 12:49:20,110 - INFO - =========================== short test summary info ===========================
+2025-03-11 12:49:20,112 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login_and_logout
+2025-03-11 12:49:20,113 - INFO - ERROR tests/test_ui_layout.py::TestUILayout::test_visual_layout - playwright....
+2025-03-11 12:49:20,115 - INFO - ==================== 1 failed, 2 passed, 1 error in 42.21s ====================
+2025-03-11 12:49:20,116 - INFO - ========================================
+Команда выполнена. Код возврата: 1
+========================================
+2025-03-12 19:28:46,476 - INFO - C:\Users\Illuminaty\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\_pytest\config\__init__.py:328: PluggyTeardownRaisedWarning: A plugin raised an exception during an old-style hookwrapper teardown.
+2025-03-12 19:28:46,478 - INFO - Plugin: helpconfig, Hook: pytest_cmdline_parse
+2025-03-12 19:28:46,481 - INFO - ConftestImportFailure: ModuleNotFoundError: No module named 'playwright' (from E:\automation\conftest.py)
+2025-03-12 19:28:46,482 - INFO - For more information see https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy.PluggyTeardownRaisedWarning
+2025-03-12 19:28:46,485 - INFO - config = pluginmanager.hook.pytest_cmdline_parse(
+2025-03-12 19:28:46,486 - INFO - ImportError while loading conftest 'E:\automation\conftest.py'.
+2025-03-12 19:28:46,679 - INFO - conftest.py:4: in <module>
+2025-03-12 19:28:46,680 - INFO - from playwright.sync_api import sync_playwright
+2025-03-12 19:28:46,682 - INFO - E   ModuleNotFoundError: No module named 'playwright'
+2025-03-12 19:32:18,421 - INFO - C:\Users\Illuminaty\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\_pytest\config\__init__.py:328: PluggyTeardownRaisedWarning: A plugin raised an exception during an old-style hookwrapper teardown.
+2025-03-12 19:32:18,421 - INFO - Plugin: helpconfig, Hook: pytest_cmdline_parse
+2025-03-12 19:32:18,424 - INFO - ConftestImportFailure: ModuleNotFoundError: No module named 'playwright' (from E:\automation\tests\conftest.py)
+2025-03-12 19:32:18,426 - INFO - For more information see https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy.PluggyTeardownRaisedWarning
+2025-03-12 19:32:18,428 - INFO - config = pluginmanager.hook.pytest_cmdline_parse(
+2025-03-12 19:32:18,429 - INFO - ImportError while loading conftest 'E:\automation\tests\conftest.py'.
+2025-03-12 19:32:18,614 - INFO - tests\conftest.py:4: in <module>
+2025-03-12 19:32:18,616 - INFO - from playwright.sync_api import sync_playwright
+2025-03-12 19:32:18,618 - INFO - E   ModuleNotFoundError: No module named 'playwright'
+2025-03-12 19:43:19,120 - INFO - ============================= test session starts =============================
+2025-03-12 19:43:19,122 - INFO - platform win32 -- Python 3.11.9, pytest-8.3.5, pluggy-1.5.0 -- E:\automation\venv\Scripts\python.exe
+2025-03-12 19:43:19,124 - INFO - cachedir: .pytest_cache
+2025-03-12 19:43:19,125 - INFO - rootdir: E:\automation
+2025-03-12 19:43:19,127 - INFO - plugins: allure-pytest-2.13.5
+2025-03-12 19:43:19,131 - INFO - collecting ... collected 4 items
+2025-03-12 19:43:19,133 - INFO - 
+2025-03-12 19:43:23,632 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login FAILED     [ 25%]
+2025-03-12 19:43:36,943 - INFO - tests/test_auth.py::TestAuthentication::test_successful_logout ERROR     [ 50%]
+2025-03-12 19:43:39,438 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 75%]
+2025-03-12 19:43:44,093 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [100%]
+2025-03-12 19:43:44,095 - INFO - 
+2025-03-12 19:43:44,097 - INFO - =================================== ERRORS ====================================
+2025-03-12 19:43:44,098 - INFO - _________ ERROR at setup of TestAuthentication.test_successful_logout _________
+2025-03-12 19:43:44,100 - INFO - 
+2025-03-12 19:43:44,101 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>
+2025-03-12 19:43:44,103 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-12 19:43:44,105 - INFO - 
+2025-03-12 19:43:44,106 - INFO - @pytest.fixture
+2025-03-12 19:43:44,108 - INFO - def authenticated_page(page, config):
+2025-03-12 19:43:44,109 - INFO - from pages.login_page import LoginPage
+2025-03-12 19:43:44,111 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-12 19:43:44,113 - INFO - login_page.navigate()
+2025-03-12 19:43:44,118 - INFO - creds = config["credentials"]["valid_user"]
+2025-03-12 19:43:44,120 - INFO - login_page.login(creds["email"], creds["password"])
+2025-03-12 19:43:44,121 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-12 19:43:44,123 - INFO - 
+2025-03-12 19:43:44,127 - INFO - tests\conftest.py:49:
+2025-03-12 19:43:44,128 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:43:44,130 - INFO - venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-12 19:43:44,131 - INFO - self._sync(
+2025-03-12 19:43:44,132 - INFO - venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-12 19:43:44,135 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-12 19:43:44,136 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-12 19:43:44,137 - INFO - async with self.expect_navigation(
+2025-03-12 19:43:44,139 - INFO - venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-12 19:43:44,141 - INFO - await self._future
+2025-03-12 19:43:44,143 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:43:44,145 - INFO - 
+2025-03-12 19:43:44,147 - INFO - async def continuation() -> Optional[Response]:
+2025-03-12 19:43:44,149 - INFO - >       event = await waiter.result()
+2025-03-12 19:43:44,150 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-12 19:43:44,152 - INFO - E       =========================== logs ===========================
+2025-03-12 19:43:44,154 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-12 19:43:44,155 - INFO - E       ============================================================
+2025-03-12 19:43:44,157 - INFO - 
+2025-03-12 19:43:44,159 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-12 19:43:44,160 - INFO - ================================== FAILURES ===================================
+2025-03-12 19:43:44,161 - INFO - __________________ TestAuthentication.test_successful_login ___________________
+2025-03-12 19:43:44,162 - INFO - 
+2025-03-12 19:43:44,163 - INFO - self = <tests.test_auth.TestAuthentication object at 0x00000153BC2D32D0>
+2025-03-12 19:43:44,165 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>
+2025-03-12 19:43:44,166 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-12 19:43:44,168 - INFO - 
+2025-03-12 19:43:44,169 - INFO - @allure.story("Successful login")
+2025-03-12 19:43:44,170 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-12 19:43:44,171 - INFO - def test_successful_login(self, page, config):
+2025-03-12 19:43:44,173 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-12 19:43:44,175 - INFO - creds = config["credentials"]["valid_user"]
+2025-03-12 19:43:44,176 - INFO - login_page.login(creds["email"], creds["password"])
+2025-03-12 19:43:44,177 - INFO - >       assert "office" in page.url, f"Expected '/office/' in URL, got {page.url}"
+2025-03-12 19:43:44,179 - INFO - E       AssertionError: Expected '/office/' in URL, got https://liner.dstepanyuk.dev.smte.am/auth/
+2025-03-12 19:43:44,181 - INFO - E       assert 'office' in 'https://liner.dstepanyuk.dev.smte.am/auth/'
+2025-03-12 19:43:44,182 - INFO - E        +  where 'https://liner.dstepanyuk.dev.smte.am/auth/' = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>.url
+2025-03-12 19:43:44,184 - INFO - 
+2025-03-12 19:43:44,185 - INFO - tests\test_auth.py:14: AssertionError
+2025-03-12 19:43:44,187 - INFO - =========================== short test summary info ===========================
+2025-03-12 19:43:44,189 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login - Assert...
+2025-03-12 19:43:44,192 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_logout - playwr...
+2025-03-12 19:43:44,194 - INFO - ==================== 1 failed, 2 passed, 1 error in 24.97s ====================
+2025-03-12 19:43:57,178 - INFO - ============================= test session starts =============================
+2025-03-12 19:43:57,180 - INFO - platform win32 -- Python 3.11.9, pytest-8.3.5, pluggy-1.5.0 -- E:\automation\venv\Scripts\python.exe
+2025-03-12 19:43:57,181 - INFO - cachedir: .pytest_cache
+2025-03-12 19:43:57,183 - INFO - rootdir: E:\automation
+2025-03-12 19:43:57,186 - INFO - plugins: allure-pytest-2.13.5
+2025-03-12 19:43:57,199 - INFO - collecting ... collected 5 items
+2025-03-12 19:43:57,201 - INFO - 
+2025-03-12 19:44:00,742 - INFO - tests/test_auth.py::TestAuthentication::test_successful_login FAILED     [ 20%]
+2025-03-12 19:44:14,413 - INFO - tests/test_auth.py::TestAuthentication::test_successful_logout ERROR     [ 40%]
+2025-03-12 19:44:16,937 - INFO - tests/test_auth.py::TestAuthentication::test_invalid_login PASSED        [ 60%]
+2025-03-12 19:44:20,905 - INFO - tests/test_auth.py::TestAuthentication::test_password_recovery PASSED    [ 80%]
+2025-03-12 19:44:34,470 - INFO - tests/test_ui_layout.py::TestUILayout::test_calls_preset_layout ERROR    [100%]
+2025-03-12 19:44:34,471 - INFO - 
+2025-03-12 19:44:34,472 - INFO - =================================== ERRORS ====================================
+2025-03-12 19:44:34,472 - INFO - _________ ERROR at setup of TestAuthentication.test_successful_logout _________
+2025-03-12 19:44:34,473 - INFO - 
+2025-03-12 19:44:34,474 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>
+2025-03-12 19:44:34,475 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-12 19:44:34,476 - INFO - 
+2025-03-12 19:44:34,477 - INFO - @pytest.fixture
+2025-03-12 19:44:34,478 - INFO - def authenticated_page(page, config):
+2025-03-12 19:44:34,478 - INFO - from pages.login_page import LoginPage
+2025-03-12 19:44:34,479 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-12 19:44:34,483 - INFO - login_page.navigate()
+2025-03-12 19:44:34,485 - INFO - creds = config["credentials"]["valid_user"]
+2025-03-12 19:44:34,487 - INFO - login_page.login(creds["email"], creds["password"])
+2025-03-12 19:44:34,488 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-12 19:44:34,490 - INFO - 
+2025-03-12 19:44:34,492 - INFO - tests\conftest.py:49:
+2025-03-12 19:44:34,494 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:44:34,495 - INFO - venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-12 19:44:34,497 - INFO - self._sync(
+2025-03-12 19:44:34,499 - INFO - venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-12 19:44:34,501 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-12 19:44:34,502 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-12 19:44:34,504 - INFO - async with self.expect_navigation(
+2025-03-12 19:44:34,505 - INFO - venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-12 19:44:34,507 - INFO - await self._future
+2025-03-12 19:44:34,508 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:44:34,511 - INFO - 
+2025-03-12 19:44:34,513 - INFO - async def continuation() -> Optional[Response]:
+2025-03-12 19:44:34,515 - INFO - >       event = await waiter.result()
+2025-03-12 19:44:34,517 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-12 19:44:34,519 - INFO - E       =========================== logs ===========================
+2025-03-12 19:44:34,521 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-12 19:44:34,522 - INFO - E       ============================================================
+2025-03-12 19:44:34,524 - INFO - 
+2025-03-12 19:44:34,525 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-12 19:44:34,527 - INFO - ___________ ERROR at setup of TestUILayout.test_calls_preset_layout ___________
+2025-03-12 19:44:34,529 - INFO - 
+2025-03-12 19:44:34,530 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>
+2025-03-12 19:44:34,533 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-12 19:44:34,534 - INFO - 
+2025-03-12 19:44:34,536 - INFO - @pytest.fixture
+2025-03-12 19:44:34,538 - INFO - def authenticated_page(page, config):
+2025-03-12 19:44:34,539 - INFO - from pages.login_page import LoginPage
+2025-03-12 19:44:34,541 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-12 19:44:34,542 - INFO - login_page.navigate()
+2025-03-12 19:44:34,544 - INFO - creds = config["credentials"]["valid_user"]
+2025-03-12 19:44:34,546 - INFO - login_page.login(creds["email"], creds["password"])
+2025-03-12 19:44:34,547 - INFO - >       page.wait_for_url("**/*office*", timeout=10000)
+2025-03-12 19:44:34,548 - INFO - 
+2025-03-12 19:44:34,550 - INFO - tests\conftest.py:49:
+2025-03-12 19:44:34,551 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:44:34,553 - INFO - venv\Lib\site-packages\playwright\sync_api\_generated.py:9161: in wait_for_url
+2025-03-12 19:44:34,554 - INFO - self._sync(
+2025-03-12 19:44:34,556 - INFO - venv\Lib\site-packages\playwright\_impl\_page.py:575: in wait_for_url
+2025-03-12 19:44:34,557 - INFO - return await self._main_frame.wait_for_url(**locals_to_params(locals()))
+2025-03-12 19:44:34,559 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:233: in wait_for_url
+2025-03-12 19:44:34,560 - INFO - async with self.expect_navigation(
+2025-03-12 19:44:34,562 - INFO - venv\Lib\site-packages\playwright\_impl\_event_context_manager.py:33: in __aexit__
+2025-03-12 19:44:34,563 - INFO - await self._future
+2025-03-12 19:44:34,565 - INFO - _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2025-03-12 19:44:34,566 - INFO - 
+2025-03-12 19:44:34,568 - INFO - async def continuation() -> Optional[Response]:
+2025-03-12 19:44:34,569 - INFO - >       event = await waiter.result()
+2025-03-12 19:44:34,571 - INFO - E       playwright._impl._errors.TimeoutError: Timeout 10000ms exceeded.
+2025-03-12 19:44:34,574 - INFO - E       =========================== logs ===========================
+2025-03-12 19:44:34,575 - INFO - E       waiting for navigation to "**/*office*" until 'load'
+2025-03-12 19:44:34,577 - INFO - E       ============================================================
+2025-03-12 19:44:34,578 - INFO - 
+2025-03-12 19:44:34,580 - INFO - venv\Lib\site-packages\playwright\_impl\_frame.py:207: TimeoutError
+2025-03-12 19:44:34,581 - INFO - ================================== FAILURES ===================================
+2025-03-12 19:44:34,582 - INFO - __________________ TestAuthentication.test_successful_login ___________________
+2025-03-12 19:44:34,584 - INFO - 
+2025-03-12 19:44:34,585 - INFO - self = <tests.test_auth.TestAuthentication object at 0x000001B8A766B210>
+2025-03-12 19:44:34,587 - INFO - page = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>
+2025-03-12 19:44:34,589 - INFO - config = {'apiUrl': 'https://liner.dstepanyuk.dev.smte.am/api/', 'baseUrl': 'https://liner.dstepanyuk.dev.smte.am/auth/', 'brow...password': 'wrong_password'}, 'valid_user': {'email': 'dstepanyuk@southmedia.io', 'password': 'yND-jC2-rWz-qqJ'}}, ...}
+2025-03-12 19:44:34,590 - INFO - 
+2025-03-12 19:44:34,592 - INFO - @allure.story("Successful login")
+2025-03-12 19:44:34,594 - INFO - @allure.severity(allure.severity_level.CRITICAL)
+2025-03-12 19:44:34,595 - INFO - def test_successful_login(self, page, config):
+2025-03-12 19:44:34,597 - INFO - login_page = LoginPage(page, config["baseUrl"])
+2025-03-12 19:44:34,599 - INFO - creds = config["credentials"]["valid_user"]
+2025-03-12 19:44:34,600 - INFO - login_page.login(creds["email"], creds["password"])
+2025-03-12 19:44:34,602 - INFO - >       assert "office" in page.url, f"Expected '/office/' in URL, got {page.url}"
+2025-03-12 19:44:34,604 - INFO - E       AssertionError: Expected '/office/' in URL, got https://liner.dstepanyuk.dev.smte.am/auth/
+2025-03-12 19:44:34,606 - INFO - E       assert 'office' in 'https://liner.dstepanyuk.dev.smte.am/auth/'
+2025-03-12 19:44:34,608 - INFO - E        +  where 'https://liner.dstepanyuk.dev.smte.am/auth/' = <Page url='https://liner.dstepanyuk.dev.smte.am/auth/'>.url
+2025-03-12 19:44:34,609 - INFO - 
+2025-03-12 19:44:34,611 - INFO - tests\test_auth.py:14: AssertionError
+2025-03-12 19:44:34,613 - INFO - =========================== short test summary info ===========================
+2025-03-12 19:44:34,615 - INFO - FAILED tests/test_auth.py::TestAuthentication::test_successful_login - Assert...
+2025-03-12 19:44:34,616 - INFO - ERROR tests/test_auth.py::TestAuthentication::test_successful_logout - playwr...
+2025-03-12 19:44:34,618 - INFO - ERROR tests/test_ui_layout.py::TestUILayout::test_calls_preset_layout - playw...
+2025-03-12 19:44:34,621 - INFO - =================== 1 failed, 2 passed, 2 errors in 37.29s ====================
