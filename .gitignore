@@ -1,0 +1,38 @@
+# Виртуальное окружение
+venv/
+env/
+.venv/
+.env/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Файлы с переменными окружения
+.env
+.env.local
+
+# Логи
+*.log
+test_execution.log
+
+# Отчеты и результаты тестов
+allure-results/
+allure-report/
+screenshots/
+
+# Временные файлы
+*.tmp
+*.bak
+*.swp
+
+# Файлы IDE
+.idea/
+.vscode/
+*.iml
+
+# Файлы ОС
+.DS_Store
+Thumbs.db 

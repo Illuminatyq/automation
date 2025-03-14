@@ -3,17 +3,20 @@
     "dev": {
       "baseUrl": "https://liner.dstepanyuk.dev.smte.am/auth/",
       "apiUrl": "https://liner.dstepanyuk.dev.smte.am/api/",
-      "description": "Разработка"
+      "description": "Разработка",
+      "api_key": ""
     },
     "sm": {
       "baseUrl": "https://sm.linerapp.io/auth/",
       "apiUrl": "https://sm.linerapp.io/api/",
-      "description": "SM коробка"
+      "description": "SM коробка",
+      "api_key": ""
     },
     "ask-yug": {
       "baseUrl": "https://liner.ask-yug.com/auth/",
       "apiUrl": "https://liner.ask-yug.com/api/",
-      "description": "Ask-Yug коробка"
+      "description": "Ask-Yug коробка",
+      "api_key": ""
     }
   },
   "defaultEnvironment": "dev",
@@ -22,7 +25,7 @@
   "credentials": {
     "valid_user": {
       "email": "dstepanyuk@southmedia.io",
-      "password": "yND-jC2-rWz-qqJ"
+      "password": "j5U-x2f-5hL-YZ5"
     },
     "invalid_user": {
       "email": "wrong@example.com",
