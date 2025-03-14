@@ -1,0 +1,60 @@
+name: API Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * 1'  # Запуск каждый понедельник в 00:00 UTC
+  workflow_dispatch:  # Возможность запуска вручную
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, sm, ask-yug]
+      fail-fast: false  # Продолжать выполнение других окружений, даже если одно из них упало
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install python-dotenv
+
+    - name: Run API tests
+      env:
+        # Используем секреты GitHub для хранения API ключей
+        LINER_API_KEY: ${{ secrets.LINER_API_KEY }}
+        DEV_LINER_API_KEY: ${{ secrets.DEV_LINER_API_KEY }}
+        SM_LINER_API_KEY: ${{ secrets.SM_LINER_API_KEY }}
+        ASK_YUG_LINER_API_KEY: ${{ secrets.ASK_YUG_LINER_API_KEY }}
+        CI_RUN: true
+      run: |
+        python -m pytest tests/test_api.py -v --env=${{ matrix.environment }} --alluredir=./allure-results/${{ matrix.environment }}
+
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results/${{ matrix.environment }}
+        allure_report: allure-report/${{ matrix.environment }}
+        allure_history: allure-history/${{ matrix.environment }}
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: allure-report-${{ matrix.environment }}
+        path: allure-report/${{ matrix.environment }}
+        retention-days: 30 
