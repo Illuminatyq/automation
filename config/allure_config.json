@@ -1,0 +1,32 @@
+{
+    "language": "ru",
+    "translations": {
+        "passed": "Успешно",
+        "failed": "Неудачно",
+        "broken": "Сломан",
+        "skipped": "Пропущен",
+        "unknown": "Неизвестно",
+        "total": "Всего",
+        "duration": "Длительность",
+        "status": "Статус",
+        "severity": "Важность",
+        "feature": "Функциональность",
+        "story": "История",
+        "step": "Шаг",
+        "test": "Тест",
+        "suite": "Набор тестов",
+        "environment": "Окружение",
+        "browser": "Браузер",
+        "start_time": "Время начала",
+        "end_time": "Время окончания",
+        "execution_time": "Время выполнения",
+        "attachments": "Вложения",
+        "screenshots": "Скриншоты",
+        "logs": "Логи",
+        "metrics": "Метрики",
+        "summary": "Сводка",
+        "details": "Детали",
+        "history": "История запусков",
+        "trends": "Тренды"
+    }
+} 

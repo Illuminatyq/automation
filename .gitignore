@@ -16,9 +16,11 @@ __pycache__/
 
 # Логи
 *.log
+logs/
 test_execution.log
 
 # Отчеты и результаты тестов
+reports/
 allure-results/
 allure-report/
 screenshots/
@@ -32,7 +34,15 @@ screenshots/
 .idea/
 .vscode/
 *.iml
+*.code-workspace
 
 # Файлы ОС
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Кэш и временные файлы
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/ 

@@ -79,7 +79,7 @@ def get_browser_option():
 
 def generate_allure_report():
     """Генерация отчета Allure"""
-    command = "allure generate ./allure-results -o ./allure-report --clean"
+    command = "allure generate ./allure-results -o ./allure-report --clean --config-file ./config/allure_config.json"
     run_in_thread(command)
 
 def open_allure_report():
@@ -97,8 +97,8 @@ def serve_allure_report():
         output_text.insert(tk.END, "Нет результатов тестов для отображения. Сначала запустите тесты.\n")
         return
     
-    # Запускаем сервер Allure
-    command = "allure serve ./allure-results"
+    # Запускаем сервер Allure с локализацией
+    command = "allure serve ./allure-results --config-file ./config/allure_config.json"
     output_text.insert(tk.END, f"Запуск сервера Allure: {command}\n")
     run_in_thread(command)
 
