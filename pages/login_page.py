@@ -1,74 +1,90 @@
-from playwright.sync_api import Page, TimeoutError
-from datetime import datetime
+from playwright.sync_api import TimeoutError, Page, expect
+from pages.base_page import BasePage
+from locators.login_locators import LoginLocators
 import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-class LoginPage:
-    def __init__(self, page: Page, base_url: str = None, timeout: int = 10000):
-        self.page = page
-        self.base_url = base_url.rstrip('/')
-        self.default_timeout = timeout
-        
-        # Локаторы
-        self.email_field = page.locator("input[name='login']")
-        self.password_field = page.locator("input[name='password']")
-        self.login_button = page.locator("button.btn-lg.btn-primary[type='submit']")
-        self.forgot_password_link = page.locator("a[href='/auth/forgot/']")
-        self.error_notification = page.locator("#toast-container .toast-error")
-        self.success_notification = page.locator("#toast-container .toast-success")
-        self.profile_dropdown = page.locator("a.nav-link.dropdown-toggle")
-        self.logout_button = page.locator("a.dropdown-item[href='/auth/logout/']")
+class LoginPage(BasePage):
+    def __init__(self, page: Page, base_url: str = None, timeout: int = None):
+        super().__init__(page, base_url, timeout)
+        self.locators = LoginLocators()
+        self.default_timeout = 30000  # Уменьшаем таймаут до 30 секунд
+        self.short_timeout = 5000     # Короткий таймаут для быстрых операций
 
-    def navigate(self) -> "LoginPage":
-        self.page.goto(f"{self.base_url}/")
-        self.page.wait_for_load_state("networkidle", timeout=self.default_timeout)
-        logging.info(f"Navigated to {self.base_url}")
-        return self
+    def enter_username(self, username: str):
+        """Ввод имени пользователя"""
+        try:
+            self.fill_input(self.locators.USERNAME_INPUT, username)
+            logging.info(f"Введено имя пользователя: {username}")
+        except Exception as e:
+            logging.error(f"Ошибка при вводе имени пользователя: {str(e)}")
+            raise
 
-    def enter_email(self, email: str) -> "LoginPage":
-        self.email_field.wait_for(state="visible", timeout=self.default_timeout)
-        self.email_field.clear(timeout=self.default_timeout)
-        self.email_field.fill(email, timeout=self.default_timeout)
-        logging.info(f"Entered email: {email}")
-        return self
+    def enter_password(self, password: str):
+        """Ввод пароля"""
+        try:
+            self.fill_input(self.locators.PASSWORD_INPUT, password)
+            logging.info("Пароль введен")
+        except Exception as e:
+            logging.error(f"Ошибка при вводе пароля: {str(e)}")
+            raise
 
-    def enter_password(self, password: str) -> "LoginPage":
-        self.password_field.wait_for(state="visible", timeout=self.default_timeout)
-        self.password_field.clear(timeout=self.default_timeout)
-        self.password_field.fill(password, timeout=self.default_timeout)
-        logging.info("Entered password")
-        return self
-
-    def click_login(self) -> "LoginPage":
-        self.login_button.wait_for(state="visible", timeout=self.default_timeout)
-        self.page.evaluate("document.querySelector('form').submit()")
-        self.page.wait_for_load_state("networkidle", timeout=self.default_timeout)
-        logging.info("Form submitted and page loaded")
-        
-        # Проверяем результат
-        if "/office/" in self.page.url:
-            logging.info(f"Redirected to {self.page.url}")
-        else:
+    def click_login(self):
+        """Нажатие кнопки входа"""
+        try:
+            self.click_element(self.locators.LOGIN_BUTTON)
+            logging.info("Нажата кнопка входа")
+            
+            # Ждем загрузки DOM
+            self.page.wait_for_load_state("domcontentloaded", timeout=self.short_timeout)
+            
+            # Пытаемся дождаться networkidle, но продолжаем если таймаут
             try:
-                self.error_notification.wait_for(state="visible", timeout=10000)  # Увеличили таймаут
-                logging.info("Error notification appeared")
-            except TimeoutError:
-                logging.warning("No error notification appeared")
-                self._screenshot_on_error("login_no_error")
-        return self
+                self.page.wait_for_load_state("networkidle", timeout=self.short_timeout)
+            except Exception:
+                logging.warning("Превышен таймаут ожидания networkidle, продолжаем выполнение")
+            
+            # Проверяем наличие ключевых элементов на странице
+            try:
+                # Проверяем успешный вход
+                if self.page.locator(self.locators.PROFILE_DROPDOWN).is_visible(timeout=self.short_timeout):
+                    logging.info("Авторизация успешна - найден профиль пользователя")
+                    return True
+                
+                # Проверяем наличие ошибки
+                if self.page.locator(self.locators.ERROR_NOTIFICATION).is_visible(timeout=self.short_timeout):
+                    error_text = self.page.locator(self.locators.ERROR_NOTIFICATION).text_content()
+                    logging.warning(f"Получено сообщение об ошибке: {error_text}")
+                    return False
+                
+                # Проверяем URL
+                current_url = self.page.url
+                if "/office/" in current_url:
+                    logging.info("Авторизация успешна - выполнен редирект")
+                    return True
+                
+                logging.error("Не удалось определить результат авторизации")
+                return False
+                
+            except Exception as e:
+                logging.error(f"Ошибка при проверке результата авторизации: {str(e)}")
+                return False
+            
+        except Exception as e:
+            logging.error(f"Ошибка при нажатии кнопки входа: {str(e)}")
+            raise
 
     def login(self, email: str, password: str) -> "LoginPage":
         self.navigate()
-        self.enter_email(email)
+        self.enter_username(email)
         self.enter_password(password)
         self.click_login()
         logging.info(f"Login attempted with email: {email}")
         return self
 
     def click_forgot_password(self) -> "LoginPage":
-        self.forgot_password_link.wait_for(state="visible", timeout=self.default_timeout)
-        self.forgot_password_link.click()
+        self.click_element(self.locators.FORGOT_PASSWORD_LINK)
         self.page.wait_for_load_state("networkidle", timeout=self.default_timeout)
         logging.info("Clicked forgot password link")
         return self
@@ -76,50 +92,60 @@ class LoginPage:
     def request_password_reset(self, email: str) -> "LoginPage":
         self.navigate()
         self.click_forgot_password()
-        self.enter_email(email)
-        self.page.locator("button[type='submit']").click()
+        self.enter_username(email)
+        self.click_element("button[type='submit']")
         self.page.wait_for_load_state("networkidle", timeout=self.default_timeout)
-        try:
-            self.success_notification.wait_for(state="visible", timeout=10000)  # Увеличили таймаут
-            logging.info("Success notification appeared")
-        except TimeoutError:
-            logging.warning("No success notification appeared")
-            self._screenshot_on_error("recovery_no_success")
+        
+        if not self.is_success_message_displayed():
+            self.take_screenshot("recovery_no_success")
         return self
 
-    def logout(self) -> "LoginPage":
-        self.profile_dropdown.wait_for(state="visible", timeout=self.default_timeout)
-        self.profile_dropdown.click()
-        self.logout_button.wait_for(state="visible", timeout=self.default_timeout)
-        self.logout_button.click()
-        self.page.wait_for_url("**/auth/**", timeout=self.default_timeout)
-        logging.info("Logged out")
-        return self
-
-    def _screenshot_on_error(self, action: str) -> None:
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        path = f"screenshots/{action}_{timestamp}.png"
-        self.page.screenshot(path=path)
-        logging.info(f"Screenshot saved: {path}")
-
-    def is_error_message_displayed(self) -> bool:
+    def logout(self):
+        """Выход из системы"""
         try:
-            self.error_notification.wait_for(state="visible", timeout=10000)
-            is_visible = self.error_notification.is_visible()
-            text = self.error_notification.text_content()
-            logging.info(f"Error message visibility: {is_visible}, text: {text}")
-            return is_visible
-        except TimeoutError:
-            logging.warning("Error message not visible within timeout")
+            # Ждем появления дропдауна
+            self.page.wait_for_selector(self.locators.PROFILE_DROPDOWN, timeout=self.short_timeout)
+            
+            # Кликаем по дропдауну
+            self.page.locator(self.locators.PROFILE_DROPDOWN).click()
+            
+            # Ждем появления меню и кликаем по кнопке выхода
+            self.page.wait_for_selector(self.locators.LOGOUT_BUTTON, timeout=self.short_timeout)
+            self.page.locator(self.locators.LOGOUT_BUTTON).click()
+            
+            # Ждем редиректа на страницу авторизации
+            self.page.wait_for_url("**/auth/**", timeout=self.short_timeout)
+            
+            # Проверяем, что мы на странице авторизации
+            if not self.page.locator(self.locators.LOGIN_FORM).is_visible(timeout=self.short_timeout):
+                raise Exception("Не удалось подтвердить выход из системы")
+            
+            logging.info("Выход из системы выполнен успешно")
+            return True
+            
+        except Exception as e:
+            logging.error(f"Ошибка при выходе из системы: {str(e)}")
             return False
 
-    def is_success_message_displayed(self) -> bool:
+    def is_error_message_displayed(self) -> bool:
+        """Проверка наличия сообщения об ошибке"""
         try:
-            self.success_notification.wait_for(state="visible", timeout=10000)
-            is_visible = self.success_notification.is_visible()
-            text = self.success_notification.text_content()
-            logging.info(f"Success message visibility: {is_visible}, text: {text}")
-            return is_visible
-        except TimeoutError:
-            logging.warning("Success message not visible within timeout")
+            return self.page.locator(self.locators.ERROR_NOTIFICATION).is_visible(timeout=self.short_timeout)
+        except Exception:
+            return False
+
+    def get_error_message(self) -> str:
+        """Получение текста сообщения об ошибке"""
+        try:
+            if self.is_error_message_displayed():
+                return self.page.locator(self.locators.ERROR_NOTIFICATION).text_content()
+            return ""
+        except Exception:
+            return ""
+
+    def is_success_message_displayed(self) -> bool:
+        """Проверка наличия сообщения об успехе"""
+        try:
+            return self.page.locator(self.locators.SUCCESS_NOTIFICATION).is_visible(timeout=self.short_timeout)
+        except Exception:
             return False

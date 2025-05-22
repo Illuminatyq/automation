@@ -3,12 +3,15 @@ import os
 import json
 from playwright.sync_api import sync_playwright, TimeoutError
 import logging
+from config.viewport_config import VIEWPORT_CONFIGS
+import allure
+from utils.screenshot_utils import ScreenshotUtils
 
 def pytest_addoption(parser):
     parser.addoption("--env", action="store", default=None, help="Environment to run tests against")
     parser.addoption("--api-key", action="store", default=None, help="API key for API tests")
     parser.addoption("--headless", action="store_true", default=False, help="Run browsers in headless mode")
-    parser.addoption("--browser", action="store", default=None, help="Browser to run tests in (chromium, firefox, webkit)")
+    parser.addoption("--browser-type", action="store", default=None, help="Browser to run tests in (chromium, firefox, webkit)")
 
 def pytest_configure(config):
     config.addinivalue_line("markers", "visual: mark test as visual regression test")
@@ -55,35 +58,34 @@ def browser():
         yield browser
         browser.close()
 
+@pytest.fixture(scope="session", autouse=True)
+def cleanup_old_screenshots():
+    """Очищает старые скриншоты перед запуском тестов"""
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch()
+        page = browser.new_page()
+        screenshot_utils = ScreenshotUtils(page)
+        screenshot_utils.cleanup_old_screenshots(days=7)  # Удаляем скриншоты старше 7 дней
+        browser.close()
+
 @pytest.fixture
 def page(browser):
-    context = browser.new_context(viewport={"width": 1280, "height": 720})
-    page = context.new_page()
+    """Фикстура для создания новой страницы"""
+    page = browser.new_page()
     yield page
     page.close()
-    context.close()
 
 @pytest.fixture
 def browser_page(request, config):
-    """Фикстура для создания страницы в указанном браузере"""
-    browser_type = request.param if hasattr(request, "param") else "chromium"
+    """Фикстура для создания страницы в указанном браузере с заданным разрешением экрана"""
+    browser_type = request.param[0] if isinstance(request.param, tuple) else request.param
+    viewport = request.param[1] if isinstance(request.param, tuple) else ("desktop", "medium")
+    device_type, viewport_type = viewport
+    
     headless = request.config.getoption("--headless") or os.environ.get("HEADLESS", "false").lower() in ("true", "1", "yes")
     
-    # Определение размеров экрана
-    viewport_sizes = {
-        "desktop": {"width": 1280, "height": 720},
-        "tablet": {"width": 768, "height": 1024},
-        "mobile": {"width": 375, "height": 667}
-    }
-    
-    # По умолчанию используем десктопный размер
-    viewport = viewport_sizes["desktop"]
-    
-    # Если в параметре есть информация о размере экрана
-    if isinstance(browser_type, tuple) and len(browser_type) == 2:
-        browser_type, device_type = browser_type
-        if device_type in viewport_sizes:
-            viewport = viewport_sizes[device_type]
+    # Получаем размеры экрана из конфигурации
+    viewport_size = VIEWPORT_CONFIGS[device_type][viewport_type]
     
     with sync_playwright() as p:
         if browser_type == "chromium":
@@ -99,11 +101,11 @@ def browser_page(request, config):
             browser_instance = p.chromium.launch(headless=headless)
             browser_name = "Chrome"
         
-        context = browser_instance.new_context(viewport=viewport)
+        context = browser_instance.new_context(viewport=viewport_size)
         page = context.new_page()
         
         try:
-            yield page, browser_name
+            yield (page, browser_name)
         finally:
             page.close()
             context.close()
@@ -124,3 +126,8 @@ def authenticated_page(page, config):
         page.screenshot(path="auth_failed.png")
         pytest.fail(f"Failed to authenticate: expected redirect to /office/, got {page.url}")
     return page
+
+@pytest.fixture(scope="function")
+def screenshot_utils(page):
+    """Фикстура для работы со скриншотами"""
+    return ScreenshotUtils(page)
