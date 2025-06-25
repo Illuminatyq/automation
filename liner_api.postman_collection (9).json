@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "3b9dda4a-046b-4891-bea7-67f3353fe323",
+		"name": "Liner API Examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30623503"
+	},
+	"item": [
+		{
+			"name": "Test / Method list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{liner_api_host}}/v1/"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{liner_api_host}}/v1/lead/detail/{{lead_id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/create – straight",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"lead_type\": \"straight\",\n\"create_method\": \"quiz\",\n\"client_name\": \"{{client_name}}\",\n\"client_phone\": \"{{client_phone}}\",\n\"order_id\": {{order_id}},\n\"quiz_log\": \"{\\\"quiz_log_any_data:\\\": \\\"post anything here\\\"}\",\n\"campaign_id\": \"{{campaign_id}}\",\n\"external_id\": \"{{external_id}}\",\n\"additional_params\": \"{{additional_params}}\",\n\"priority\": \"{{call_priority}}\",\n\"utc_offset\": \"{{utc_offset}}\",\n\"telegramUserName\": \"{{telegramUserName}}\",\n\"telegramPhone\": \"{{telegramPhone}}\",\n\"vkId\": \"{{vk_id}}\",\n\"instagramLogin\": \"{{instagram_login}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{liner_api_host}}/v1/lead/create/"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/create – selection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"lead_type\": \"selection\",\n\"create_method\": \"quiz\",\n\"client_name\": \"{{client_name}}\",\n\"client_phone\": \"{{client_phone}}\",\n\"order_id\": {{order_id}},\n\"quiz_log\": \"{\\\"quiz_log_any_data:\\\": \\\"post anything here\\\"}\",\n\"campaign_id\": \"{{campaign_id}}\",\n\"external_id\": \"{{external_id}}\",\n\"status\": \"{{lead_status}}\",\n\"city_id\": \"{{city_id}}\",\n\"call_timestamp\": \"{{call_timestamp}}\",\n\"priority\": \"{{call_priority}}\",\n\"utc_offset\": \"{{utc_offset}}\",\n\"telegramUserName\": \"{{telegramUserName}}\",\n\"telegramPhone\": \"{{telegramPhone}}\",\n\"vkId\": \"{{vk_id}}\",\n\"instagramLogin\": \"{{instagram_login}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{liner_api_host}}/v1/lead/create/"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/create-async – straight",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"lead_type\": \"straight\",\n\"create_method\": \"quiz\",\n\"client_name\": \"{{client_name}}\",\n\"client_phone\": \"{{client_phone}}\",\n\"order_id\": {{order_id}},\n\"quiz_log\": \"{\\\"quiz_log_any_data:\\\": \\\"post anything here\\\"}\",\n\"campaign_id\": \"{{campaign_id}}\",\n\"external_id\": \"{{external_id}}\",\n\"additional_params\": \"{{additional_params}}\",\n\"priority\": \"{{call_priority}}\",\n\"utc_offset\": \"{{utc_offset}}\",\n\"telegramUserName\": \"{{telegramUserName}}\",\n\"telegramPhone\": \"{{telegramPhone}}\",\n\"vkId\": \"{{vk_id}}\",\n\"instagramLogin\": \"{{instagram_login}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{liner_api_host}}/v1/lead/create-async/"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/create-async – selection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"lead_type\": \"selection\",\n\"create_method\": \"quiz\",\n\"client_name\": \"{{client_name}}\",\n\"client_phone\": \"{{client_phone}}\",\n\"order_id\": {{order_id}},\n\"quiz_log\": \"{\\\"quiz_log_any_data:\\\": \\\"post anything here\\\"}\",\n\"campaign_id\": \"{{campaign_id}}\",\n\"external_id\": \"{{external_id}}\",\n\"status\": \"{{lead_status}}\",\n\"city_id\": \"{{city_id}}\",\n\"call_timestamp\": \"{{call_timestamp}}\",\n\"priority\": \"{{call_priority}}\",\n\"utc_offset\": \"{{utc_offset}}\",\n\"telegramUserName\": \"{{telegramUserName}}\",\n\"telegramPhone\": \"{{telegramPhone}}\",\n\"vkId\": \"{{vk_id}}\",\n\"instagramLogin\": \"{{instagram_login}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{liner_api_host}}/v1/lead/create-async/"
+			},
+			"response": []
+		},
+		{
+			"name": "lead/update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"client_name\": \"{{client_name}}\",\n\"client_phone\": \"{{client_phone}}\",\n\"quiz_log\": \"{\\\"quiz_log_any_data:\\\": \\\"post anything here\\\"}\",\n\"campaign_id\": \"{{campaign_id}}\",\n\"external_id\": \"{{external_id}}\",\n\"status\": \"{{lead_status}}\",\n\"call_timestamp\": \"{{call_timestamp}}\",\n\"priority\": \"{{call_priority}}\",\n\"utc_offset\": \"{{utc_offset}}\",\n\"telegramUserName\": \"{{telegramUserName}}\",\n\"telegramPhone\": \"{{telegramPhone}}\",\n\"vkId\": \"{{vk_id}}\",\n\"instagramLogin\": \"{{instagram_login}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{liner_api_host}}/v1/lead/update/{{lead_id}}"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "{{token}}",
+			"key": "X-Api-Key"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "liner_api_host",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lead_id",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "client_phone",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "order_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

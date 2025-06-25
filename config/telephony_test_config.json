@@ -1,0 +1,108 @@
+{
+  "telephony": {
+    "api": {
+      "base_url": "https://test.linerapp.io",
+      "timeout": 30,
+      "retry_attempts": 3
+    },
+    "voximplant": {
+      "api_url": "https://api.voximplant.com/platform_api/",
+      "account_id": "test_account",
+      "api_key": "test_key",
+      "app_name": "test_app",
+      "predictive_rule_id": 123,
+      "outgoing_rule_id": 456
+    },
+    "webrtc": {
+      "stun_servers": ["stun:stun.l.google.com:19302"],
+      "ice_servers": ["stun:stun.l.google.com:19302"],
+      "timeout": 10000
+    },
+    "operator": {
+      "statuses": {
+        "available": 1,
+        "busy": 2,
+        "break": 3,
+        "offline": 4,
+        "post_call": 5
+      },
+      "status_change_delay": 2,
+      "dialer_delay": 5
+    },
+    "test_data": {
+      "operators": [
+        {
+          "id": "test_operator_123",
+          "vox_user_name": "test_operator",
+          "display_name": "Test Operator 1"
+        },
+        {
+          "id": "test_operator_456", 
+          "vox_user_name": "test_operator_2",
+          "display_name": "Test Operator 2"
+        }
+      ],
+      "leads": [
+        {
+          "id": "lead_456",
+          "phone": "+79991234567",
+          "name": "Test Client 1",
+          "order_id": 789
+        },
+        {
+          "id": "lead_789",
+          "phone": "+79991234568", 
+          "name": "Test Client 2",
+          "order_id": 790
+        }
+      ],
+      "phones": [
+        {
+          "connection_type": "webrtc",
+          "params": {
+            "user_name": "test_operator",
+            "display_name": "Test Operator"
+          }
+        }
+      ]
+    },
+    "mocks": {
+      "voximplant": {
+        "user_ready_response": {
+          "result": [
+            {
+              "user_name": "test_operator",
+              "acd_status": "READY"
+            }
+          ]
+        },
+        "start_call_response": {
+          "result": 1,
+          "call_session_history_id": 789,
+          "media_session_access_secure_url": "https://test.voximplant.com/call/789"
+        }
+      },
+      "webrtc": {
+        "connection_state": "connected",
+        "ice_connection_state": "connected"
+      }
+    },
+    "test_scenarios": {
+      "operator_workflow": [
+        "login",
+        "change_status_to_available", 
+        "receive_call",
+        "handle_call",
+        "change_status_to_break",
+        "return_to_available",
+        "receive_another_call",
+        "finish_workday"
+      ],
+      "error_handling": [
+        "voximplant_unavailable",
+        "invalid_data",
+        "system_recovery"
+      ]
+    }
+  }
+} 

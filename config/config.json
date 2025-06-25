@@ -1,22 +1,22 @@
 {
   "environments": {
     "dev": {
-      "baseUrl": "https://liner.dstepanyuk.dev.smte.am/auth/",
-      "apiUrl": "https://liner.dstepanyuk.dev.smte.am/api/",
+      "baseUrl": "https://liner.dstepanyuk.dev.smte.am/auth",
+      "apiUrl": "https://api.liner.dstepanyuk.dev.smte.am",
       "description": "Разработка",
-      "api_key": ""
+      "api_key": "${DEV_API_KEY}"
     },
     "sm": {
-      "baseUrl": "https://sm.linerapp.io/auth/",
-      "apiUrl": "https://sm.linerapp.io/api/",
+      "baseUrl": "https://sm.linerapp.io/auth",
+      "apiUrl": "https://sm.linerapp.io/api",
       "description": "SM коробка",
-      "api_key": ""
+      "api_key": "${SM_API_KEY}"
     },
     "ask-yug": {
-      "baseUrl": "https://liner.ask-yug.com/auth/",
-      "apiUrl": "https://liner.ask-yug.com/api/",
+      "baseUrl": "https://liner.ask-yug.com/auth",
+      "apiUrl": "https://liner.ask-yug.com/api",
       "description": "Ask-Yug коробка",
-      "api_key": ""
+      "api_key": "${ASK_YUG_API_KEY}"
     }
   },
   "defaultEnvironment": "dev",

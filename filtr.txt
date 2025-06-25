@@ -1,0 +1,836 @@
+<div class="filter-box" role="alert">
+    <div class="alert-message">
+        <h4 class="alert-heading mb-0">
+            <a class="filter-header collapse-icon" data-toggle="collapse" href="#filter-box" role="button" aria-expanded="true" aria-controls="filter-box">
+                Фильтр&ZeroWidthSpace;                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up align-middle me-2">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+            </a>
+        </h4>
+        <div class="mt-4 collapse show" id="filter-box" style="">
+            <div class="">
+                <form id="filter-m-form" class="filter-form" action="" data-skip="true" data-preset-section="leads">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Период&ZeroWidthSpace;</label>
+    <input class="form-control" type="text" name="daterange" value="23.05.2025 - 23.05.2025"><input id="datePeriod" type="hidden" name="period" value="default"></div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">ID Лида&ZeroWidthSpace;</label>
+<input class="form-control inputCheckNumberValue" type="number" min="0" name="id" placeholder="ID Лида&ZeroWidthSpace;" value="">
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Внешний ID Лида&ZeroWidthSpace;</label>
+<input class="form-control inputCheckNumberValue" type="number" min="0" name="external_id" placeholder="Внешний ID Лида&ZeroWidthSpace;" value="">
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Тип лида&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="type" class="form-control mb-3 select2 w-100 select2-hidden-accessible" data-toggle="select2" data-required="true" data-placeholder="Тип лида&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="1" tabindex="-1" aria-hidden="true">
+<option value="all" data-select2-id="3">Не важно&ZeroWidthSpace;</option>
+<option value="straight" data-select2-id="597">Прямой&ZeroWidthSpace;</option>
+<option value="selection" data-select2-id="598">Подбор&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1322" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-type-44-container"><span class="select2-selection__rendered" id="select2-type-44-container" role="textbox" aria-readonly="true" title="Не важно&ZeroWidthSpace;">Не важно&ZeroWidthSpace;</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Телефон клиента&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="phone[]" class="form-control mb-3 select2 w-100 tagged select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Телефон клиента&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="4" tabindex="-1" aria-hidden="true">
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1335" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Телефон клиента&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Уникальность&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="uniq" class="form-control mb-3 select2 w-100 select2-hidden-accessible" data-toggle="select2" data-required="true" data-placeholder="Уникальность&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="6" tabindex="-1" aria-hidden="true">
+<option value="all" data-select2-id="8">Не важно&ZeroWidthSpace;</option>
+<option value="first" data-select2-id="601">Первичный&ZeroWidthSpace;</option>
+<option value="two" data-select2-id="602">Вторичный&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1324" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-uniq-eh-container"><span class="select2-selection__rendered" id="select2-uniq-eh-container" role="textbox" aria-readonly="true" title="Не важно&ZeroWidthSpace;">Не важно&ZeroWidthSpace;</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Клиент&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="order_users[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Клиент&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="9" tabindex="-1" aria-hidden="true">
+<option value="104" data-select2-id="604">Главстрой (#104)</option>
+<option value="171" data-select2-id="605">(Анаполис) РКС (#171)</option>
+<option value="229" data-select2-id="606">Bravo Kiparis (#229)</option>
+<option value="43" data-select2-id="607">CPA Callexchange (#43)</option>
+<option value="44" data-select2-id="608">CPA Coin (#44)</option>
+<option value="45" data-select2-id="609">CPA Marketcall (#45)</option>
+<option value="93" data-select2-id="610">Dar Bahar (#93)</option>
+<option value="83" data-select2-id="611">DARS (#83)</option>
+<option value="79" data-select2-id="612">Fresh Auto (#79)</option>
+<option value="41" data-select2-id="613">OKOS (#41)</option>
+<option value="113" data-select2-id="614">Prestige One (#113)</option>
+<option value="92" data-select2-id="615">Provident (#92)</option>
+<option value="62" data-select2-id="616">RBI (#62)</option>
+<option value="42" data-select2-id="617">А101 (#42)</option>
+<option value="177" data-select2-id="618">АВТО для ВАС ДЦ EXEED (#177)</option>
+<option value="65" data-select2-id="619">Автобери (#65)</option>
+<option value="153" data-select2-id="620">Автостиль ДЦ (#153)</option>
+<option value="158" data-select2-id="621">Автоцентр на Гагарина (#158)</option>
+<option value="185" data-select2-id="622">Альянс ГК (#185)</option>
+<option value="66" data-select2-id="623">an-etazhi@southmedia.ru (#66)</option>
+<option value="38" data-select2-id="624">АСК (#38)</option>
+<option value="126" data-select2-id="625">АСК DMP (#126)</option>
+<option value="168" data-select2-id="626">Аякс АН (#168)</option>
+<option value="179" data-select2-id="627">Аякс Краснодар (#179)</option>
+<option value="162" data-select2-id="628">Базис АН (#162)</option>
+<option value="191" data-select2-id="629">Бакра BMW (#191)</option>
+<option value="218" data-select2-id="630">Баланс ПСК (#218)</option>
+<option value="54" data-select2-id="631">Брусника (#54)</option>
+<option value="89" data-select2-id="632">ВКБН (#89)</option>
+<option value="63" data-select2-id="633">Галактика (#63)</option>
+<option value="224" data-select2-id="634">ГК ЮКО (#224)</option>
+<option value="40" data-select2-id="635">ГК Основа (#40)</option>
+<option value="101" data-select2-id="636">ГК Садовое Кольцо (#101)</option>
+<option value="220" data-select2-id="637">Глоракс Нектарин (#220)</option>
+<option value="37" data-select2-id="638">Гранель (#37)</option>
+<option value="71" data-select2-id="639">Гринвуд Девелопмент (#71)</option>
+<option value="86" data-select2-id="640">Группа Компаний Эталон (#86)</option>
+<option value="209" data-select2-id="641">Дивный квартал ISB_География (#209)</option>
+<option value="210" data-select2-id="642">Дон Моторс (#210)</option>
+<option value="67" data-select2-id="643">Доннефтестрой (#67)</option>
+<option value="96" data-select2-id="644">ДЦ Прайд Авто (#96)</option>
+<option value="199" data-select2-id="645">Екатеринбург Автомарт (#199)</option>
+<option value="69" data-select2-id="646">Екатеринодар Инвест Строй (#69)</option>
+<option value="39" data-select2-id="647">ЖИК (#39)</option>
+<option value="58" data-select2-id="648">Инсити (#58)</option>
+<option value="202" data-select2-id="649">История НВМ (#202)</option>
+<option value="48" data-select2-id="650">КлючАвто (#48)</option>
+<option value="77" data-select2-id="651">ЛенРусСтрой (#77)</option>
+<option value="178" data-select2-id="652">М-Сервис ДЦ (#178)</option>
+<option value="73" data-select2-id="653">Меридиан (#73)</option>
+<option value="121" data-select2-id="654">Метрикс Девелопмент (#121)</option>
+<option value="36" data-select2-id="655">МИЦ (#36)</option>
+<option value="200" data-select2-id="656">Мотивы ISB_География (#200)</option>
+<option value="64" data-select2-id="657">МСК (#64)</option>
+<option value="174" data-select2-id="658">Навигатор Девелопмент (#174)</option>
+<option value="203" data-select2-id="659">Народные Кварталы НВМ (#203)</option>
+<option value="188" data-select2-id="660">Новорижский Премьер (#188)</option>
+<option value="219" data-select2-id="661">Общая РК ISB_География (#219)</option>
+<option value="204" data-select2-id="662">Общий НВМ (#204)</option>
+<option value="19" data-select2-id="663">web@southmedia.ru (#19)</option>
+<option value="192" data-select2-id="664">Окинава ISB_География (#192)</option>
+<option value="227" data-select2-id="665">Пиксель Навигатор (#227)</option>
+<option value="68" data-select2-id="666">Полис Групп (#68)</option>
+<option value="82" data-select2-id="667">РКС (#82)</option>
+<option value="197" data-select2-id="668">Самара Квант (#197)</option>
+<option value="175" data-select2-id="669">Семья СК (#175)</option>
+<option value="85" data-select2-id="670">Сенатор (#85)</option>
+<option value="120" data-select2-id="671">СЗ Флагман (#120)</option>
+<option value="214" data-select2-id="672">СЗ Творчество Дом Нойферта (#214)</option>
+<option value="46" data-select2-id="673">Сити XXI век (#46)</option>
+<option value="119" data-select2-id="674">См Сити (#119)</option>
+<option value="60" data-select2-id="675">СМУ-1 (#60)</option>
+<option value="189" data-select2-id="676">Собрание Дом (#189)</option>
+<option value="49" data-select2-id="677">Страна Девелопмент (#49)</option>
+<option value="84" data-select2-id="678">Стройтек (#84)</option>
+<option value="53" data-select2-id="679">ТемпАвто (#53)</option>
+<option value="164" data-select2-id="680">Тестовый Клиент (#164)</option>
+<option value="215" data-select2-id="681">Тестовый клиент Страна Девелопмент (#215)</option>
+<option value="198" data-select2-id="682">Тюмень Династия (#198)</option>
+<option value="103" data-select2-id="683">Фаворит Моторс (#103)</option>
+<option value="211" data-select2-id="684">Хавал Дон-Моторс (#211)</option>
+<option value="97" data-select2-id="685">Холдинг Партнер (#97)</option>
+<option value="208" data-select2-id="686">Хочу Квартиру АН (#208)</option>
+<option value="163" data-select2-id="687">Черкесское Автолюкс (#163)</option>
+<option value="80" data-select2-id="688">ЧФК (#80)</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1325" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Клиент&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Заказ&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="order[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Заказ&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="11" tabindex="-1" aria-hidden="true">
+<option data-search-filter="В работе&ZeroWidthSpace;" value="2640" data-select2-id="690">Тестовый заказ (звонки в ОП) (#2640)</option>
+<option data-search-filter="В работе&ZeroWidthSpace;" value="559" data-select2-id="691">Нелинейный подбор Southmedia (#559)</option>
+<option data-search-filter="В работе&ZeroWidthSpace;" value="826" data-select2-id="692">Тестовый заказ (отладка Лайнера) (#826)</option>
+<option data-search-filter="В работе&ZeroWidthSpace;" value="1491" data-select2-id="693">Тестовый заказ (звонки в ОП) (#1491)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2755" data-select2-id="694">ЮКО | КП Солнечный город | Солнечногорск | ВК (#2755)</option>
+<option data-search-filter="В работе&ZeroWidthSpace;" value="2747" data-select2-id="695">ЮКО | КП Солнечный город | Солнечногорск - DMP NEW (сайты застройщика) (#2747)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2646" data-select2-id="696">Заказ с лидами "Потеряшки" у которых были не существующие id заказов (#2646)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2784" data-select2-id="697">Браво | Кипарис | Анапа - DMP (#2784)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2756" data-select2-id="698">Творчество | Дом Нойферта | Тюмень - DMP (#2756)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2614" data-select2-id="699">НВМ | История 2 | Краснодар | Артем - DMP (#2614)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2609" data-select2-id="700">НВМ | История 2 | Краснодар | Виктория - DMP (#2609)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2607" data-select2-id="701">НВМ | Народные кварталы | Краснодар | Артем - DMP (#2607)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2605" data-select2-id="702">НВМ | Народные кварталы | Краснодар | Виктория - DMP (#2605)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2635" data-select2-id="703">НВМ | Общий | Краснодар | Артем - DMP (#2635)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2632" data-select2-id="704">НВМ | Общий | Краснодар | Виктория - DMP (#2632)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2739" data-select2-id="705">НВМ | Общий | Краснодар | Виктория (клиент не заинтересован) (#2739)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2795" data-select2-id="706">Творчество | Дом Нойферта | Тюмень - DMP NEW (посадки конкурентов) (#2795)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2558" data-select2-id="707">КЛЮЧАВТО | Джетур | Сочи | Артем - непервичные лиды (#2558)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2794" data-select2-id="708">КЛЮЧАВТО | Джетур | Сочи | DMP NEW (номера посадки конкурентов) (#2794)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2793" data-select2-id="709">НВМ | Общий | Краснодар | Артем - DMP NEW (номера посадки 3) (#2793)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2783" data-select2-id="710">Браво | Кипарис | Анапа (#2783)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2792" data-select2-id="711">Творчество | Дом Нойферта | Тюмень - DMP NEW (номера посадки) (#2792)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2791" data-select2-id="712">Браво | Кипарис | Анапа - DMP NEW (сайты конкурентов) (#2791)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2790" data-select2-id="713">Творчество | Дом Нойферта | Тюмень - DMP NEW (пиксель) (#2790)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2789" data-select2-id="714">Браво | Кипарис | Анапа - DMP NEW (номера посадки) (#2789)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2788" data-select2-id="715">Браво | Кипарис | Анапа - непервичные лиды (не заинтересованные) (#2788)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2787" data-select2-id="716">Браво | Кипарис | Анапа - непервичные лиды (#2787)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2786" data-select2-id="717">Навигатор | Зеленые аллеи | Тюмень | DMP NEW (сайты конкурентов) (#2786)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2785" data-select2-id="718">НВМ | Общий | Краснодар | СМС (#2785)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2757" data-select2-id="719">Навигатор | Зеленые аллеи | Тюмень | DMP NEW (пиксель) (#2757)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2728" data-select2-id="720">Глоракс | Общий | Спб - DMP NEW (пиксель) (#2728)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2767" data-select2-id="721">КЛЮЧАВТО | Джетур | Сочи | DMP NEW (пиксель) (#2767)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2774" data-select2-id="722">КЛЮЧАВТО | Джейку | Сочи | DMP NEW (пиксель) (#2774)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2782" data-select2-id="723">НВМ | Общий | Краснодар | актуализация базы (#2782)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2631" data-select2-id="724">НВМ | Общий | Краснодар | Виктория (#2631)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2775" data-select2-id="725">КЛЮЧАВТО | Джейку | Сочи - непервичные лиды (#2775)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2781" data-select2-id="726">КЛЮЧАВТО | Джейку | Сочи | DMP NEW (офиц. сайт марки) (#2781)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2780" data-select2-id="727">КЛЮЧАВТО | Джейку | Сочи | DMP NEW (номера конкурентов) (#2780)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2779" data-select2-id="728">КЛЮЧАВТО | Джейку | Сочи | DMP NEW (сайты конкурентов) (#2779)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2778" data-select2-id="729">НВМ | Общий | Краснодар | DMP NEW (номера с сайтов подборщиков) (#2778)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2777" data-select2-id="730">Навигатор | Зеленые аллеи | Тюмень | DMP NEW (номера конкурентов - карты) (#2777)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2776" data-select2-id="731">Навигатор | Зеленые аллеи | Тюмень | DMP NEW (номера конкурентов - посадки) (#2776)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2773" data-select2-id="732">КЛЮЧАВТО | Джейку | КМВ | Виктория - непервичные лиды (#2773)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2663" data-select2-id="733">АН Хочу Квартиру | Экос | Спб | Тест Владислава (#2663)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2758" data-select2-id="734">Навигатор | Зеленые аллеи | Тюмень | Владислав (#2758)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2772" data-select2-id="735">НВМ | Общий | Краснодар | Артем - DMP NEW (номера посадки 2) (#2772)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2771" data-select2-id="736">НВМ | Общий | Краснодар | Артем - DMP NEW (номера карты 2) (#2771)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2590" data-select2-id="737">Партнер | Ритмы | Тюмень | Артем (#2590)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2628" data-select2-id="738">Навигатор | Зеленые аллеи | Тюмень | Артем (#2628)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2627" data-select2-id="739">Навигатор | Зеленые аллеи | Тюмень | Виктория (#2627)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2770" data-select2-id="740">НВМ | Общий | Краснодар | Виктория - DMP NEW (сайты подборщики3) (#2770)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2769" data-select2-id="741">НВМ | Общий | Краснодар | Виктория - DMP NEW (сайты подборщики2) (#2769)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2768" data-select2-id="742">НВМ | Общий | Краснодар | Виктория - DMP NEW (сайты подборщики1) (#2768)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2764" data-select2-id="743">КЛЮЧАВТО | Джейку | КМВ | Артем - DMP NEW (конкуренты. сайты) (#2764)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2766" data-select2-id="744">КЛЮЧАВТО | Джейку | КМВ | Артем - DMP NEW (номера карты) (#2766)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2765" data-select2-id="745">КЛЮЧАВТО | Джейку | КМВ | Артем - DMP NEW (номера посадки) (#2765)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2763" data-select2-id="746">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (номера посадки конкуренты) (#2763)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2762" data-select2-id="747">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (номера карты конкуренты) (#2762)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2372" data-select2-id="748">Навигатор | Зеленые аллеи | Тюмень | Виктория - непервичные лиды (#2372)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2629" data-select2-id="749">Навигатор | Зеленые аллеи | Тюмень | Виктория - DMP (#2629)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2383" data-select2-id="750">Навигатор | Зеленые аллеи | Тюмень | Артем - непервичные лиды (#2383)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2630" data-select2-id="751">Навигатор | Зеленые аллеи | Тюмень | Артем - DMP (#2630)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2676" data-select2-id="752">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (сайты) (#2676)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2671" data-select2-id="753">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (продажа) (#2671)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2678" data-select2-id="754">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (номера с Циан) (#2678)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2677" data-select2-id="755">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (номера с сайтов) (#2677)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2680" data-select2-id="756">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (их основной сайт) (#2680)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2669" data-select2-id="757">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (застройщики) (#2669)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2670" data-select2-id="758">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (жк) (#2670)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2668" data-select2-id="759">АН Хочу Квартиру | Экос | Спб | Виктория - DMP NEW (агентства) (#2668)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2720" data-select2-id="760">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория - DMP NEW (выкуп) (#2720)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2724" data-select2-id="761">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (оф.сайт) (#2724)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2722" data-select2-id="762">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (купля продажа) (#2722)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2725" data-select2-id="763">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (конкуренты) (#2725)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2723" data-select2-id="764">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP NEW (дц) (#2723)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2703" data-select2-id="765">КЛЮЧАВТО | Танк | Краснодар | Виктория - DMP NEW (офиц.сайт марки) (#2703)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2717" data-select2-id="766">КЛЮЧАВТО | Омода | Краснодар  | Артем - DMP NEW (оф.сайты) (#2717)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2740" data-select2-id="767">КЛЮЧАВТО | Иксид | Сочи | Артем - DMP NEW (сайты конкурентов) (#2740)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2741" data-select2-id="768">КЛЮЧАВТО | Иксид | Сочи | Артем - DMP NEW (сайт.дилера) (#2741)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2742" data-select2-id="769">КЛЮЧАВТО | Иксид | Сочи | Артем - DMP NEW (оф.сайт) (#2742)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2727" data-select2-id="770">КЛЮЧАВТО | Джейку | Краснодар | Виктория - DMP NEW (оф.сайт марки) (#2727)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2675" data-select2-id="771">Дон Моторс | Хавейл | Ростов | Виктория - DMP NEW (подбор авто) (#2675)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2674" data-select2-id="772">Дон Моторс | Хавейл | Ростов | Виктория - DMP NEW (купля продажа) (#2674)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2679" data-select2-id="773">Дон Моторс | Хавейл | Ростов | Виктория - DMP NEW (их основной сайт) (#2679)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2673" data-select2-id="774">Дон Моторс | Хавейл | Ростов | Виктория - DMP NEW (дц) (#2673)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2672" data-select2-id="775">Дон Моторс | Хавейл | Ростов | Виктория - DMP NEW (выкуп) (#2672)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2710" data-select2-id="776">География | Общий | Тюмень  | Артем - DMP NEW (сайты конкурентов) (#2710)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2705" data-select2-id="777">География | Общий | Тюмень  | Артем - DMP NEW (оф. сайты) (#2705)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2752" data-select2-id="778">ЮКО | КП Солнечный город | Солнечногорск - DMP NEW (строительство коттеджей) (#2752)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2751" data-select2-id="779">ЮКО | КП Солнечный город | Солнечногорск - DMP NEW (продажа зем.участков) (#2751)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2746" data-select2-id="780">ЮКО | КП Солнечный город | Солнечногорск - DMP NEW (оф.сайт проекта) (#2746)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2748" data-select2-id="781">ЮКО | КП Солнечный город | Солнечногорск - DMP NEW (конкуренты) (#2748)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2731" data-select2-id="782">ПСК | Баланс | Тюмень | Артем - NEW DMP (оф.сайт) (#2731)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2732" data-select2-id="783">Партнер | Ритмы | Тюмень | Артем - DMP NEW (оф.сайт) (#2732)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2737" data-select2-id="784">НВМ | Общий | Краснодар | Виктория - DMP NEW (сайты АСК) (#2737)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2734" data-select2-id="785">НВМ | Общий | Краснодар | Артем - DMP NEW (этажи) (#2734)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2709" data-select2-id="786">НВМ | Общий | Краснодар | Артем - DMP NEW (сайты конкурентов) (#2709)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2738" data-select2-id="787">НВМ | Общий | Краснодар | Артем - DMP NEW (сайты ВКБН) (#2738)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2708" data-select2-id="788">НВМ | Общий | Краснодар | Артем - DMP NEW (оф. сайт) (#2708)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2729" data-select2-id="789">НВМ | Общий | Краснодар | Артем - DMP NEW (номера) (#2729)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2759" data-select2-id="790">НВМ | Общий | Краснодар | Артем - DMP NEW (номера посадки) (#2759)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2761" data-select2-id="791">НВМ | Общий | Краснодар | Артем - DMP NEW (номера классифайды) (#2761)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2760" data-select2-id="792">НВМ | Общий | Краснодар | Артем - DMP NEW (номера карты) (#2760)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2733" data-select2-id="793">НВМ | Общий | Краснодар | Артем - DMP NEW (домклик) (#2733)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2721" data-select2-id="794">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория - DMP NEW (подбор авто) (#2721)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2719" data-select2-id="795">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория - DMP NEW (офиц.сайт марки) (#2719)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2634" data-select2-id="796">НВМ | Общий | Краснодар | Артем (#2634)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2745" data-select2-id="797">Творчество | Дом Нойферта | Тюмень - непервичные лиды (#2745)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2749" data-select2-id="798">Творчество | Дом Нойферта | Тюмень (#2749)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2743" data-select2-id="799">ЮКО | КП Солнечный город | Солнечногорск (#2743)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2753" data-select2-id="800">ЮКО | КП Солнечный город | Солнечногорск (база московских застройщиков - целевые) (#2753)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2754" data-select2-id="801">ЮКО | КП Солнечный город | Солнечногорск (база московских застройщиков - не заинтересован) (#2754)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2750" data-select2-id="802">КЛЮЧАВТО | Иксид | Сочи | Виктория (клиент не заинтересован) (#2750)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2744" data-select2-id="803">ЮКО | КП Солнечный город | Солнечногорск - DMP (#2744)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2171" data-select2-id="804">Страна | Юнион | Тюмень | Артем (#2171)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2019" data-select2-id="805">Страна | Юнион | Тюмень | Виктория (#2019)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1740" data-select2-id="806">Страна | Юнион | Тюмень | Виктория - непервичные лиды (#1740)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2225" data-select2-id="807">Страна | Сибирский сад | Екатеринбург | Виктория - непервичные лиды (#2225)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2404" data-select2-id="808">Страна | Сибирский сад | Екатеринбург | Артем - непервичные лиды (#2404)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2020" data-select2-id="809">Страна | Сибирский сад | Екатеринбург | Виктория (#2020)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2347" data-select2-id="810">Страна | Сибирский сад | Екатеринбург | Артем (#2347)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2173" data-select2-id="811">Страна | Сердце Сибири | Тюмень | Артем (#2173)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2017" data-select2-id="812">Страна | Сердце Сибири | Тюмень | Виктория (#2017)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1108" data-select2-id="813">Страна | Сердце Сибири | Тюмень | Виктория - непервичные лиды (#1108)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2617" data-select2-id="814">Страна | Прибрежная | Тюмень | Артем (#2617)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2616" data-select2-id="815">Страна | Прибрежная | Тюмень | Виктория (#2616)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2473" data-select2-id="816">Страна | Общий | Тюмень | Артем - непервичные лиды (#2473)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1394" data-select2-id="817">Страна | Общий | Тюмень | Виктория - непервичные лиды (#1394)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2044" data-select2-id="818">Страна | Общий | Тюмень | Виктория (#2044)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2626" data-select2-id="819">Страна | Общий | Тюмень | Артем - ВК (#2626)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2155" data-select2-id="820">Страна | Общий | Тюмень | Артем (#2155)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2296" data-select2-id="821">Страна | Общий | Екатеринбург | Виктория (#2296)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2353" data-select2-id="822">Страна | Общий | Екатеринбург | Артем (#2353)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1125" data-select2-id="823">Страна | Звездный | Тюмень | Виктория - непервичные лиды (#1125)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2018" data-select2-id="824">Страна | Звездный | Тюмень | Виктория (#2018)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2175" data-select2-id="825">Страна | Звездный | Тюмень | Артем (#2175)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2619" data-select2-id="826">Страна | Европейский берег | Тюмень | Артем (#2619)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2618" data-select2-id="827">Страна | Европейский берег | Тюмень | Виктория (#2618)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1107" data-select2-id="828">Страна | Домашний | Тюмень | Виктория - непервичные лиды (#1107)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2016" data-select2-id="829">Страна | Домашний | Тюмень | Виктория (#2016)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2177" data-select2-id="830">Страна | Домашний | Тюмень | Артем (#2177)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2169" data-select2-id="831">Страна | Авторский | Тюмень  | Артем (#2169)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2186" data-select2-id="832">Страна | Авторский | Тюмень  | Виктория (#2186)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2367" data-select2-id="833">РКС | Анаполис | Анапа | Виктория - непервичные лиды (#2367)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2366" data-select2-id="834">РКС | Анаполис | Анапа | Артем - непервичные лиды (#2366)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2075" data-select2-id="835">РКС | Анаполис | Анапа | Виктория (#2075)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2362" data-select2-id="836">РКС | Анаполис | Анапа | Артем (#2362)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2698" data-select2-id="837">ПСК | Общий | Тюмень | Артем - непервичные лиды (#2698)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2697" data-select2-id="838">ПСК | Общий | Тюмень | Виктория - непервичные лиды (#2697)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2695" data-select2-id="839">ПСК | Общий | Тюмень | Виктория (#2695)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2700" data-select2-id="840">ПСК | Общий | Тюмень | Артем (#2700)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2686" data-select2-id="841">ПСК | Дружеский | Тюмень | Артем - непервичные лиды (#2686)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2683" data-select2-id="842">ПСК | Дружеский | Тюмень | Виктория - непервичные лиды (#2683)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2681" data-select2-id="843">ПСК | Дружеский | Тюмень | Виктория (#2681)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2684" data-select2-id="844">ПСК | Дружеский | Тюмень | Артем (#2684)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2692" data-select2-id="845">ПСК | Баланс | Тюмень | Артем - непервичные лиды (#2692)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2691" data-select2-id="846">ПСК | Баланс | Тюмень | Виктория - непервичные лиды (#2691)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2689" data-select2-id="847">ПСК | Баланс | Тюмень | Виктория (#2689)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2694" data-select2-id="848">ПСК | Баланс | Тюмень | Артем (#2694)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2638" data-select2-id="849">Партнер | Ритмы | Тюмень | Виктория | ВК (#2638)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1448" data-select2-id="850">Партнер | Ритмы | Тюмень | Виктория - непервичные лиды (#1448)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2045" data-select2-id="851">Партнер | Ритмы | Тюмень | Виктория (#2045)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2592" data-select2-id="852">Партнер | Ритмы | Тюмень | Артем - непервичные лиды (#2592)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2637" data-select2-id="853">НВМ | Общий | Краснодар | Виктория | ВК (#2637)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2633" data-select2-id="854">НВМ | Общий | Краснодар | Виктория - непервичные лиды (#2633)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2660" data-select2-id="855">НВМ | Общий | Краснодар | Виктория (прозвон базы клиентов по авто - целевые) (#2660)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2662" data-select2-id="856">НВМ | Общий | Краснодар | Виктория (прозвон базы клиентов по авто - не заинтересованы) (#2662)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2636" data-select2-id="857">НВМ | Общий | Краснодар | Артем - непервичные лиды (#2636)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2606" data-select2-id="858">НВМ | Народные кварталы | Краснодар | Артем (#2606)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2604" data-select2-id="859">НВМ | Народные кварталы | Краснодар | Виктория (#2604)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2612" data-select2-id="860">НВМ | Народные кварталы | Краснодар | Артем - непервичные лиды (#2612)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2611" data-select2-id="861">НВМ | Народные кварталы | Краснодар | Виктория - непервичные лиды (#2611)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2615" data-select2-id="862">НВМ | История 2 | Краснодар | Артем - непервичные лиды (#2615)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2610" data-select2-id="863">НВМ | История 2 | Краснодар | Виктория - непервичные лиды (#2610)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2608" data-select2-id="864">НВМ | История 2 | Краснодар | Виктория (#2608)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2625" data-select2-id="865">НВМ | История 2 | Краснодар | Артем - ВК (#2625)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2613" data-select2-id="866">НВМ | История 2 | Краснодар | Артем (#2613)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2458" data-select2-id="867">Меридиан | Общий | Тюмень | Артем (#2458)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2457" data-select2-id="868">Меридиан | Общий | Тюмень | Виктория (#2457)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2468" data-select2-id="869">Меридиан | Общий | Тюмень | Виктория  - непервичные лиды (#2468)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2494" data-select2-id="870">Меридиан | Общий | Тюмень | Артем  - непервичные лиды (#2494)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2336" data-select2-id="871">Меридиан | Меридиан ЮГ | Тюмень | Артем - непервичные лиды (#2336)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="830" data-select2-id="872">Меридиан | Меридиан ЮГ | Тюмень | Виктория - непервичные лиды (#830)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2521" data-select2-id="873">Меридиан | Меридиан Слобода | Тюмень | Артем  (#2521)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2517" data-select2-id="874">Меридиан | Меридиан Слобода | Тюмень | Виктория  (#2517)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2519" data-select2-id="875">Меридиан | Меридиан Слобода | Тюмень | Артем - непервичные лиды (#2519)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2522" data-select2-id="876">Меридиан | Меридиан Слобода | Тюмень | Виктория - непервичные лиды (#2522)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2011" data-select2-id="877">Меридиан | Меридиан Запад | Тюмень | Виктория (#2011)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2335" data-select2-id="878">Меридиан | Меридиан Запад | Тюмень | Артем - непервичные лиды (#2335)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1106" data-select2-id="879">Меридиан | Меридиан Запад | Тюмень | Виктория - непервичные лиды (#1106)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2467" data-select2-id="880">КЛЮЧАВТО | Чери | Ростов | Артем - непервичные лиды (#2467)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2408" data-select2-id="881">КЛЮЧАВТО | Чери | Ростов | Виктория - непервичные лиды (#2408)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2021" data-select2-id="882">КЛЮЧАВТО | Чери | Ростов | Виктория (#2021)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2124" data-select2-id="883">КЛЮЧАВТО | Чери | Ростов | Артем (#2124)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2298" data-select2-id="884">КЛЮЧАВТО | Чанган | Ставрополь | Артем - непервичные лиды (#2298)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2145" data-select2-id="885">КЛЮЧАВТО | Чанган | СПБ | Виктория (#2145)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2451" data-select2-id="886">КЛЮЧАВТО | Чанган | Курск | Виктория - непервичные лиды (#2451)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2436" data-select2-id="887">КЛЮЧАВТО | Чанган | Курск | Виктория (#2436)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2437" data-select2-id="888">КЛЮЧАВТО | Чанган | Курск | Артем (#2437)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2516" data-select2-id="889">КЛЮЧАВТО | Чанган | Краснодар | Виктория - непервичные лиды (#2516)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2241" data-select2-id="890">КЛЮЧАВТО | Чанган | Краснодар | Виктория (#2241)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2284" data-select2-id="891">КЛЮЧАВТО | Чанган | Краснодар | Артем (#2284)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2499" data-select2-id="892">КЛЮЧАВТО | Чанган (Китай) | Курск | Виктория (#2499)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2268" data-select2-id="893">КЛЮЧАВТО | Хончи | КМВ | Артем (#2268)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2234" data-select2-id="894">КЛЮЧАВТО | Хончи | КМВ | Виктория (#2234)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2104" data-select2-id="895">КЛЮЧАВТО | Хонгчи | Ростов Текучева | Виктория (#2104)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2102" data-select2-id="896">КЛЮЧАВТО | Хонгчи | Ростов Малиновского | Виктория (#2102)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2099" data-select2-id="897">КЛЮЧАВТО | Хонгчи | Ростов Малиновского | Артем (#2099)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2069" data-select2-id="898">КЛЮЧАВТО | Хонгчи | Ростов Вавилова | Виктория (#2069)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2100" data-select2-id="899">КЛЮЧАВТО | Хонгчи | Ростов Вавилова | Артем (#2100)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2103" data-select2-id="900">КЛЮЧАВТО | Хонгчи | Ростов Аксай | Виктория (#2103)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2101" data-select2-id="901">КЛЮЧАВТО | Хонгчи | Ростов Аксай | Артем (#2101)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2407" data-select2-id="902">КЛЮЧАВТО | Хонгчи | Ростов | Артем - непервичные лиды (#2407)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1998" data-select2-id="903">КЛЮЧАВТО | Хонгчи | Ростов | Артем (#1998)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2485" data-select2-id="904">КЛЮЧАВТО | Хонгчи | Краснодар | Виктория (#2485)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2484" data-select2-id="905">КЛЮЧАВТО | Хонгчи | Краснодар | Артем (#2484)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2505" data-select2-id="906">КЛЮЧАВТО | Хонгчи | Краснодар (Север) | Артем (#2505)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2091" data-select2-id="907">КЛЮЧАВТО | Хонгчи  Н5 Классик | Ростов Аксай | Артем (#2091)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2090" data-select2-id="908">КЛЮЧАВТО | Хонгчи  Н5 Классик | Ростов Вавилова | Артем (#2090)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2089" data-select2-id="909">КЛЮЧАВТО | Хонгчи  Н5 Классик | Ростов Малиновского | Артем (#2089)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2084" data-select2-id="910">КЛЮЧАВТО | Хонгчи  Н5 Классик | Ростов Текучева | Артем (#2084)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2197" data-select2-id="911">КЛЮЧАВТО | Хендэ | Ставрополь | Виктория (#2197)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2565" data-select2-id="912">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория - непервичные лиды (#2565)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2583" data-select2-id="913">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - непервичные лиды (#2583)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2188" data-select2-id="914">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория (#2188)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2645" data-select2-id="915">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - ВК (#2645)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2560" data-select2-id="916">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем (#2560)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2595" data-select2-id="917">КЛЮЧАВТО | Хавейл Про | Ставрополь | Артем (#2595)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2593" data-select2-id="918">КЛЮЧАВТО | Хавейл Про | Ставрополь | Виктория (#2593)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2601" data-select2-id="919">КЛЮЧАВТО | Хавейл Про | Ставрополь | Виктория - непервичные лиды (#2601)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2642" data-select2-id="920">КЛЮЧАВТО | Хавейл Про | КМВ | Артем (#2642)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2641" data-select2-id="921">КЛЮЧАВТО | Хавейл Про | КМВ | Виктория (#2641)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2659" data-select2-id="922">КЛЮЧАВТО | Хавейл Про | КМВ | Артем - непервичные лиды (#2659)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2661" data-select2-id="923">КЛЮЧАВТО | Хавейл Про | КМВ | Виктория - непервичные (#2661)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2577" data-select2-id="924">КЛЮЧАВТО | Хавейл H | Краснодар | Виктория (#2577)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2578" data-select2-id="925">КЛЮЧАВТО | Хавейл | Краснодар | Артем (#2578)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2553" data-select2-id="926">КЛЮЧАВТО | Танк | Сочи | Виктория (#2553)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2554" data-select2-id="927">КЛЮЧАВТО | Танк | Сочи | Артем (#2554)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2557" data-select2-id="928">КЛЮЧАВТО | Танк | Сочи  | Артем - непервичные лиды (#2557)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2704" data-select2-id="929">КЛЮЧАВТО | Танк | Краснодар | Виктория (прозвон базы "дц" Дон Моторс) (#2704)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2702" data-select2-id="930">КЛЮЧАВТО | Танк | Краснодар | Виктория (прозвон базы клиентов по недвижке - целевые) (#2702)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2312" data-select2-id="931">КЛЮЧАВТО | Танк | Краснодар | Виктория (#2312)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2314" data-select2-id="932">КЛЮЧАВТО | Танк | Краснодар | Артем (#2314)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2562" data-select2-id="933">КЛЮЧАВТО | Танк | Краснодар  | Артем - непервичные лиды (#2562)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2585" data-select2-id="934">КЛЮЧАВТО | Солярис | Сочи | Артем - непервичные лиды (#2585)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2572" data-select2-id="935">КЛЮЧАВТО | Солярис | Сочи | Виктория (#2572)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2573" data-select2-id="936">КЛЮЧАВТО | Солярис | Сочи | Артем (#2573)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2599" data-select2-id="937">КЛЮЧАВТО | Солярис (Китай) | Сочи | Виктория (#2599)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2584" data-select2-id="938">КЛЮЧАВТО | Солярис | Краснодар | Артем - непервичные лиды (#2584)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2581" data-select2-id="939">КЛЮЧАВТО | Солярис | Краснодар | Виктория - непервичные лиды (#2581)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2568" data-select2-id="940">КЛЮЧАВТО | Солярис | Краснодар | Виктория (#2568)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2570" data-select2-id="941">КЛЮЧАВТО | Солярис | Краснодар | Артем (#2570)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2582" data-select2-id="942">КЛЮЧАВТО | Солярис (Китай) | Краснодар | Виктория (#2582)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2160" data-select2-id="943">КЛЮЧАВТО | Омода | СПБ | Виктория (#2160)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2235" data-select2-id="944">КЛЮЧАВТО | Омода | СПБ | Артем | ВК (#2235)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2137" data-select2-id="945">КЛЮЧАВТО | Омода | СПБ | Артем (#2137)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2538" data-select2-id="946">КЛЮЧАВТО | Омода | Сочи | Артем - непервичные лиды (#2538)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2466" data-select2-id="947">КЛЮЧАВТО | Омода | Сочи | Артем (#2466)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2165" data-select2-id="948">КЛЮЧАВТО | Омода | Сочи | Виктория (#2165)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2067" data-select2-id="949">КЛЮЧАВТО | Омода | Ростов | Виктория (#2067)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2292" data-select2-id="950">КЛЮЧАВТО | Омода | Краснодар | Артем (#2292)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2190" data-select2-id="951">КЛЮЧАВТО | Омода | Краснодар | Виктория (#2190)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2162" data-select2-id="952">КЛЮЧАВТО | Омода | Краснодар | Виктория - непервичные лиды (#2162)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2297" data-select2-id="953">КЛЮЧАВТО | Омода | Краснодар | Артем - непервичные лиды (#2297)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2393" data-select2-id="954">КЛЮЧАВТО | Омода | КМВ | Артем (#2393)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2214" data-select2-id="955">КЛЮЧАВТО | Омода | КМВ | Виктория (#2214)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2623" data-select2-id="956">КЛЮЧАВТО | Омода | КМВ | Артем - непервичные лиды (#2623)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2624" data-select2-id="957">КЛЮЧАВТО | Омода | КМВ | Виктория - непервичные лиды (#2624)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1994" data-select2-id="958">КЛЮЧАВТО | Омода | Волгоград | Артем (#1994)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2058" data-select2-id="959">КЛЮЧАВТО | Омода | Волгоград | Виктория (#2058)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2452" data-select2-id="960">КЛЮЧАВТО | Омода | Волгоград | Артем - непервичные лиды (#2452)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2453" data-select2-id="961">КЛЮЧАВТО | Омода | Волгоград | Виктория - непервичные лиды (#2453)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2500" data-select2-id="962">КЛЮЧАВТО | Омода (Китай) | Краснодар | Виктория (#2500)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2361" data-select2-id="963">КЛЮЧАВТО | Омода (Китай) | СПБ | Виктория (#2361)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2144" data-select2-id="964">КЛЮЧАВТО | Ливан (Китай) | Краснодар | Виктория (#2144)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2105" data-select2-id="965">КЛЮЧАВТО | Ливан | Краснодар | Виктория (#2105)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2066" data-select2-id="966">КЛЮЧАВТО | Киа | КМВ | Виктория (#2066)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2206" data-select2-id="967">КЛЮЧАВТО | Киа | Ставрополь | Виктория (#2206)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1996" data-select2-id="968">КЛЮЧАВТО | Каи | Ростов | Артем (#1996)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2068" data-select2-id="969">КЛЮЧАВТО | Каи | Ростов | Виктория (#2068)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2211" data-select2-id="970">КЛЮЧАВТО | Каи | Краснодар | Артем (#2211)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2236" data-select2-id="971">КЛЮЧАВТО | Каи | Краснодар | Артем | ВК (#2236)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2208" data-select2-id="972">КЛЮЧАВТО | Каи | Краснодар | Виктория (#2208)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2244" data-select2-id="973">КЛЮЧАВТО | Каи | Краснодар | Виктория - непервичные лиды (#2244)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2117" data-select2-id="974">КЛЮЧАВТО | Иксид | СПБ | Виктория | ВК (#2117)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2118" data-select2-id="975">КЛЮЧАВТО | Иксид | СПБ | Виктория - непервичные лиды (#2118)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2106" data-select2-id="976">КЛЮЧАВТО | Иксид | СПБ | Виктория (#2106)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2448" data-select2-id="977">КЛЮЧАВТО | Иксид | Сочи | Виктория - непервичные лиды (#2448)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1960" data-select2-id="978">КЛЮЧАВТО | Иксид | Сочи | Виктория (#1960)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2450" data-select2-id="979">КЛЮЧАВТО | Иксид | Сочи | Артем - непервичные лиды (#2450)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2267" data-select2-id="980">КЛЮЧАВТО | Иксид | Сочи | Артем (#2267)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2028" data-select2-id="981">КЛЮЧАВТО | Иксид | Ростов | Виктория (#2028)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2077" data-select2-id="982">КЛЮЧАВТО | Иксид | Ростов | Артем (#2077)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2143" data-select2-id="983">КЛЮЧАВТО | Иксид | Ростов | Артем  - непервичные лиды (#2143)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2597" data-select2-id="984">КЛЮЧАВТО | Иксид | Ростов | Виктория - непервичные лиды (#2597)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2420" data-select2-id="985">КЛЮЧАВТО | Иксид | Краснодар | Артем (#2420)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2419" data-select2-id="986">КЛЮЧАВТО | Иксид | Краснодар | Виктория (#2419)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2164" data-select2-id="987">КЛЮЧАВТО | Иксид | КМВ | Артем (#2164)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2136" data-select2-id="988">КЛЮЧАВТО | Иксид | КМВ | Виктория (#2136)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2471" data-select2-id="989">КЛЮЧАВТО | Иксид | КМВ | Артем - непервичные лиды (#2471)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2316" data-select2-id="990">КЛЮЧАВТО | Иксид | КМВ | Виктория - непервичные лиды (#2316)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2544" data-select2-id="991">КЛЮЧАВТО | Джетур | Сочи | Артем (#2544)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2545" data-select2-id="992">КЛЮЧАВТО | Джетур | Сочи | Виктория (#2545)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2498" data-select2-id="993">КЛЮЧАВТО | Джетур | Ростов | Артем (#2498)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2495" data-select2-id="994">КЛЮЧАВТО | Джетур | Ростов | Виктория (#2495)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2600" data-select2-id="995">КЛЮЧАВТО | Джетур | Ростов | Артем - непервичные лиды (#2600)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2566" data-select2-id="996">КЛЮЧАВТО | Джетур | Ростов | Виктория - непервичные лиды (#2566)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2561" data-select2-id="997">КЛЮЧАВТО | Джетур | Краснодар | Артем - непервичные лиды (#2561)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2564" data-select2-id="998">КЛЮЧАВТО | Джетур | Краснодар | Виктория - непервичные лиды (#2564)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2238" data-select2-id="999">КЛЮЧАВТО | Джетур | Краснодар | Виктория (#2238)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2259" data-select2-id="1000">КЛЮЧАВТО | Джетур | Краснодар | Артем (#2259)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2365" data-select2-id="1001">КЛЮЧАВТО | Джейку | СПБ | Артем - непервичные лиды (#2365)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2328" data-select2-id="1002">КЛЮЧАВТО | Джейку | СПБ | Артем (#2328)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2541" data-select2-id="1003">КЛЮЧАВТО | Джейку | Сочи | Артем (#2541)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2539" data-select2-id="1004">КЛЮЧАВТО | Джейку | Сочи | Виктория (#2539)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2588" data-select2-id="1005">КЛЮЧАВТО | Джейку | Краснодар | Виктория  (#2588)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2587" data-select2-id="1006">КЛЮЧАВТО | Джейку | Краснодар | Артем  (#2587)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2602" data-select2-id="1007">КЛЮЧАВТО | Джейку | Краснодар | Артем - непервичные лиды  (#2602)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2603" data-select2-id="1008">КЛЮЧАВТО | Джейку | Краснодар | Виктория - непервичные лиды (#2603)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2718" data-select2-id="1009">КЛЮЧАВТО | Джейку | Краснодар | Виктория - DMP NEW (оф.сайт и конкуренты) (#2718)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2222" data-select2-id="1010">КЛЮЧАВТО | Джейку | КМВ | Виктория (#2222)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2621" data-select2-id="1011">КЛЮЧАВТО | Джейку | КМВ | Артем  (#2621)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2567" data-select2-id="1012">КЛЮЧАВТО | Джейку | Волгоград | Артем - непервичные лиды (#2567)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2491" data-select2-id="1013">КЛЮЧАВТО | Джейку | Волгоград | Артем (#2491)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2490" data-select2-id="1014">КЛЮЧАВТО | Джейку | Волгоград | Виктория (#2490)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2357" data-select2-id="1015">КЛЮЧАВТО | Джейку (Китай)  | СПБ | Виктория (#2357)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2325" data-select2-id="1016">КЛЮЧАВТО | Джейку  | СПБ | Виктория (#2325)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2400" data-select2-id="1017">КЛЮЧАВТО | Гак | Ростов | Артем (#2400)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2399" data-select2-id="1018">КЛЮЧАВТО | Гак | Ростов | Виктория (#2399)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2434" data-select2-id="1019">КЛЮЧАВТО | Гак | Краснодар | Артем (#2434)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2431" data-select2-id="1020">КЛЮЧАВТО | Гак | Краснодар | Виктория (#2431)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2416" data-select2-id="1021">КЛЮЧАВТО | Гак | КМВ | Артем (#2416)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2409" data-select2-id="1022">КЛЮЧАВТО | Гак | КМВ | Виктория (#2409)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1628" data-select2-id="1023">КЛЮЧАВТО | Воя | Ростов | Виктория - DMP (#1628)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1888" data-select2-id="1024">КЛЮЧАВТО | Баик | Ростов | Виктория | ВК (#1888)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2026" data-select2-id="1025">КЛЮЧАВТО | Баик | Ростов | Виктория (#2026)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1919" data-select2-id="1026">КЛЮЧАВТО | Баик | Краснодар | Виктория - непервичные лиды (#1919)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2027" data-select2-id="1027">КЛЮЧАВТО | Баик (Китай) | Ростов | Виктория (#2027)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2317" data-select2-id="1028">КЛЮЧАВТО  | Чанган | Ставрополь | Виктория - непервичные лиды (#2317)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2196" data-select2-id="1029">КЛЮЧАВТО  | Чанган | Ставрополь | Виктория (#2196)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2293" data-select2-id="1030">КЛЮЧАВТО  | Чанган | Ставрополь | Артем (#2293)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2369" data-select2-id="1031">КЛЮЧАВТО  | Чанган | Ростов | Артем (#2369)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2391" data-select2-id="1032">КЛЮЧАВТО  | Чанган | Ростов | Виктория (#2391)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2392" data-select2-id="1033">КЛЮЧАВТО  | Чанган | Ростов | Артем - непервичные лиды (#2392)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2515" data-select2-id="1034">КЛЮЧАВТО  | Чанган | Ростов | Виктория - непервичные лиды (#2515)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2428" data-select2-id="1035">КЛЮЧАВТО  | Чанган | Краснодар | Артем - непервичные лиды (#2428)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2531" data-select2-id="1036">Квант | Лада | Самара | Артем (#2531)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2533" data-select2-id="1037">Квант | Лада | Самара | Виктория (#2533)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2650" data-select2-id="1038">Дон Моторс | Хавейл | Ростов | Артем - непервичные лиды (#2650)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2649" data-select2-id="1039">Дон Моторс | Хавейл | Ростов | Виктория - непервичные лиды (#2649)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2648" data-select2-id="1040">Дон Моторс | Хавейл | Ростов | Виктория (#2648)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2647" data-select2-id="1041">Дон Моторс | Хавейл | Ростов | Артем (#2647)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2523" data-select2-id="1042">Династия | Лада | Тюмень | Артем (#2523)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2524" data-select2-id="1043">Династия | Лада | Тюмень | Виктория (#2524)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2736" data-select2-id="1044">Глоракс | Общий | Спб - непервичные лиды (#2736)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2510" data-select2-id="1045">География | Окинава | Тюмень  | Артем - непервичные лиды (#2510)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2514" data-select2-id="1046">География | Окинава | Тюмень  | Виктория - непервичные лиды (#2514)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2508" data-select2-id="1047">География | Окинава | Тюмень | Артем (#2508)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2511" data-select2-id="1048">География | Окинава | Тюмень | Виктория (#2511)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2707" data-select2-id="1049">География | Общий | Тюмень | Артем (#2707)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2730" data-select2-id="1050">География | Общий | Тюмень  | Виктория - непервичные лиды (#2730)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2706" data-select2-id="1051">География | Общий | Тюмень  | Артем - непервичные лиды (#2706)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2550" data-select2-id="1052">География | Мотивы | Тюмень | Артем (#2550)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2547" data-select2-id="1053">География | Мотивы | Тюмень | Виктория (#2547)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2551" data-select2-id="1054">География | Мотивы | Тюмень  | Артем - непервичные лиды (#2551)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2549" data-select2-id="1055">География | Мотивы | Тюмень  | Виктория - непервичные лиды (#2549)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2658" data-select2-id="1056">География | Дивный | Тюмень  | Артем - непервичные лиды (#2658)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2657" data-select2-id="1057">География | Дивный | Тюмень  | Виктория - непервичные лиды (#2657)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2654" data-select2-id="1058">География | Дивный | Тюмень | Артем (#2654)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2653" data-select2-id="1059">География | Дивный | Тюмень | Виктория (#2653)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2287" data-select2-id="1060">Галактика | Сокольники | Ростов | Виктория (#2287)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2379" data-select2-id="1061">Галактика | Сокольники | Ростов | Артем (#2379)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2502" data-select2-id="1062">Бакра | БМВ | Краснодар | Артем (#2502)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2501" data-select2-id="1063">Бакра | БМВ | Краснодар | Артем - DMP  (#2501)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2304" data-select2-id="1064">АСК | Общий | Краснодар | Артем - ВК (#2304)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2094" data-select2-id="1065">АСК | Общий | Краснодар | Артем (#2094)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2444" data-select2-id="1066">АСК | Общий | Краснодар | Артем  - непервичные лиды (#2444)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1246" data-select2-id="1067">АСК | Общий | Краснодар | Виктория  - непервичные лиды (#1246)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2015" data-select2-id="1068">АСК | Общий | Краснодар | Виктория (#2015)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1909" data-select2-id="1069">АСК | Общий | Краснодар | Виктория | ВК (#1909)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2349" data-select2-id="1070">АСК | Общий | Сочи | Артем (#2349)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1776" data-select2-id="1071">АСК | Общий | Сочи | Виктория (#1776)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1438" data-select2-id="1072">АСК | Общий | Сочи | Виктория | DMP (#1438)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2348" data-select2-id="1073">АСК | Общий | Сочи | Артем - DMP (#2348)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1228" data-select2-id="1074">АСК | Общий | Краснодар | Виктория - DMP (#1228)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2095" data-select2-id="1075">АСК | Общий | Краснодар | Артем - DMP (#2095)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1784" data-select2-id="1076">АСК | Краснодар | Общий заказ - сайты АСК - DMP (#1784)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2687" data-select2-id="1077">АН Хочу Квартиру | Экос | Спб | Виктория - непервичные лиды (#2687)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2666" data-select2-id="1078">АН Хочу Квартиру | Экос | Спб | Артем (#2666)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2664" data-select2-id="1079">АН Хочу Квартиру | Экос | Спб | Виктория (#2664)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2701" data-select2-id="1080">АН Хочу Квартиру | Экос | Спб | Виктория (прозвон базы клиентов по авто - не заинтересованы) (#2701)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2688" data-select2-id="1081">АН Хочу Квартиру | Экос | Спб | Виктория (прозвон базы клиентов по авто - целевые) (#2688)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2435" data-select2-id="1082">АН Аякс | Краснодар | Артем - непервичные лиды (#2435)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2493" data-select2-id="1083">АН Аякс | Краснодар | Виктория - непервичные лиды (#2493)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2355" data-select2-id="1084">АН Аякс | Общий | Сочи | Артем - непервичные лиды (#2355)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2426" data-select2-id="1085">АН Аякс | Краснодар | Артем (#2426)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2424" data-select2-id="1086">АН Аякс | Краснодар | Виктория (#2424)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2389" data-select2-id="1087">АН Аякс | Общий | Сочи | Артем (#2389)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2342" data-select2-id="1088">АН Аякс | Общий | Сочи | Виктория (#2342)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2380" data-select2-id="1089">Автоцентр на Гагарина | Хавейл | Нижний Новгород | Артем (#2380)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2193" data-select2-id="1090">Автоцентр на Гагарина | Хавейл | Нижний Новгород | Виктория (#2193)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2192" data-select2-id="1091">Автоцентр на Гагарина | Хавейл | Нижний Новгород | Виктория - DMP (#2192)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2333" data-select2-id="1092">Автостиль | Чери | Ростов | Виктория - непервичные лиды (#2333)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2153" data-select2-id="1093">Автостиль | Чери | Ростов | Виктория - DMP (#2153)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2152" data-select2-id="1094">Автостиль | Чери | Ростов | Виктория (#2152)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2405" data-select2-id="1095">Автостиль | Чери | Ростов | Артем - непервичные лиды (#2405)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2388" data-select2-id="1096">Автостиль | Чери | Ростов | Артем (#2388)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2529" data-select2-id="1097">Автомарт | Лада | Екатеринбург | Виктория (#2529)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2530" data-select2-id="1098">Автомарт | Лада | Екатеринбург | Виктория - DMP (#2530)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2528" data-select2-id="1099">Автомарт | Лада | Екатеринбург | Артем - DMP (#2528)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2527" data-select2-id="1100">Автомарт | Лада | Екатеринбург | Артем (#2527)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2301" data-select2-id="1101">Автолюкс | Чери | Пятигорск | Виктория - DMP (#2301)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2299" data-select2-id="1102">Автолюкс | Чери | Пятигорск | Виктория (#2299)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2504" data-select2-id="1103">Автолюкс | Чери | Пятигорск | Артем (#2504)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1887" data-select2-id="1104"> ЖК "Юнион" | Тюмень | Виктория | ВК (#1887)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2576" data-select2-id="1105">Тестовый | Проверка номеров на спам (#2576)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2591" data-select2-id="1106">Партнер | Ритмы | Тюмень | Артем - DMP (#2591)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1593" data-select2-id="1107">Партнер | Ритмы | Тюмень | Виктория - DMP (#1593)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2693" data-select2-id="1108">ПСК | Баланс | Тюмень | Артем - DMP  (#2693)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2690" data-select2-id="1109">ПСК | Баланс | Тюмень | Виктория - DMP  (#2690)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2699" data-select2-id="1110">ПСК | Общий | Тюмень | Артем - DMP  (#2699)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2696" data-select2-id="1111">ПСК | Общий | Тюмень | Виктория - DMP  (#2696)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2548" data-select2-id="1112">География | Мотивы | Тюмень  | Виктория - DMP  (#2548)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1984" data-select2-id="1113">Нелинейный подбор Southmedia авто (#1984)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2189" data-select2-id="1114">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Виктория - DMP (#2189)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2559" data-select2-id="1115">КЛЮЧАВТО | Хавейл Сити | Ставрополь | Артем - DMP (#2559)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2726" data-select2-id="1116">География | Общий | Тюмень  | Артем - DMP (#2726)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2667" data-select2-id="1117">АН Хочу Квартиру | Экос | Спб | Артем - DMP  (#2667)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2665" data-select2-id="1118">АН Хочу Квартиру | Экос | Спб | Виктория - DMP  (#2665)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2655" data-select2-id="1119">География | Дивный | Тюмень  | Виктория - DMP  (#2655)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2656" data-select2-id="1120">География | Дивный | Тюмень | Артем - DMP  (#2656)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2509" data-select2-id="1121">География | Окинава | Тюмень  | Артем - DMP  (#2509)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2513" data-select2-id="1122">География | Окинава | Тюмень  | Виктория - DMP  (#2513)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2685" data-select2-id="1123">ПСК | Дружеский | Тюмень | Артем - DMP  (#2685)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2682" data-select2-id="1124">ПСК | Дружеский | Тюмень | Виктория - DMP  (#2682)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2596" data-select2-id="1125">КЛЮЧАВТО | Хавейл Про | Ставрополь | Артем - DMP (#2596)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2594" data-select2-id="1126">КЛЮЧАВТО | Хавейл Про | Ставрополь | Виктория - DMP (#2594)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2651" data-select2-id="1127">Дон Моторс | Хавейл | Ростов | Виктория - DMP (#2651)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2652" data-select2-id="1128">Дон Моторс | Хавейл | Ростов | Артем - DMP (#2652)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2644" data-select2-id="1129">КЛЮЧАВТО | Хавейл Про | КМВ | Артем - DMP (#2644)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2643" data-select2-id="1130">КЛЮЧАВТО | Хавейл Про | КМВ | Виктория - DMP (#2643)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1529" data-select2-id="1131">КЛЮЧАВТО | Иксид | КМВ | Виктория - DMP (#1529)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2163" data-select2-id="1132">КЛЮЧАВТО | Иксид | КМВ | Артем - DMP (#2163)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2290" data-select2-id="1133">КЛЮЧАВТО | Чанган | Ставрополь | Виктория - DMP (#2290)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2294" data-select2-id="1134">КЛЮЧАВТО | Чанган | Ставрополь | Артем - DMP (#2294)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2569" data-select2-id="1135">КЛЮЧАВТО | Солярис | Краснодар  | Виктория - DMP (#2569)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2571" data-select2-id="1136">КЛЮЧАВТО | Солярис | Краснодар  | Артем - DMP (#2571)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2622" data-select2-id="1137">КЛЮЧАВТО | Джейку | КМВ | Виктория - DMP (#2622)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2620" data-select2-id="1138">КЛЮЧАВТО | Джейку | КМВ | Артем - DMP (#2620)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2291" data-select2-id="1139">КЛЮЧАВТО | Омода | Краснодар  | Артем - DMP (#2291)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2536" data-select2-id="1140">КЛЮЧАВТО | Омода | КМВ | Виктория - DMP (#2536)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2535" data-select2-id="1141">КЛЮЧАВТО | Омода | КМВ  | Артем - DMP (#2535)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2589" data-select2-id="1142">КЛЮЧАВТО | Джейку | Краснодар | Виктория - DMP (#2589)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2586" data-select2-id="1143">КЛЮЧАВТО | Джейку | Краснодар | Артем - DMP (#2586)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2191" data-select2-id="1144">КЛЮЧАВТО | Омода | Краснодар  | Виктория - DMP (#2191)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2574" data-select2-id="1145">КЛЮЧАВТО | Солярис | Сочи | Артем - DMP (#2574)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2575" data-select2-id="1146">КЛЮЧАВТО | Солярис | Сочи | Виктория - DMP (#2575)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1334" data-select2-id="1147">Страна | Общий | Тюмень | Виктория - DMP  (#1334)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2154" data-select2-id="1148">Страна | Общий | Тюмень | Артем - DMP  (#2154)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2579" data-select2-id="1149">КЛЮЧАВТО | Хавейл H | Краснодар | Виктория - DMP (#2579)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2598" data-select2-id="1150">КЛЮЧАВТО | Джетур | Ростов | Артем - DMP (#2598)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="393" data-select2-id="1151">Тестовый заказ (обучение операторов) (#393)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2295" data-select2-id="1152">Страна | Общий | Екатеринбург | Виктория - DMP (#2295)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2354" data-select2-id="1153">Страна | Общий | Екатеринбург | Артем - DMP (#2354)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2507" data-select2-id="1154">КЛЮЧАВТО | Хонгчи | Краснодар (Север) | Артем - непервичные лиды (#2507)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2487" data-select2-id="1155">КЛЮЧАВТО | Хонгчи | Краснодар | Артем - непервичные лиды (#2487)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2542" data-select2-id="1156">КЛЮЧАВТО | Джейку | Сочи | Артем - DMP (#2542)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2580" data-select2-id="1157">КЛЮЧАВТО | Хавейл | Краснодар | Артем - DMP (#2580)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2205" data-select2-id="1158">КЛЮЧАВТО | Омода | Сочи | Виктория - DMP (#2205)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1905" data-select2-id="1159">КЛЮЧАВТО | Иксид | Сочи | Виктория - DMP (#1905)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2029" data-select2-id="1160">КЛЮЧАВТО | Иксид | Ростов | Виктория - DMP (#2029)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2078" data-select2-id="1161">КЛЮЧАВТО | Иксид | Ростов | Артем - DMP (#2078)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1737" data-select2-id="1162">КЛЮЧАВТО | Иксид | Краснодар | Виктория - DMP (#1737)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2239" data-select2-id="1163">КЛЮЧАВТО | Джетур | Краснодар | Виктория - DMP (#2239)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2563" data-select2-id="1164">КЛЮЧАВТО | Джейку | Волгоград | Артем - DMP (#2563)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2492" data-select2-id="1165">КЛЮЧАВТО | Джейку | Волгоград | Виктория - DMP (#2492)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2540" data-select2-id="1166">КЛЮЧАВТО | Джейку | Сочи | Виктория - DMP (#2540)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2497" data-select2-id="1167">КЛЮЧАВТО | Джетур | Ростов | Виктория - DMP (#2497)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2546" data-select2-id="1168">КЛЮЧАВТО | Джетур | Сочи | Виктория - DMP (#2546)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1521" data-select2-id="1169">КЛЮЧАВТО | Омода | Волгоград  | Виктория - DMP (#1521)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2315" data-select2-id="1170">КЛЮЧАВТО | Танк | Краснодар  | Артем - DMP (#2315)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2313" data-select2-id="1171">КЛЮЧАВТО | Танк | Краснодар  | Виктория - DMP (#2313)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2556" data-select2-id="1172">КЛЮЧАВТО | Танк | Сочи  | Артем - DMP (#2556)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2555" data-select2-id="1173">КЛЮЧАВТО | Танк | Сочи  | Виктория - DMP (#2555)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2097" data-select2-id="1174">КЛЮЧАВТО | Хонгчи | Ростов | Виктория - DMP (#2097)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1999" data-select2-id="1175">КЛЮЧАВТО | Хонгчи | Ростов | Артем - DMP  (#1999)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2486" data-select2-id="1176">КЛЮЧАВТО | Хонгчи | Краснодар | Артем - DMP  (#2486)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2506" data-select2-id="1177">КЛЮЧАВТО | Хонгчи | Краснодар (Север) | Артем - DMP  (#2506)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2198" data-select2-id="1178">КЛЮЧАВТО | Хендэ | Ставрополь | Виктория - DMP (#2198)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2512" data-select2-id="1179">КЛЮЧАВТО | Чанган | Ростов | Виктория - DMP (#2512)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2439" data-select2-id="1180">КЛЮЧАВТО | Чанган | Курск | Виктория - DMP (#2439)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1644" data-select2-id="1181">КЛЮЧАВТО | Чанган | Краснодар | Виктория - DMP (#1644)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2518" data-select2-id="1182">Меридиан | Меридиан Слобода | Тюмень | Артем - DMP  (#2518)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2406" data-select2-id="1183">Автоцентр на Гагарина | Хавейл | Нижний Новгород | Артем - DMP (#2406)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2526" data-select2-id="1184">Династия | Лада | Тюмень | Артем - DMP (#2526)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2525" data-select2-id="1185">Династия | Лада | Тюмень | Виктория - DMP (#2525)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2532" data-select2-id="1186">Квант | Лада | Самара | Артем - DMP (#2532)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2534" data-select2-id="1187">Квант | Лада | Самара | Виктория - DMP (#2534)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2410" data-select2-id="1188">КЛЮЧАВТО | Гак | КМВ | Виктория - DMP (#2410)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2432" data-select2-id="1189">КЛЮЧАВТО | Гак | Краснодар | Виктория - DMP (#2432)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2327" data-select2-id="1190">КЛЮЧАВТО | Джейку | СПБ  | Артем - DMP (#2327)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2324" data-select2-id="1191">КЛЮЧАВТО | Джейку | СПБ  | Виктория - DMP (#2324)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2260" data-select2-id="1192">КЛЮЧАВТО | Джетур | Краснодар | Артем - DMP (#2260)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2543" data-select2-id="1193">КЛЮЧАВТО | Джетур | Сочи | Артем - DMP (#2543)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1525" data-select2-id="1194">КЛЮЧАВТО | Джили | Краснодар Север | Виктория - DMP (#1525)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2266" data-select2-id="1195">КЛЮЧАВТО | Иксид | Сочи | Артем - DMP (#2266)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1995" data-select2-id="1196">КЛЮЧАВТО | Омода | Волгоград  | Артем - DMP (#1995)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2537" data-select2-id="1197">КЛЮЧАВТО | Омода | Сочи | Артем - DMP (#2537)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2138" data-select2-id="1198">КЛЮЧАВТО | Омода | СПБ  | Артем - DMP (#2138)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2161" data-select2-id="1199">КЛЮЧАВТО | Омода | СПБ  | Виктория - DMP (#2161)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2283" data-select2-id="1200">КЛЮЧАВТО | Чанган | Краснодар | Артем - DMP (#2283)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2440" data-select2-id="1201">КЛЮЧАВТО | Чанган | Курск | Артем - DMP (#2440)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2368" data-select2-id="1202">КЛЮЧАВТО | Чанган | Ростов | Артем - DMP (#2368)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2125" data-select2-id="1203">КЛЮЧАВТО | Чери | Ростов | Артем - DMP (#2125)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1476" data-select2-id="1204">КЛЮЧАВТО | Чери | Ростов | Виктория - DMP (#1476)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2364" data-select2-id="1205">КЛЮЧАВТО | Омода | СПБ | Артем - непервичные лиды (#2364)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2009" data-select2-id="1206">Меридиан | Меридиан ЮГ | Тюмень | Виктория (#2009)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2445" data-select2-id="1207">АН Аякс | Краснодар | Артем - DMP (#2445)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2427" data-select2-id="1208">АН Аякс | Краснодар | Виктория - DMP (#2427)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2455" data-select2-id="1209">АН Аякс | Общий | Сочи | Артем - DMP (#2455)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2343" data-select2-id="1210">АН Аякс | Общий | Сочи | Виктория - DMP (#2343)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2288" data-select2-id="1211">Галактика | Сокольники | Ростов | Виктория - DMP  (#2288)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1091" data-select2-id="1212">Меридиан | Меридиан Запад | Тюмень | Виктория - DMP  (#1091)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2520" data-select2-id="1213">Меридиан | Меридиан Слобода | Тюмень | Виктория - DMP (#2520)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1040" data-select2-id="1214">Меридиан | Меридиан ЮГ | Тюмень | Виктория - DMP  (#1040)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2476" data-select2-id="1215">Меридиан | Общий | Тюмень | Виктория - DMP  (#2476)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2076" data-select2-id="1216">РКС | Анаполис | Анапа | Виктория - DMP (#2076)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2346" data-select2-id="1217">Страна | Сибирский сад | Екатеринбург | Артем - DMP (#2346)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1811" data-select2-id="1218">Страна | Сибирский сад | Екатеринбург | Виктория - DMP (#1811)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2363" data-select2-id="1219">РКС | Анаполис | Анапа | Артем - DMP (#2363)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2168" data-select2-id="1220">Страна | Авторский | Тюмень | Артем - DMP  (#2168)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2178" data-select2-id="1221">Страна | Авторский | Тюмень | Виктория - DMP (#2178)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2176" data-select2-id="1222">Страна | Домашний | Тюмень | Артем - DMP  (#2176)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1044" data-select2-id="1223">Страна | Домашний | Тюмень | Виктория - DMP  (#1044)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2174" data-select2-id="1224">Страна | Звездный | Тюмень | Артем - DMP (#2174)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1115" data-select2-id="1225">Страна | Звездный | Тюмень | Виктория - DMP (#1115)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2172" data-select2-id="1226">Страна | Сердце Сибири | Тюмень | Артем - DMP  (#2172)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1082" data-select2-id="1227">Страна | Сердце Сибири | Тюмень | Виктория - DMP  (#1082)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2170" data-select2-id="1228">Страна | Юнион | Тюмень | Артем - DMP  (#2170)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1548" data-select2-id="1229">Страна | Юнион | Тюмень | Виктория - DMP  (#1548)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1873" data-select2-id="1230">КЛЮЧАВТО | Баик | Ростов | Виктория - DMP (#1873)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2107" data-select2-id="1231">КЛЮЧАВТО | Иксид | СПБ | Виктория - DMP (#2107)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2207" data-select2-id="1232">КЛЮЧАВТО | Каи | Краснодар  | Виктория - DMP (#2207)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1917" data-select2-id="1233">КЛЮЧАВТО | Каи | Ростов | Виктория - DMP (#1917)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2108" data-select2-id="1234">КЛЮЧАВТО | Ливан | Краснодар | Виктория - DMP (#2108)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2146" data-select2-id="1235">КЛЮЧАВТО | Чанган | СПБ | Виктория - DMP (#2146)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1732" data-select2-id="1236">КЛЮЧАВТО | Чери | Омск | Виктория - DMP (#1732)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2210" data-select2-id="1237">КЛЮЧАВТО | Каи | Краснодар  | Артем - DMP (#2210)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2269" data-select2-id="1238">КЛЮЧАВТО | Хончи | КМВ | Артем - DMP (#2269)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1997" data-select2-id="1239">КЛЮЧАВТО | Каи | Ростов | Артем - DMP (#1997)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1637" data-select2-id="1240">КЛЮЧАВТО | Омода | Омск  | Виктория - DMP (#1637)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="2085" data-select2-id="1241">КЛЮЧАВТО | Хонгчи Н5 Классик | Ростов Текучева | Артем - DMP  (#2085)</option>
+<option data-search-filter="Завершен&ZeroWidthSpace;" value="1709" data-select2-id="1242">КЛЮЧАВТО | Эволют | Краснодар | Виктория - DMP (#1709)</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1326" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Заказ&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Статус лида&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="status[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Статус лида&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="13" tabindex="-1" aria-hidden="true">
+<option value="primary" data-select2-id="1244">Новый&ZeroWidthSpace;</option>
+<option value="dark" data-select2-id="1245">В работе&ZeroWidthSpace;</option>
+<option value="success" data-select2-id="1246">Целевой&ZeroWidthSpace;</option>
+<option value="success-problem" data-select2-id="1247">Целевой (не принят клиентом)&ZeroWidthSpace;</option>
+<option value="dibot-processing" data-select2-id="1248">В обработке DiBot&ZeroWidthSpace;</option>
+<option value="warning" data-select2-id="1249">Клиентский спор&ZeroWidthSpace;</option>
+<option value="double-crm" data-select2-id="1250">Не целевой (дубль в CRM клиента)&ZeroWidthSpace;</option>
+<option value="call-limit" data-select2-id="1251">Нe целевой (лимит дозвонов)&ZeroWidthSpace;</option>
+<option value="double" data-select2-id="1252">Не целевой (дубль)&ZeroWidthSpace;</option>
+<option value="danger" data-select2-id="1253">Не целевой (брак)&ZeroWidthSpace;</option>
+<option value="fail-straight" data-select2-id="1254">Не целевой (подбор)&ZeroWidthSpace;</option>
+<option value="black" data-select2-id="1255">Не целевой (в черном списке)&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1327" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Статус лида&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Количество звонков&ZeroWidthSpace;</label>
+<input class="form-control inputCheckNumberValue" type="number" min="0" name="isset_call" placeholder="Количество звонков&ZeroWidthSpace;" value="">
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Статус последнего звонка&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="last_call_status[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Статус последнего звонка&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="15" tabindex="-1" aria-hidden="true">
+<option value="40000154334" data-select2-id="1257">Не зарегистрирован в сети</option>
+<option value="50000063700" data-select2-id="1258">русский</option>
+<option value="russkiiiiki" data-select2-id="1259">Будет как целевой, без коммента</option>
+<option value="50000063669" data-select2-id="1260">Переведен в КЦ</option>
+<option value="50000064100" data-select2-id="1261">Целевой (перевод не требуется)</option>
+<option value="50000063681" data-select2-id="1262">Просьба перезвонить</option>
+<option value="50000063670" data-select2-id="1263">Не дозвонились до клиента</option>
+<option value="50000063673" data-select2-id="1264">Бросил трубку</option>
+<option value="50000063674" data-select2-id="1265">Проблемы со связью</option>
+<option value="50000063675" data-select2-id="1266">Не дождался перевода на КЦ</option>
+<option value="22222222222" data-select2-id="1267">Не дождался соединения с ОП</option>
+<option value="50000063682" data-select2-id="1268">Не дозвонились до КЦ</option>
+<option value="77777777777" data-select2-id="1269">Тестовый статус</option>
+<option value="50000063676" data-select2-id="1270">Отказ от консультации</option>
+<option value="testovyi-status3" data-select2-id="1271">Тестовый статус3asdasada</option>
+<option value="test1" data-select2-id="1272">Test1</option>
+<option value="50000063677" data-select2-id="1273">Отказ от перевода на КЦ</option>
+<option value="50000063678" data-select2-id="1274">КЦ отказался от Лида</option>
+<option value="50000063679" data-select2-id="1275">Клиент не заинтересован</option>
+<option value="50000160000" data-select2-id="1276">Не заинтересован, иная потребность</option>
+<option value="50000063680" data-select2-id="1277">Нечего предложить</option>
+<option value="40000154335" data-select2-id="1278">Номер не принадлежит клиенту</option>
+<option value="50000063683" data-select2-id="1279">Иное</option>
+<option value="11111111111" data-select2-id="1280">Исчерпан лимит дозвонов</option>
+<option value="88888888888" data-select2-id="1281">Не принят оператором</option>
+<option value="66666666666" data-select2-id="1282">Пост. обработка не завершена</option>
+<option value="55555555555" data-select2-id="1283">Вызов прекращен</option>
+<option value="33333333333" data-select2-id="1284">Автоответчик</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1328" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Статус последнего звонка&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Следующий звонок&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="next_call[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Следующий звонок&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="17" tabindex="-1" aria-hidden="true">
+<option value="current" data-select2-id="1286">Обрабатываем сейчас&ZeroWidthSpace;</option>
+<option value="nearest_time" data-select2-id="1287">В ближайшее время&ZeroWidthSpace;</option>
+<option value="another_time" data-select2-id="1288">Ожидает запланированного времени&ZeroWidthSpace;</option>
+<option value="canceled_by_user_time" data-select2-id="1289">Остановлено часовым поясом клиента&ZeroWidthSpace;</option>
+<option value="canceled_by_orders_time" data-select2-id="1290">Остановлены графиком работы заказа&ZeroWidthSpace;</option>
+<option value="canceled_by_orders_call_status" data-select2-id="1291">Остановлены статусом прозвона заказа&ZeroWidthSpace;</option>
+<option value="not" data-select2-id="1292">Не планируется&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1329" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Следующий звонок&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Сообщения в Мессенджере&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="lead_internal_chat[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Сообщения в Мессенджере&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="19" tabindex="-1" aria-hidden="true">
+<option value="bot" data-select2-id="1294">от Ботов&ZeroWidthSpace;</option>
+<option value="client" data-select2-id="1295">от Клиентов&ZeroWidthSpace;</option>
+<option value="agent" data-select2-id="1296">от Операторов&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1330" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Сообщения в Мессенджере&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Время общения с ОП&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="client_call_time" class="form-control mb-3 select2 w-100 select2-hidden-accessible" data-toggle="select2" data-required="true" data-placeholder="Время общения с ОП&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="21" tabindex="-1" aria-hidden="true">
+<option value="all" data-select2-id="23">Не важно&ZeroWidthSpace;</option>
+<option value="10" data-select2-id="1298">&gt; 10 сек.&ZeroWidthSpace;</option>
+<option value="20" data-select2-id="1299">&gt; 20 сек.&ZeroWidthSpace;</option>
+<option value="30" data-select2-id="1300">&gt; 30 сек.&ZeroWidthSpace;</option>
+<option value="40" data-select2-id="1301">&gt; 40 сек.&ZeroWidthSpace;</option>
+<option value="50" data-select2-id="1302">&gt; 50 сек.&ZeroWidthSpace;</option>
+<option value="60" data-select2-id="1303">&gt; 1 мин.&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1331" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-client_call_time-qv-container"><span class="select2-selection__rendered" id="select2-client_call_time-qv-container" role="textbox" aria-readonly="true" title="Не важно&ZeroWidthSpace;">Не важно&ZeroWidthSpace;</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Источник создания лида&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="create_method[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Источник создания лида&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="24" tabindex="-1" aria-hidden="true">
+<option value="empty" data-select2-id="1305">Неизвестно&ZeroWidthSpace;</option>
+<option value="portation" data-select2-id="1306">Портация из другого лида&ZeroWidthSpace;</option>
+<option value="quiz" data-select2-id="1307">Квиз&ZeroWidthSpace;</option>
+<option value="importer" data-select2-id="1308">Импортер лидов&ZeroWidthSpace;</option>
+<option value="order-transfer" data-select2-id="1309">Перемещение между заказами&ZeroWidthSpace;</option>
+<option value="catch" data-select2-id="1310">Отлов&ZeroWidthSpace;</option>
+<option value="processing-rule" data-select2-id="1311">Правило обработки&ZeroWidthSpace;</option>
+<option value="incoming-call" data-select2-id="1312">Входящий звонок&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1332" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Источник создания лида&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Направление заказа&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="orders_direction" class="form-control mb-3 select2 w-100 select2-hidden-accessible" data-toggle="select2" data-required="true" data-placeholder="Направление заказа&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="26" tabindex="-1" aria-hidden="true">
+<option value="all" data-select2-id="28">Не важно&ZeroWidthSpace;</option>
+<option value="cars" data-select2-id="1314">Авто&ZeroWidthSpace;</option>
+<option value="real_estate" data-select2-id="1315">Недвижимость&ZeroWidthSpace;</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1333" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-orders_direction-33-container"><span class="select2-selection__rendered" id="select2-orders_direction-33-container" role="textbox" aria-readonly="true" title="Не важно&ZeroWidthSpace;">Не важно&ZeroWidthSpace;</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div><div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3"><label class="form-label">Примененные правила&ZeroWidthSpace;</label>
+<div class="position-relative"><div class="position-relative"><div class="position-relative"><select name="applied_processing_rules[]" class="form-control mb-3 select2 w-100 select2-hidden-accessible" multiple="" data-toggle="select2" data-required="true" data-placeholder="Примененные правила&ZeroWidthSpace;" data-minimum-results-for-search="10" data-select2-id="29" tabindex="-1" aria-hidden="true">
+<option value="50" data-select2-id="1317">Дом Девелопмент | Создание целевых лидов в Битрикс24 (#50)</option>
+<option value="51" data-select2-id="1318">тестовое правило (#51)</option>
+<option value="52" data-select2-id="1319">какой-то правило (#52)</option>
+	</select><span class="select2 select2-container select2-container--bootstrap4" dir="ltr" data-select2-id="1334" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Примененные правила&ZeroWidthSpace;" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div>
+</div>                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-right">
+                            <div class="dropdown" id="filter-presets-dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="c-filter-presets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="c-filter-presets">
+                                    <div class="dropdown-item preset-row preset-row-example" data-preset-name="" data-preset-val="">
+                                        <a href="#" class="load-preset" data-reload="false"></a>
+                                        <a href="#" class="text-default delete-preset">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x align-middle mr-2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item preset-row preset-row-save" data-preset="">
+                                        <a href="#" class="save-preset">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save align-middle mr-2">
+                                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                                <polyline points="7 3 7 8 15 8"></polyline>
+                                            </svg>
+                                            Сохранить пресет&ZeroWidthSpace;                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="filter-m-apply-btn" type="button" class="btn btn-primary"><i class="align-middle mr-2 fas fa-fw fa-filter"></i>Применить&ZeroWidthSpace;</button>
+                            <a href="/leads/" class="btn btn-secondary"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <div class="modal fade filter-preset-save-modal" id="filter-preset-save-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 2000;">
+                        <div class="modal-dialog modal-fullscreen-sm-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Сохранить пресет&ZeroWidthSpace;</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label class="form-label">Название&ZeroWidthSpace;</label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" name="preset-name" value="Новый пресет&ZeroWidthSpace;">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена&ZeroWidthSpace;                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="filter-preset-save-btn">Сохранить&ZeroWidthSpace;                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

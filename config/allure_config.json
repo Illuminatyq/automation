@@ -1,32 +1,44 @@
 {
-    "language": "ru",
-    "translations": {
-        "passed": "Успешно",
-        "failed": "Неудачно",
-        "broken": "Сломан",
-        "skipped": "Пропущен",
-        "unknown": "Неизвестно",
-        "total": "Всего",
-        "duration": "Длительность",
-        "status": "Статус",
-        "severity": "Важность",
-        "feature": "Функциональность",
-        "story": "История",
-        "step": "Шаг",
-        "test": "Тест",
-        "suite": "Набор тестов",
-        "environment": "Окружение",
-        "browser": "Браузер",
-        "start_time": "Время начала",
-        "end_time": "Время окончания",
-        "execution_time": "Время выполнения",
-        "attachments": "Вложения",
-        "screenshots": "Скриншоты",
-        "logs": "Логи",
-        "metrics": "Метрики",
-        "summary": "Сводка",
-        "details": "Детали",
-        "history": "История запусков",
-        "trends": "Тренды"
-    }
-} 
+    "allure": {
+        "results_directory": "test_results/allure-results",
+        "report_directory": "test_results/allure-report",
+        "clean_results_directory": true
+    },
+    "environment": {
+        "browser": "Chrome",
+        "platform": "Windows 10",
+        "test_framework": "Pytest + Playwright"
+    },
+    "categories": [
+        {
+            "name": "Критические ошибки",
+            "messageRegex": ".*AssertionError.*",
+            "traceRegex": ".*",
+            "matchedStatuses": ["failed"]
+        },
+        {
+            "name": "Таймауты",
+            "messageRegex": ".*TimeoutError.*",
+            "traceRegex": ".*",
+            "matchedStatuses": ["broken"]
+        },
+        {
+            "name": "Проблемы с элементами",
+            "messageRegex": ".*Element.*not.*found.*",
+            "traceRegex": ".*",
+            "matchedStatuses": ["broken"]
+        }
+    ],
+    "executors": [
+        {
+            "name": "Local Test Run",
+            "type": "local",
+            "url": "http://localhost",
+            "buildOrder": 1,
+            "buildName": "Локальный запуск тестов",
+            "buildUrl": "http://localhost",
+            "reportName": "Отчет автотестов Liner",
+            "reportUrl": "http://localhost"
+        }
+    ]
+}
