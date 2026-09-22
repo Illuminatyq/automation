@@ -24,6 +24,7 @@ reports/
 allure-results/
 allure-report/
 screenshots/
+test_results/
 
 # Временные файлы
 *.tmp
@@ -46,3 +47,6 @@ htmlcov/
 .tox/
 .nox/
 .hypothesis/ 
+
+# Auto Claude data directory
+.auto-claude/

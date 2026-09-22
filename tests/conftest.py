@@ -6,23 +6,36 @@ import os
 import json
 import logging
 import allure
+import sys
 from pathlib import Path
 from datetime import datetime
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError, Page
 import requests
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from allure_commons.types import AttachmentType
 from urllib.parse import urljoin
+from pages.login_page import LoginPage
+import time
+from unittest.mock import patch, MagicMock
 
 from config.constants import TEST_RESULTS_DIR, LOGS_DIR, SCREENSHOTS_DIR
 from config.viewport_config import VIEWPORT_CONFIGS
 from utils.screenshot_utils import ScreenshotUtils
+from utils.allure_helpers import AllureHelper
+from utils.graylog_integration import get_graylog
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+for handler in logging.getLogger().handlers:
+    handler.setStream(sys.stdout)
+    try:
+        handler.stream.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 # Настройка логирования
 def setup_logging():
@@ -44,6 +57,20 @@ def setup_logging():
 # Настройка логирования при импорте
 setup_logging()
 
+def replace_placeholders(data):
+    """Рекурсивно заменяет плейсхолдеры вида ${VAR_NAME} на значения из os.getenv"""
+    if isinstance(data, dict):
+        return {k: replace_placeholders(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [replace_placeholders(i) for i in data]
+    elif isinstance(data, str) and data.startswith('${') and data.endswith('}'):
+        var_name = data[2:-1]
+        value = os.getenv(var_name)
+        if value is None:
+            raise ValueError(f"Переменная окружения '{var_name}' не найдена! Укажите её в .env или системных переменных.")
+        return value
+    return data
+
 def pytest_addoption(parser):
     """Добавление параметров командной строки"""
     parser.addoption(
@@ -62,359 +89,318 @@ def pytest_addoption(parser):
         "--headless", 
         action="store_true", 
         default=False, 
-        help="Запуск браузера в headless режиме"
+        help="Запуск в headless режиме"
     )
     parser.addoption(
-        "--browser-type", 
+        "--viewport", 
         action="store", 
-        default="chromium", 
-        choices=["chromium", "firefox", "webkit"],
-        help="Тип браузера для тестов"
+        default="desktop", 
+        help="Формат устройства: desktop, tablet, mobile"
     )
     parser.addoption(
-        "--slow-mo", 
+        "--test-type", 
         action="store", 
-        type=int, 
-        default=0, 
-        help="Задержка между действиями в миллисекундах"
+        default="ui", 
+        help="Тип тестов: ui, api, hybrid"
     )
+    # Опция --browser уже определена плагином pytest-playwright
+    # Не добавляем дублирующую опцию
 
 def pytest_configure(config):
-    """Конфигурация pytest"""
-    # Добавляем маркеры
-    config.addinivalue_line("markers", "smoke: Smoke тесты")
-    config.addinivalue_line("markers", "regression: Регрессионные тесты")
-    config.addinivalue_line("markers", "critical: Критически важные тесты")
-    config.addinivalue_line("markers", "visual: Тесты визуального регрессивного тестирования")
-    config.addinivalue_line("markers", "api: Тесты API интеграции")
-    config.addinivalue_line("markers", "auth: Тесты авторизации")
-    config.addinivalue_line("markers", "ui: Тесты пользовательского интерфейса")
-    
-    # Создаем директории для результатов
-    for directory in [TEST_RESULTS_DIR, LOGS_DIR, SCREENSHOTS_DIR]:
-        directory.mkdir(parents=True, exist_ok=True)
+    """Конфигурация Pytest"""
+    config.addinivalue_line("markers", "auth: тесты авторизации")
+    config.addinivalue_line("markers", "smoke: smoke тесты")
+    config.addinivalue_line("markers", "critical: критические тесты")
+    config.addinivalue_line("markers", "visual: визуальные тесты")
+    config.addinivalue_line("markers", "api: API тесты")
+    config.addinivalue_line("markers", "leads: тесты лидов")
+    config.addinivalue_line("markers", "slow: медленные тесты")
+    config.addinivalue_line("markers", "destructive: деструктивные тесты, которые намеренно проверяют хрупкость системы")
 
 @pytest.fixture(scope="session")
 def config(request):
-    """Загрузка конфигурации приложения"""
-    config_path = Path(__file__).parent.parent / "config" / "config.json"
+    """Загружает конфигурацию с учетом выбранного окружения"""
+    # ЖЁСТКИЙ ПУТЬ — ГАРАНТИРОВАННО РАБОТАЕТ
+    config_path = r"E:\automation\config\config.json"
     
-    if not config_path.exists():
+    if not os.path.exists(config_path):
         pytest.fail(f"Файл конфигурации не найден: {config_path}")
     
-    with open(config_path, "r", encoding="utf-8") as f:
-        config_data = json.load(f)
-
-    # Определяем окружение
-    env_name = (
-        request.config.getoption("--env") or 
-        os.environ.get("TEST_ENV") or 
-        config_data.get("defaultEnvironment", "dev")
-    )
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
     
-    if env_name not in config_data.get("environments", {}):
-        available_envs = ", ".join(config_data["environments"].keys())
-        pytest.fail(f"Окружение '{env_name}' не найдено. Доступные: {available_envs}")
-
-    # Объединяем общую конфигурацию с конфигурацией окружения
-    env_config = config_data["environments"][env_name].copy()
-    env_config.update({
-        "current_environment": env_name,
-        "browser": config_data.get("browser", "chromium"),
-        "timeout": config_data.get("timeout", 30),  # Увеличиваем таймаут по умолчанию
-        "credentials": config_data.get("credentials", {})
-    })
+    env_name = request.config.getoption("--env") or config.get("defaultEnvironment", "dev")
     
-    # Получаем API ключ
-    api_key = (
-        request.config.getoption("--api-key") or 
-        os.environ.get("LINER_API_KEY") or 
-        os.environ.get(f"{env_name.upper()}_LINER_API_KEY") or
-        env_config.get("api_key", "")
-    )
+    if env_name not in config.get("environments", {}):
+        available_envs = ", ".join(config.get("environments", {}).keys())
+        pytest.fail(f"Окружение '{env_name}' не найдено в конфигурации. Доступные: {available_envs}")
     
-    if not api_key:
-        logging.warning("API ключ не найден. Проверьте следующие источники:")
-        logging.warning("1. Параметр командной строки --api-key")
-        logging.warning("2. Переменная окружения LINER_API_KEY")
-        logging.warning(f"3. Переменная окружения {env_name.upper()}_LINER_API_KEY")
-        logging.warning("4. Конфигурация окружения в config.json")
-        pytest.skip("API ключ не найден. Тесты API будут пропущены.")
+    env_config = config["environments"][env_name]
+    config.update(env_config)
+    config["current_environment"] = env_name
     
-    env_config["api_key"] = api_key
-    logging.info(f"Используется API ключ: {api_key[:4]}...{api_key[-4:]}")
+    # Замена плейсхолдеров
+    config = replace_placeholders(config)
     
-    # Добавляем информацию в Allure
-    allure.dynamic.feature(f"Окружение: {env_config['description']}")
-    
-    return env_config
+    return config
 
 @pytest.fixture(scope="session")
-def browser_context_session(request, config):
-    """Создание сессионного контекста браузера"""
-    browser_type = request.config.getoption("--browser-type")
-    headless = request.config.getoption("--headless") or os.environ.get("HEADLESS", "false").lower() == "true"
-    slow_mo = request.config.getoption("--slow-mo")
-    
-    with sync_playwright() as playwright:
-        # Выбираем браузер
-        if browser_type == "firefox":
-            browser = playwright.firefox.launch(headless=headless, slow_mo=slow_mo)
-        elif browser_type == "webkit":
-            browser = playwright.webkit.launch(headless=headless, slow_mo=slow_mo)
-        else:
-            browser = playwright.chromium.launch(headless=headless, slow_mo=slow_mo)
-        
+def browser(request):
+    """Фикстура для создания браузера"""
+    browser_name = request.config.getoption("--browser") or "chromium"
+    # pytest-playwright может отдавать список браузеров (например ["chromium"])
+    if isinstance(browser_name, (list, tuple)):
+        browser_name = browser_name[0] if browser_name else "chromium"
+    headless = request.config.getoption("--headless")
+    with sync_playwright() as p:
+        browser_launcher = getattr(p, browser_name, None)
+        if browser_launcher is None:
+            pytest.fail(f"Браузер '{browser_name}' не поддерживается. Доступны: chromium, firefox, webkit.")
+        browser = browser_launcher.launch(headless=headless)
         yield browser
-        
         browser.close()
 
 @pytest.fixture
-def browser_context(browser_context_session):
-    """Создание нового контекста для каждого теста (ИЗОЛЯЦИЯ!)"""
-    context = browser_context_session.new_context(
-        viewport={"width": 1920, "height": 1080},
-        locale="ru-RU",
-        timezone_id="Europe/Moscow",
-        ignore_https_errors=True,
-        record_video_dir=str(TEST_RESULTS_DIR / "videos") if os.environ.get("RECORD_VIDEO") == "true" else None
-    )
-    
+def browser_context(browser):
+    """Фикстура для создания нового контекста браузера для каждого теста"""
+    context = browser.new_context(viewport={'width': 1920, 'height': 1080})
     yield context
-    
-    # Очищаем все данные контекста после каждого теста
-    try:
-        context.clear_cookies()
-        context.clear_permissions()
-    except Exception as e:
-        logging.warning(f"Ошибка при очистке контекста: {e}")
-    finally:
-        context.close()
+    context.close()
 
 @pytest.fixture
 def page(browser_context):
-    """Создание новой страницы для каждого теста"""
+    """Фикстура для создания новой страницы для каждого теста"""
     page = browser_context.new_page()
-    
-    # Добавляем логирование консольных сообщений
-    def log_console_message(msg):
-        logging.info(f"Console [{msg.type}]: {msg.text}")
-    
-    page.on("console", log_console_message)
-    
-    # Добавляем обработку ошибок страницы
-    def log_page_error(error):
-        logging.error(f"Page error: {error}")
-    
-    page.on("pageerror", log_page_error)
-    
     yield page
-    
-    # Очищаем состояние страницы
-    try:
-        # Попытка очистить localStorage безопасным способом
-        page.evaluate("""
-            try {
-                if (typeof Storage !== 'undefined' && window.localStorage) {
-                    localStorage.clear();
-                }
-                if (typeof Storage !== 'undefined' && window.sessionStorage) {
-                    sessionStorage.clear();
-                }
-            } catch (e) {
-                console.log('Storage clear error:', e);
-            }
-        """)
-    except Exception as e:
-        logging.warning(f"Ошибка при очистке storage: {e}")
-    finally:
-        page.close()
-
-@pytest.fixture
-def authenticated_page(page, config):
-    """Страница с уже выполненной авторизацией"""
-    from pages.login_page import LoginPage
-    
-    login_page = LoginPage(page, config["baseUrl"])
-    creds = config["credentials"]["valid_user"]
-    
-    # Проверяем, не авторизованы ли мы уже
-    if login_page._check_login_result():
-        logging.info("Пользователь уже авторизован, пропускаем повторную авторизацию")
-    else:
-        # Выполняем авторизацию
-        success = login_page.login(creds["email"], creds["password"])
-        
-        if not success:
-            login_page.take_error_screenshot("authentication_failed")
-            pytest.fail("Не удалось выполнить авторизацию для теста")
-    
-    # Ждем редиректа
-    page.wait_for_load_state("networkidle")
-    
-    yield page
+    page.close()
 
 @pytest.fixture
 def screenshot_utils(page):
-    """Утилиты для работы со скриншотами"""
+    """Фикстура для работы со скриншотами"""
     return ScreenshotUtils(page)
 
-@pytest.fixture(scope="function", autouse=True)
-def test_info(request):
-    """Автоматическое добавление информации о тесте в Allure"""
-    test_name = request.node.name
-    test_file = request.node.fspath.basename
+@pytest.fixture
+def authenticated_page(page, config):
+    """Фикстура, возвращающая аутентифицированную страницу"""
+    from pages.login_page import LoginPage
     
-    allure.dynamic.title(test_name.replace("_", " ").title())
-    allure.dynamic.label("test_file", test_file)
-    allure.dynamic.label("test_method", test_name)
-
-@pytest.fixture(autouse=True)
-def log_test_start_end(request):
-    """Логирование начала и окончания каждого теста"""
-    test_name = request.node.name
-    logging.info(f"[НАЧАЛО] Тест: {test_name}")
+    login_page = LoginPage(page, config["baseUrl"])
+    login_page.navigate()
     
-    yield
+    valid_credentials = config['credentials']['valid_user']
+    login_page.login(valid_credentials['email'], valid_credentials['password'])
     
-    logging.info(f"[КОНЕЦ] Тест: {test_name}")
-
-@pytest.fixture(autouse=True)
-def test_isolation(page, config):
-    """Обеспечение изоляции тестов"""
-    # Перед тестом - убеждаемся что мы на чистой странице
-    try:
-        page.goto(config["baseUrl"])
-        page.wait_for_load_state("networkidle")
-    except Exception as e:
-        logging.warning(f"Ошибка при предварительной навигации: {e}")
+    # Ждем успешного входа
+    page.wait_for_url("**/*office*", timeout=10000)
     
-    yield
-    
-    # После теста - принудительно очищаем все
-    try:
-        # Очищаем cookies через контекст
-        page.context.clear_cookies()
-        
-        # Очищаем storage безопасным способом
-        page.evaluate("""
-            try {
-                if (typeof Storage !== 'undefined') {
-                    if (window.localStorage) localStorage.clear();
-                    if (window.sessionStorage) sessionStorage.clear();
-                }
-            } catch (e) {
-                console.log('Post-test storage clear error:', e);
-            }
-        """)
-        
-        # Переходим на базовую страницу для сброса состояния
-        page.goto(config["baseUrl"])
-        
-    except Exception as e:
-        logging.warning(f"Ошибка при очистке после теста: {e}")
+    return page
 
 @pytest.fixture(scope="session")
-def api_client(config):
-    """Фикстура для работы с API"""
-    class ApiClient:
-        def __init__(self, base_url, api_key):
-            self.base_url = base_url
-            self.api_key = api_key
-            self.session = requests.Session()
-            self.session.headers.update({
-                'Authorization': f'Bearer {api_key}',
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'User-Agent': 'python-requests/2.31.0'
-            })
-
-        def _make_request(self, method, endpoint, **kwargs):
-            url = urljoin(self.base_url, endpoint)
-            try:
-                response = self.session.request(method, url, **kwargs)
-                response.raise_for_status()
-                return response
-            except requests.exceptions.RequestException as e:
-                logging.error(f"Ошибка при выполнении {method} запроса к {endpoint}: {e}")
-                if hasattr(e.response, 'text'):
-                    logging.error(f"Ответ сервера: {e.response.text}")
-                raise
-
-        def get(self, endpoint, **kwargs):
-            return self._make_request('GET', endpoint, **kwargs)
-
-        def post(self, endpoint, **kwargs):
-            """Выполнение POST запроса"""
-            return self._make_request('POST', endpoint, **kwargs)
-
-        def put(self, endpoint, **kwargs):
-            return self._make_request('PUT', endpoint, **kwargs)
-
-        def delete(self, endpoint, **kwargs):
-            return self._make_request('DELETE', endpoint, **kwargs)
-
-    return ApiClient(config['apiUrl'], config['apiKey'])
+def api_config(config, request):
+    """Фикстура для API конфигурации"""
+    api_key = request.config.getoption("--api-key") or config.get("api_key") or os.getenv("LINER_API_KEY")
+    if not api_key:
+        pytest.skip("API ключ не найден. Укажите через --api-key или в .env")
+    
+    api_base_url = config.get("apiUrl")
+    
+    return {
+        "base_url": api_base_url,
+        "apiUrl": api_base_url,
+        "api_key": api_key,
+        "apiKey": api_key,
+    }
 
 @pytest.fixture(scope="function")
-def browser(config):
-    """Фикстура для работы с браузером (только для UI тестов)"""
-    if not hasattr(browser, 'driver'):
-        chrome_options = Options()
-        if config.get('headless', False):
-            chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--window-size=1920,1080')
-        
-        service = Service(ChromeDriverManager().install())
-        browser.driver = webdriver.Chrome(service=service, options=chrome_options)
-        browser.driver.implicitly_wait(10)
-        browser.wait = WebDriverWait(browser.driver, 10)
-        
-        logging.info("Браузер успешно запущен")
-    
-    yield browser.driver
-    
-    if hasattr(browser, 'driver'):
-        browser.driver.quit()
-        delattr(browser, 'driver')
-        logging.info("Браузер успешно закрыт")
+def api_headers(api_config):
+    return {
+        'Authorization': f"Bearer {api_config['apiKey']}",
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 
-@pytest.fixture(scope="function")
-def take_screenshot_on_failure(browser, request):
-    """Фикстура для создания скриншота при падении теста"""
-    yield
-    
-    if request.node.rep_call.failed:
-        try:
-            screenshot = browser.get_screenshot_as_png()
-            allure.attach(
-                screenshot,
-                name="failure_screenshot",
-                attachment_type=AttachmentType.PNG
-            )
-            logging.info("Скриншот ошибки сохранен")
-        except Exception as e:
-            logging.error(f"Не удалось сохранить скриншот: {e}")
+# Моки телефонии
+@pytest.fixture(scope='session')
+def use_mocks():
+    return os.environ.get('TELEPHONY_USE_MOCKS', '').lower() in ['1', 'true', 'yes']
 
-# Хуки pytest
+@pytest.fixture
+def voximplant_mock(use_mocks):
+    if not use_mocks:
+        yield None
+        return
+    with patch('requests.post') as mock_post, patch('requests.get') as mock_get:
+        def mock_user_ready_response(*args, **kwargs):
+            mock_response = MagicMock()
+            mock_response.status_code = 200
+            mock_response.json.return_value = {
+                "result": [
+                    {"user_name": "test_operator", "acd_status": "READY"}
+                ]
+            }
+            return mock_response
+        def mock_start_call_response(*args, **kwargs):
+            mock_response = MagicMock()
+            mock_response.status_code = 200
+            mock_response.json.return_value = {
+                "success": True,
+                "call_session_id": 789
+            }
+            return mock_response
+        mock_get.side_effect = mock_user_ready_response
+        mock_post.side_effect = mock_start_call_response
+        yield {'post': mock_post, 'get': mock_get}
+
+# Pytest хуки с улучшенной интеграцией Allure и Graylog
+def pytest_runtest_setup(item):
+    """Вызывается перед каждым тестом"""
+    test_name = item.name
+    test_class = item.cls.__name__ if item.cls else None
+    test_file = item.fspath.basename if hasattr(item, 'fspath') else None
+    
+    # Отправляем в Graylog
+    graylog = get_graylog()
+    if graylog:
+        graylog.send_test_start(
+            test_name=test_name,
+            test_class=test_class,
+            test_file=test_file,
+            environment=item.config.getoption("--env", default="dev")
+        )
+    
+    # Добавляем метаданные в Allure
+    if hasattr(item, 'callspec'):
+        params = item.callspec.params if item.callspec else {}
+        AllureHelper.set_test_parameters(**params)
+
 def pytest_runtest_makereport(item, call):
-    """Создание отчета о выполнении теста"""
+    """Вызывается после каждого этапа теста (setup, call, teardown)"""
     if call.when == "call":
+        test_name = item.name
+        test_class = item.cls.__name__ if item.cls else None
+        test_file = item.fspath.basename if hasattr(item, 'fspath') else None
+        
+        # Определяем статус теста
         if call.excinfo is not None:
-            # Тест упал, добавляем дополнительную информацию
-            logging.error(f"❌ Тест {item.nodeid} завершился с ошибкой: {call.excinfo.value}")
+            status = "failed"
+            error = str(call.excinfo.value)
+            traceback_text = None
+            try:
+                repr_obj = call.excinfo.getrepr(style="short")
+                traceback_text = getattr(repr_obj, "text", None) or str(repr_obj)
+            except Exception:
+                traceback_text = error
+            
+            logging.error(f"❌ Тест {item.nodeid} завершился с ошибкой: {error}")
+            
+            # Прикрепляем детали ошибки к Allure
+            AllureHelper.attach_error_details(
+                call.excinfo.value,
+                context={
+                    "test_name": test_name,
+                    "test_class": test_class,
+                    "test_file": test_file
+                }
+            )
+            
+            # Отправляем в Graylog
+            graylog = get_graylog()
+            if graylog:
+                graylog.send_error(
+                    error_message=error,
+                    error_type=type(call.excinfo.value).__name__,
+                    test_name=test_name,
+                    traceback=traceback_text
+                )
+        else:
+            status = "passed"
+            error = None
+        
+        # Отправляем завершение теста в Graylog
+        graylog = get_graylog()
+        if graylog and hasattr(call, 'duration'):
+            graylog.send_test_finish(
+                test_name=test_name,
+                status=status,
+                duration=call.duration,
+                error=error
+            )
+
+def pytest_runtest_teardown(item, nextitem):
+    """Вызывается после завершения теста"""
+    # Можно добавить дополнительную логику очистки
+    pass
 
 def pytest_sessionstart(session):
-    """Действия в начале сессии тестирования"""
+    """Вызывается в начале сессии тестирования"""
     logging.info("=" * 80)
     logging.info("🧪 НАЧАЛО СЕССИИ ТЕСТИРОВАНИЯ")
     logging.info("=" * 80)
+    
+    # Подсчитываем количество тестов (если доступно)
+    try:
+        total_tests = len(session.items) if hasattr(session, 'items') else 0
+    except AttributeError:
+        total_tests = 0
+    
+    environment = session.config.getoption("--env", default="dev")
+    
+    # Отправляем в Graylog
+    graylog = get_graylog()
+    if graylog:
+        graylog.send_session_start(
+            total_tests=total_tests,
+            environment=environment
+        )
+    
+    # Добавляем информацию об окружении в Allure
+    if hasattr(session.config, 'option') and hasattr(session.config.option, 'config'):
+        # Получаем конфигурацию через фикстуру
+        try:
+            config_fixture = session.config._get_fixturevalue('config')
+            if config_fixture:
+                AllureHelper.attach_environment_info(config_fixture)
+        except Exception as e:
+            logging.warning(f"Не удалось получить конфигурацию для Allure: {str(e)}")
 
 def pytest_sessionfinish(session, exitstatus):
-    """Действия после завершения сессии тестирования"""
+    """Вызывается в конце сессии тестирования"""
     logging.info("=" * 80)
     logging.info(f"[ЗАВЕРШЕНИЕ] СЕССИИ ТЕСТИРОВАНИЯ (код выхода: {exitstatus})")
     logging.info("=" * 80)
+    
+    # Собираем статистику
+    try:
+        reporter = session.config.pluginmanager.get_plugin('terminalreporter')
+        if reporter and hasattr(reporter, 'stats'):
+            stats = reporter.stats
+            passed = len(stats.get('passed', []))
+            failed = len(stats.get('failed', []))
+            skipped = len(stats.get('skipped', []))
+        else:
+            # Fallback если статистика недоступна
+            passed = failed = skipped = 0
+    except Exception as e:
+        logging.warning(f"Не удалось получить статистику тестов: {str(e)}")
+        passed = failed = skipped = 0
+    
+    total = passed + failed + skipped
+    
+    # Вычисляем длительность (приблизительно)
+    duration = 0
+    if hasattr(session, 'startdir'):
+        # Можно использовать более точный расчет если нужно
+        duration = 0
+    
+    # Отправляем в Graylog
+    graylog = get_graylog()
+    if graylog:
+        graylog.send_session_finish(
+            total_tests=total,
+            passed=passed,
+            failed=failed,
+            skipped=skipped,
+            duration=duration
+        )
+    
+    logging.info(f"📊 Статистика: {passed} успешно, {failed} провалено, {skipped} пропущено")

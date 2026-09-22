@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - LINER_API_KEY=${LINER_API_KEY}
+      - USE_MOCK=${USE_MOCK:-true}
+    volumes:
+      - ./:/app
+      - ./test_results/allure-results:/app/test_results/allure-results
+    command: bash -lc "pytest -v --alluredir=./test_results/allure-results"
+
+  allure:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./test_results/allure-results:/app/allure-results
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 3
+      KEEP_HISTORY: 1

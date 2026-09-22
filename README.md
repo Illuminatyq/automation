@@ -10,14 +10,14 @@
 ├── pages/             # Page Objects
 ├── tests/             # Тесты
 ├── utils/             # Вспомогательные утилиты
-├── logs/              # Логи выполнения
-├── reports/           # Отчеты о тестировании
-└── screenshots/       # Скриншоты
+├── logs/              # Логи выполнения (в .gitignore)
+├── test_results/      # Результаты тестирования (в .gitignore)
+└── screenshots/       # Скриншоты (в .gitignore)
 ```
 
 ## Требования
 
-- Python 3.8+
+- Python 3.11
 - Playwright
 - pytest
 - allure-pytest
@@ -33,8 +33,10 @@ cd automation
 2. Создайте виртуальное окружение и активируйте его:
 ```bash
 python -m venv venv
-source venv/bin/activate  # для Linux/Mac
-venv\Scripts\activate     # для Windows
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
 ```
 
 3. Установите зависимости:
@@ -46,6 +48,38 @@ pip install -r requirements.txt
 ```bash
 playwright install
 ```
+
+## Конфигурация
+
+- Основные настройки в `config/config.json`. Чувствительные данные берутся из переменных окружения.
+- Создайте файл `.env` на основе примера ниже или задайте переменные окружения в CI.
+
+### .env.example
+```dotenv
+# API ключи
+LINER_API_KEY=your_api_key_here
+
+# Тестовые пользователи
+# Укажите реальные креды для тестового окружения
+TEST_USER_EMAIL=test@example.com
+TEST_USER_PASSWORD=your_test_password_here
+
+# Креды оператора (для тестов телефонии)
+TEST_OPERATOR_EMAIL=operator@example.com
+TEST_OPERATOR_PASSWORD=your_operator_password_here
+
+# Режимы моков телефонии
+USE_MOCK=true
+TELEPHONY_USE_MOCKS=true
+USE_VOXIMPLANT_MOCK=true
+
+# Интеграция с Graylog (опционально)
+GRAYLOG_ENABLED=false
+GRAYLOG_URL=graylog.example.com
+GRAYLOG_PORT=12201
+```
+
+**Важно:** Создайте файл `.env` на основе `.env.example` и заполните реальными значениями. Файл `.env` должен быть в `.gitignore` и не попадать в репозиторий.
 
 ## Запуск тестов
 
@@ -61,28 +95,83 @@ pytest tests/test_auth.py
 
 ### Запуск с генерацией отчета Allure
 ```bash
-pytest --alluredir=allure-results
-allure serve allure-results
+pytest --alluredir=test_results/allure-results
+allure serve test_results/allure-results
 ```
 
-## Структура тестов
+### Запуск тестов авторизации
+```bash
+# Все тесты авторизации
+pytest tests/test_auth.py -v
 
-- `tests/test_auth.py` - тесты авторизации
-- `tests/test_ui_layout.py` - тесты верстки
-- `tests/test_api.py` - API тесты
+# Только smoke тесты
+pytest tests/test_auth.py -m smoke
 
-## Логирование
+# С указанием окружения
+pytest tests/test_auth.py --env=dev
+```
 
-Логи сохраняются в директории `logs/` с датой в имени файла.
+## Allure отчеты
 
-## Скриншоты
+Проект использует улучшенные Allure отчеты с:
+- Детальной информацией об окружении
+- Метаданными тестов (параметры, ссылки, категории)
+- Автоматическим прикреплением скриншотов
+- Структурированными шагами тестов
+- Метриками производительности
+- Маскированием чувствительных данных
 
-Скриншоты сохраняются в директории `screenshots/` при возникновении ошибок или по требованию теста.
+### Улучшения в отчетах
 
-## Конфигурация
+- **Информация об окружении**: автоматически добавляется в каждый отчет
+- **Тестовые данные**: прикрепляются с автоматическим маскированием паролей
+- **Детали ошибок**: полная трассировка и контекст ошибок
+- **Метрики производительности**: время выполнения, статусы операций
+- **Информация о страницах**: URL, заголовки, viewport
 
-Основные настройки находятся в файле `config/constants.py`:
-- Таймауты
-- URL
-- Пути к файлам
-- Поддерживаемые браузеры 
+## Интеграция с Graylog
+
+Проект поддерживает интеграцию с Graylog для централизованного логирования. Подробности в [документации](docs/graylog_integration.md).
+
+Для включения интеграции:
+1. Установите `GRAYLOG_ENABLED=true` в `.env`
+2. Укажите `GRAYLOG_URL` с адресом сервера Graylog
+
+Интеграция автоматически отправляет:
+- События начала/завершения тестов
+- События начала/завершения сессий
+- Детали ошибок
+- Статистику выполнения
+
+## Логирование и артефакты
+
+- Все артефакты пишутся в `test_results/` (логи, отчеты, видео, скриншоты) и игнорируются Git.
+
+## Качество кода
+
+- Конфигурации `black`, `isort`, `flake8`, `mypy`, `bandit` заданы в `pyproject.toml` и `.flake8`.
+- Быстрая проверка перед пушем:
+```bash
+black . && isort . && flake8 . && mypy . --ignore-missing-imports
+```
+
+## Примечания
+
+- Проект использует только Playwright для UI. Остатки Selenium удалены/не используются.
+- Для CI используется workflow в `.github/workflows/ci.yml`.
+
+## Подготовка к заливке на сервер/CI
+
+- Очистка локальных артефактов:
+```bash
+rm -rf test_results allure-results allure-report logs __pycache__
+```
+- Подготовка коммита (пример):
+```bash
+git checkout -b ci-cd-integration
+git add .
+# убедитесь, что не добавлены секреты в config/config.json
+git commit -m "chore: refactor configs, unify allure paths, remove selenium, add CI"
+```
+- Переменные CI:
+  - `LINER_API_KEY`, `TEST_USER_EMAIL`, `TEST_USER_PASSWORD`, `TEST_OPERATOR_EMAIL`, `TEST_OPERATOR_PASSWORD` 

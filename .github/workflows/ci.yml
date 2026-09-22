@@ -1,0 +1,186 @@
+name: Automation Tests CI/CD
+
+on:
+  push:
+    branches: [ main, develop, ci-cd-integration ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run Black (code formatting check)
+      run: black --check --diff .
+    
+    - name: Run isort (import sorting check)
+      run: isort --check-only --diff .
+    
+    - name: Run flake8 (linting)
+      run: flake8 .
+    
+    - name: Run bandit (security check)
+      run: bandit -r . -x tests/,venv/,.venv/
+    
+    - name: Run mypy (type checking)
+      run: mypy . --ignore-missing-imports
+
+  api-tests:
+    name: API Tests
+    runs-on: ubuntu-latest
+    needs: code-quality
+    
+    strategy:
+      matrix:
+        environment: [dev]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run API Tests
+      env:
+        LINER_API_KEY: ${{ secrets.LINER_API_KEY }}
+        USE_MOCK: 'false'
+      run: |
+        python -m pytest tests/test_api.py -v --env=${{ matrix.environment }} --alluredir=test_results/allure-results --tb=short
+    
+    - name: Upload API Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: api-test-results-${{ matrix.environment }}
+        path: |
+          test_results/
+        retention-days: 30
+
+  ui-tests:
+    name: UI Tests
+    runs-on: ubuntu-latest
+    needs: code-quality
+    
+    strategy:
+      matrix:
+        browser: [chromium, firefox]
+        environment: [dev]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Install Playwright Browsers
+      run: playwright install --with-deps ${{ matrix.browser }}
+    
+    - name: Run UI Tests
+      run: |
+        python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env=${{ matrix.environment }} --browser=${{ matrix.browser }} --headless --alluredir=test_results/allure-results --tb=short
+    
+    - name: Upload UI Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: ui-test-results-${{ matrix.browser }}-${{ matrix.environment }}
+        path: |
+          test_results/
+        retention-days: 30
+    
+    - name: Upload Screenshots (only on failure)
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: screenshots-${{ matrix.browser }}-${{ matrix.environment }}
+        path: test_results/screenshots/
+        retention-days: 7
+
+  generate-report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [api-tests, ui-tests]
+    if: always()
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download all test results
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts/
+    
+    - name: Merge Allure Results
+      run: |
+        mkdir -p allure-results
+        find artifacts/ -path "*/test_results/allure-results" -type d -exec cp -r {}/* allure-results/ \;
+    
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_report: allure-report
+        gh_pages: gh-pages
+        allure_history: allure-history
+        keep_reports: 20
+    
+    - name: Deploy to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-history
+        destination_dir: reports

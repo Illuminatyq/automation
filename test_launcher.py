@@ -79,12 +79,12 @@ def get_browser_option():
 
 def generate_allure_report():
     """Генерация отчета Allure"""
-    command = "allure generate ./allure-results -o ./allure-report --clean --config-file ./config/allure_config.json"
+    command = "allure generate ./test_results/allure-results -o ./test_results/allure-report --clean --config-file ./config/allure_config.json"
     run_in_thread(command)
 
 def open_allure_report():
     """Открытие отчета Allure в браузере"""
-    report_path = os.path.abspath("./allure-report/index.html")
+    report_path = os.path.abspath("./test_results/allure-report/index.html")
     if os.path.exists(report_path):
         webbrowser.open(f"file://{report_path}")
     else:
@@ -93,18 +93,18 @@ def open_allure_report():
 def serve_allure_report():
     """Запуск сервера Allure для просмотра отчета"""
     # Проверяем, существует ли директория с результатами
-    if not os.path.exists("./allure-results") or not os.listdir("./allure-results"):
+    if not os.path.exists("./test_results/allure-results") or not os.listdir("./test_results/allure-results"):
         output_text.insert(tk.END, "Нет результатов тестов для отображения. Сначала запустите тесты.\n")
         return
     
     # Запускаем сервер Allure с локализацией
-    command = "allure serve ./allure-results --config-file ./config/allure_config.json"
+    command = "allure serve ./test_results/allure-results --config-file ./config/allure_config.json"
     output_text.insert(tk.END, f"Запуск сервера Allure: {command}\n")
     run_in_thread(command)
 
 def open_screenshots_folder():
     """Открытие папки со скриншотами"""
-    screenshots_path = os.path.abspath("./screenshots")
+    screenshots_path = os.path.abspath("./test_results/screenshots")
     os.makedirs(screenshots_path, exist_ok=True)
     if os.name == 'nt':  # Windows
         os.startfile(screenshots_path)
@@ -122,7 +122,7 @@ def run_api_tests():
     os.environ["USE_MOCK"] = str(use_mock_var.get()).lower()
     
     # Для API-тестов не используем параметр --browser
-    command = f"python -m pytest tests/test_api.py -v --env={get_selected_env()} {api_key_param} --alluredir=./allure-results"
+    command = f"python -m pytest tests/test_api.py -v --env={get_selected_env()} {api_key_param} --alluredir=./test_results/allure-results"
     run_in_thread(command)
 
 def run_all_tests():
@@ -166,9 +166,9 @@ def run_all_tests():
 def run_all_tests_with_allure():
     """Запуск всех тестов (API и UI) с генерацией отчета Allure"""
     # Очистка старых результатов
-    if os.path.exists("./allure-results"):
+    if os.path.exists("./test_results/allure-results"):
         import shutil
-        shutil.rmtree("./allure-results")
+        shutil.rmtree("./test_results/allure-results")
         output_text.insert(tk.END, "Старые результаты тестов удалены\n")
     
     # Запуск API-тестов
@@ -177,7 +177,7 @@ def run_all_tests_with_allure():
         os.environ["LINER_API_KEY"] = api_key_var.get().strip()
     os.environ["USE_MOCK"] = str(use_mock_var.get()).lower()
     
-    api_command = f"python -m pytest tests/test_api.py -v --env={get_selected_env()} {api_key_param} --alluredir=./allure-results"
+    api_command = f"python -m pytest tests/test_api.py -v --env={get_selected_env()} {api_key_param} --alluredir=./test_results/allure-results"
     output_text.insert(tk.END, f"Выполнение API-тестов: {api_command}\n")
     output_text.see(tk.END)
     
@@ -193,7 +193,7 @@ def run_all_tests_with_allure():
     
     # Запуск UI-тестов
     browser_option = get_browser_option()
-    ui_command = f"python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env={get_selected_env()} {browser_option} --alluredir=./allure-results"
+    ui_command = f"python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env={get_selected_env()} {browser_option} --alluredir=./test_results/allure-results"
     output_text.insert(tk.END, f"Выполнение UI-тестов: {ui_command}\n")
     output_text.see(tk.END)
     
@@ -225,6 +225,19 @@ def run_layout_test_command():
     """Формирует команду для запуска теста верстки авторизации"""
     browser_option = get_browser_option()
     return f"python -m pytest tests/test_ui_layout.py::TestUILayout::test_auth_page_layout -v --env={get_selected_env()} {browser_option}"
+
+def run_security_tests_command():
+    """Формирует команду для запуска тестов безопасности"""
+    browser_option = get_browser_option()
+    return f"python -m pytest tests/test_security.py -v --env={get_selected_env()} {browser_option}"
+
+def run_load_tests_command():
+    """Формирует команду для запуска нагрузочных тестов"""
+    return f"python -m pytest tests/test_load_testing.py -v --env={get_selected_env()}"
+
+def run_performance_tests_command():
+    """Формирует команду для запуска тестов производительности"""
+    return f"python -m pytest tests/test_performance.py -v --env={get_selected_env()}"
 
 # Создание главного окна
 root = tk.Tk()
@@ -280,11 +293,25 @@ buttons1 = [
     ("Запустить все тесты", lambda: run_in_thread(run_all_tests), "#e6ffe6"),
     ("Тесты авторизации", lambda: run_in_thread(run_auth_tests_command()), "#fff2e6"),
     ("UI-тесты", lambda: run_in_thread(run_ui_tests_command()), "#e6e6ff"),
-    ("Тест верстки авторизации", lambda: run_in_thread(run_layout_test_command()), "#ffe6ff"),
+    ("Тесты безопасности", lambda: run_in_thread(run_security_tests_command()), "#ffcccb"),
 ]
 
 for text, cmd, bg in buttons1:
     tk.Button(button_frame1, text=text, command=cmd, bg=bg, padx=10, pady=5).pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
+
+# Создание третьего фрейма для дополнительных тестов
+button_frame3 = tk.Frame(root)
+button_frame3.pack(pady=5, fill=tk.X)
+
+# Добавление кнопок для специальных тестов
+buttons_special = [
+    ("Тест верстки авторизации", lambda: run_in_thread(run_layout_test_command()), "#ffe6ff"),
+    ("Тесты производительности", lambda: run_in_thread(run_performance_tests_command()), "#e6f2ff"),
+    ("Нагрузочные тесты", lambda: run_in_thread(run_load_tests_command()), "#f2e6ff"),
+]
+
+for text, cmd, bg in buttons_special:
+    tk.Button(button_frame3, text=text, command=cmd, bg=bg, padx=10, pady=5).pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
 
 # Добавление кнопок для Allure во второй фрейм
 buttons2 = [
@@ -293,7 +320,6 @@ buttons2 = [
     ("Открыть отчет", lambda: open_allure_report(), "#d1ffdc"),
     ("Запустить сервер Allure", lambda: serve_allure_report(), "#d1dcff"),
     ("Открыть скриншоты", lambda: open_screenshots_folder(), "#f0f0f0"),
-    ("Запустить всё и открыть отчет", lambda: run_in_thread(run_all_tests_with_allure), "#ffccaa"),
 ]
 
 for text, cmd, bg in buttons2:
@@ -317,9 +343,9 @@ if __name__ == "__main__":
         print("Запуск всех тестов с очисткой результатов и открытием отчета...")
         
         # Очистка старых результатов
-        if os.path.exists("./allure-results"):
+        if os.path.exists("./test_results/allure-results"):
             import shutil
-            shutil.rmtree("./allure-results")
+            shutil.rmtree("./test_results/allure-results")
             print("Старые результаты тестов удалены")
         
         # Определяем браузер из аргументов или используем chromium по умолчанию
@@ -345,7 +371,7 @@ if __name__ == "__main__":
         
         # Запускаем API-тесты (без параметра --browser)
         api_key_param = f"--api-key={api_key}" if api_key else ""
-        api_command = f"python -m pytest tests/test_api.py -v --env=dev {api_key_param} --alluredir=./allure-results"
+        api_command = f"python -m pytest tests/test_api.py -v --env=dev {api_key_param} --alluredir=./test_results/allure-results"
         print(f"Выполнение API-тестов: {api_command}")
         subprocess.run(api_command, shell=True)
         
@@ -354,13 +380,13 @@ if __name__ == "__main__":
         if headless:
             browser_option += " --headless"
         
-        ui_command = f"python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env=dev {browser_option} --alluredir=./allure-results"
+        ui_command = f"python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env=dev {browser_option} --alluredir=./test_results/allure-results"
         print(f"Выполнение UI-тестов: {ui_command}")
         subprocess.run(ui_command, shell=True)
         
         # Запуск Allure-сервера
         print("Запуск сервера Allure...")
-        subprocess.run("allure serve ./allure-results", shell=True)
+        subprocess.run("allure serve ./test_results/allure-results", shell=True)
         
         sys.exit(0)
     

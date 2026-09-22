@@ -1,35 +1,39 @@
 {
   "environments": {
     "dev": {
-      "baseUrl": "https://liner.dstepanyuk.dev.smte.am/auth",
+      "baseUrl": "https://liner.dstepanyuk.dev.smte.am",
       "apiUrl": "https://api.liner.dstepanyuk.dev.smte.am",
       "description": "Разработка",
-      "api_key": "${DEV_API_KEY}"
+      "api_key": "${LINER_API_KEY}"
     },
     "sm": {
-      "baseUrl": "https://sm.linerapp.io/auth",
+      "baseUrl": "https://sm.linerapp.io",
       "apiUrl": "https://sm.linerapp.io/api",
       "description": "SM коробка",
-      "api_key": "${SM_API_KEY}"
+      "api_key": "${LINER_API_KEY}"
     },
     "ask-yug": {
-      "baseUrl": "https://liner.ask-yug.com/auth",
+      "baseUrl": "https://liner.ask-yug.com",
       "apiUrl": "https://liner.ask-yug.com/api",
       "description": "Ask-Yug коробка",
-      "api_key": "${ASK_YUG_API_KEY}"
+      "api_key": "${LINER_API_KEY}"
     }
   },
   "defaultEnvironment": "dev",
-  "browser": "chrome",
-  "timeout": 10,
+  "browser": "chromium",
+  "timeout": 30,
   "credentials": {
     "valid_user": {
-      "email": "dstepanyuk@southmedia.io",
-      "password": "2Fe96^-Z=(41H1eY"
+      "email": "${TEST_USER_EMAIL}",
+      "password": "${TEST_USER_PASSWORD}"
     },
     "invalid_user": {
       "email": "wrong@example.com",
       "password": "wrong_password"
+    },
+    "operator": {
+      "email": "test_test@southmedia.ru",
+      "password": "r!kzCNi8b8yR^=35"
     }
   }
 }

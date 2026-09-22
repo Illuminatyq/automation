@@ -108,9 +108,9 @@ python -m pytest tests/test_telephony_integration.py -v
 
 #### С Allure отчетом
 ```bash
-python -m pytest tests/test_telephony_integration.py -v --alluredir=allure-results
-allure generate allure-results --clean -o allure-report
-allure open allure-report
+python -m pytest tests/test_telephony_integration.py -v --alluredir=test_results/allure-results
+allure generate test_results/allure-results --clean -o test_results/allure-report
+allure open test_results/allure-report
 ```
 
 #### Через bat-файл
@@ -209,7 +209,7 @@ python -m pytest tests/test_telephony_integration.py::TestTelephonyPerformance -
 ### Логирование
 - Уровень: INFO
 - Формат: `%(asctime)s - %(levelname)s - %(message)s`
-- Файлы: `logs/telephony_tests.log`
+- Файлы: `test_results/logs/telephony_tests.log`
 
 ## Мониторинг и алерты
 

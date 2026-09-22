@@ -1,23 +1,18 @@
-#!/bin/bash
-echo "Запуск тестов..."
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Очистка старых результатов
-if [ -d "allure-results" ]; then
-    echo "Удаление старых результатов..."
-    rm -rf allure-results
-fi
-mkdir -p allure-results
+rm -rf test_results/allure-results || true
+mkdir -p test_results/allure-results
 
-# Запуск API-тестов
-echo "Запуск API-тестов..."
-python -m pytest tests/test_api.py -v --env=dev --alluredir=./allure-results
+# Установка браузеров (если не установлены)
+playwright install || true
 
-# Запуск UI-тестов
-echo "Запуск UI-тестов..."
-python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env=dev --browser=chromium --alluredir=./allure-results
+# API тесты
+python -m pytest tests/test_api.py -v --env=dev --alluredir=./test_results/allure-results
 
-# Запуск сервера Allure
-echo "Запуск сервера Allure..."
-allure serve ./allure-results
+# UI тесты
+python -m pytest tests/test_auth.py tests/test_ui_layout.py -v --env=dev --browser=chromium --alluredir=./test_results/allure-results
 
-echo "Тесты завершены." 
+# Локальный просмотр отчета
+allure serve ./test_results/allure-results 
