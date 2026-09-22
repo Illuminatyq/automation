@@ -541,12 +541,3 @@ class TestAPI:
         with allure.step("Проверка запроса с невалидным API ключом"):
             data = mock_responses["auth_error"]
             assert data["status"] == "error"
-
-@pytest.fixture
-def page(browser_context, request):
-    # Запускать только для UI-тестов
-    if not request.node.get_closest_marker("ui"):
-        yield None
-        return
-    page = browser_context.new_page()
-    # ... остальной код ...

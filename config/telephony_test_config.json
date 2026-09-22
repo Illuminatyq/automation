@@ -1,7 +1,7 @@
 {
   "telephony": {
     "api": {
-      "base_url": "https://test.linerapp.io",
+      "base_url": "https://liner.dstepanyuk.dev.smte.am",
       "timeout": 30,
       "retry_attempts": 3
     },

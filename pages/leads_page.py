@@ -32,18 +32,31 @@ class LeadsPage(BasePage):
             self.logger.error(f"Ошибка при открытии фильтров: {str(e)}")
             return False
             
+    def ensure_filter_open(self):
+        """Гарантирует, что фильтр раскрыт (панель фильтров открыта)"""
+        try:
+            self.page.wait_for_selector(self.FILTER_HEADER, state="visible", timeout=10000)
+            filter_box = self.page.locator(self.FILTER_BOX)
+            if "show" not in filter_box.get_attribute("class"):
+                self.page.click(self.FILTER_HEADER)
+                self.page.wait_for_selector(f"{self.FILTER_BOX}.show", timeout=5000)
+            self.logger.info("Панель фильтров гарантированно открыта")
+            return True
+        except Exception as e:
+            self.logger.error(f"Ошибка при раскрытии фильтра: {str(e)}")
+            return False
+
     def apply_filters(self):
         """Применение фильтров"""
         try:
+            # Гарантируем, что фильтр открыт
+            self.ensure_filter_open()
             # Ждем появления кнопки применения
             self.page.wait_for_selector(self.FILTER_APPLY_BUTTON, state="visible", timeout=5000)
-            
             # Кликаем по кнопке
             self.page.click(self.FILTER_APPLY_BUTTON)
-            
             # Ждем применения фильтров
             self.page.wait_for_load_state("networkidle")
-            
             self.logger.info("Фильтры применены")
             return True
         except Exception as e:

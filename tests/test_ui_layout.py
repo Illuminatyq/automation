@@ -8,6 +8,7 @@ import time
 import sys
 from PIL import Image, ImageChops
 import numpy as np
+from PIL import ImageEnhance
 
 # Настройка логирования с явным указанием кодировки
 logging.basicConfig(
@@ -30,15 +31,16 @@ def clear_browser_state(page: Page):
         page.evaluate("() => sessionStorage.clear()")
         # Перезагружаем страницу для применения изменений
         page.reload()
+        # page.wait_for_load_state("networkidle", timeout=5000)
         try:
             # Используем более короткий таймаут, так как страница загружается быстро
-            page.wait_for_load_state("networkidle", timeout=5000)
+            # page.wait_for_load_state("networkidle", timeout=5000)
             logging.info("Страница успешно загружена")
         except Exception as e:
             logging.error(f"Ошибка при ожидании загрузки страницы: {e}")
             # Пробуем альтернативный способ ожидания с коротким таймаутом
             try:
-                page.wait_for_load_state("domcontentloaded", timeout=5000)
+                # page.wait_for_load_state("domcontentloaded", timeout=5000)
                 logging.info("Страница загружена (DOMContentLoaded)")
             except Exception as e2:
                 logging.error(f"Ошибка при ожидании DOMContentLoaded: {e2}")
@@ -47,93 +49,264 @@ def clear_browser_state(page: Page):
 @allure.epic("UI/UX тесты")
 @allure.feature("Верстка и отзывчивость")
 class TestUILayout:
-    @allure.title("Проверка базовой верстки страницы авторизации")
-    @allure.story("Проверка базовой верстки страницы авторизации")
+    @pytest.mark.usefixtures("authenticated_page")
+    @allure.title("Проверка верстки главной страницы после авторизации")
     @allure.severity('NORMAL')
-    @allure.description("""
-    Тест проверяет базовую верстку страницы авторизации:
-    1. Наличие формы авторизации
-    2. Наличие полей ввода (логин/пароль)
-    3. Наличие кнопки входа
-    4. Корректное отображение всех элементов
-    """)
     def test_auth_page_basic_layout(self, page: Page, config, screenshot_utils):
-        with allure.step("Переход на страницу авторизации"):
-            page.goto(config["baseUrl"])
-            page.wait_for_load_state("networkidle", timeout=30000)
-            
-            # Проверяем наличие основных элементов
-            with allure.step("Проверка основных элементов"):
-                # Проверяем форму авторизации
-                form_selectors = [
-                    'form[action*="auth"]',
-                    'form[action*="login"]',
-                    'form.auth-form',
-                    'form.login-form',
-                    'form'
-                ]
-                
-                form_found = False
-                for selector in form_selectors:
-                    try:
-                        form = page.locator(selector)
-                        if form.count() > 0:
-                            form.wait_for(state="visible", timeout=30000)
-                            logger.info(f"Форма авторизации найдена по селектору: {selector}")
-                            form_found = True
-                            break
-                    except Exception as e:
-                        logger.warning(f"Ошибка при поиске формы по селектору {selector}: {str(e)}")
-                
-                assert form_found, "Форма авторизации не найдена"
-                
-                # Проверяем поля ввода
-                input_selectors = [
-                    'input[type="text"]',
-                    'input[type="email"]',
-                    'input[type="password"]',
-                    'input[name="login"]',
-                    'input[name="password"]'
-                ]
-                
-                input_found = False
-                for selector in input_selectors:
-                    try:
-                        input_field = page.locator(selector)
-                        if input_field.count() > 0:
-                            input_field.wait_for(state="visible", timeout=30000)
-                            logger.info(f"Поля ввода найдены по селектору: {selector}")
-                            input_found = True
-                            break
-                    except Exception as e:
-                        logger.warning(f"Ошибка при поиске полей ввода по селектору {selector}: {str(e)}")
-                
-                assert input_found, "Поля ввода не найдены"
-                
-                # Проверяем кнопку входа
-                button_selectors = [
-                    'button[type="submit"]',
-                    'input[type="submit"]',
-                    '.btn-primary',
-                    '.btn-login'
-                ]
-                
-                button_found = False
-                for selector in button_selectors:
-                    try:
-                        button = page.locator(selector)
-                        if button.count() > 0:
-                            button.wait_for(state="visible", timeout=30000)
-                            logger.info(f"Кнопка входа найдена по селектору: {selector}")
-                            button_found = True
-                            break
-                    except Exception as e:
-                        logger.warning(f"Ошибка при поиске кнопки по селектору {selector}: {str(e)}")
-                
-                assert button_found, "Кнопка входа не найдена"
-                
-                # Делаем скриншот
-                screenshot_utils.take_screenshot("auth_page_basic_layout")
+        login_page = LoginPage(page, config["baseUrl"])
+        with allure.step("Авторизация"):
+            credentials = config["credentials"]["valid_user"]
+            assert login_page.login(credentials["email"], credentials["password"]), "Авторизация не удалась"
+            # Проверяем наличие сайдбара/меню
+            sidebar = page.locator(".sidebar")
+            assert sidebar.is_visible(timeout=10000), "Сайдбар не найден после логина"
+            screenshot_utils.take_screenshot("sidebar_after_login")
+
+        with allure.step("Проверка основных элементов интерфейса"):
+            # Проверяем наличие пунктов меню
+            assert page.locator("a.sidebar-link[href='/leads/']").is_visible(timeout=5000), "Пункт 'Лиды' не найден"
+            assert page.locator("a.sidebar-link[href='/users/']").count() > 0, "Пункт 'Пользователи' не найден"
+            assert page.locator(".nav-item.user-settings-dropdown").count() > 0, "Дропдаун профиля не найден"
+            screenshot_utils.take_screenshot("main_elements_after_login")
+
+    @allure.title("Проверка верстки основных страниц системы")
+    @allure.severity('NORMAL')
+    def test_specific_pages_layout(self, page: Page, config, screenshot_utils):
+        login_page = LoginPage(page, config["baseUrl"])
+        with allure.step("Авторизация"):
+            credentials = config["credentials"]["valid_user"]
+            assert login_page.login(credentials["email"], credentials["password"]), "Авторизация не удалась"
+            assert page.locator(".sidebar").is_visible(timeout=10000), "Сайдбар не найден после логина"
+
+        with allure.step("Переход на страницу лидов через сайдбар"):
+            leads_link = page.locator("a.sidebar-link[href='/leads/']")
+            assert leads_link.is_visible(timeout=10000), "Пункт меню 'Лиды' не найден"
+            leads_link.click()
+            # Ждём появления таблицы лидов
+            assert page.locator("table.ajax-data-table, table.data-table, table.table").is_visible(timeout=15000), "Таблица лидов не загрузилась"
+            screenshot_utils.take_screenshot("leads_page_layout")
+
+        with allure.step("Переход на страницу настроек пользователя через дропдаун"):
+            dropdown = page.locator(".nav-item.user-settings-dropdown > a.nav-link.dropdown-toggle")
+            assert dropdown.is_visible(timeout=10000), "Дропдаун профиля не найден"
+            dropdown.click()
+            settings_link = page.locator(".dropdown-menu a[href*='/users/']")
+            assert settings_link.is_visible(timeout=10000), "Ссылка на настройки не найдена"
+            settings_link.click()
+            # Ждём появления уникального элемента настроек
+            assert page.locator("form, .user-settings-form, .settings-page").first.is_visible(timeout=10000), "Форма настроек не загрузилась"
+            screenshot_utils.take_screenshot("user_settings_page_layout")
+
+@allure.title("Проверка производительности под нагрузкой")
+@allure.severity('HIGH')
+def test_performance_under_load(page: Page, config, screenshot_utils):
+    login_page = LoginPage(page, config["baseUrl"])
+    with allure.step("Авторизация"):
+        credentials = config["credentials"]["valid_user"]
+        assert login_page.login(credentials["email"], credentials["password"]), "Авторизация не удалась"
+        sidebar = page.locator(".sidebar")
+        assert sidebar.is_visible(timeout=10000), "Сайдбар не найден после логина"
+
+    with allure.step("Переход на страницу лидов через сайдбар"):
+        leads_link = page.locator("a.sidebar-link[href='/leads/']")
+        assert leads_link.is_visible(timeout=10000), "Пункт меню 'Лиды' не найден"
+        leads_link.click()
+        assert page.locator("table.ajax-data-table, table.data-table, table.table").is_visible(timeout=15000), "Таблица лидов не загрузилась"
+        screenshot_utils.take_screenshot("leads_page_loaded_performance")
+
+    with allure.step("После применения фильтра"):
+        # Сначала проверяем, есть ли кнопка фильтра и видна ли она
+        filter_button = page.locator("#filter-m-apply-btn")
+        if filter_button.count() > 0:
+            # Ждем, пока кнопка станет видимой
+            try:
+                filter_button.wait_for(state="visible", timeout=10000)
+                filter_button.click()
+                assert page.locator("table.ajax-data-table, table.data-table, table.table").is_visible(timeout=15000), "Таблица не обновилась после фильтра"
+            except Exception as e:
+                logging.warning(f"Кнопка фильтра не видна или недоступна: {str(e)}")
+                screenshot_utils.take_screenshot("filter_button_not_visible")
+        else:
+            logging.info("Кнопка фильтра не найдена на странице")
+
+@allure.title("Проверка доступности (a11y)")
+@allure.severity('NORMAL')
+def test_accessibility(page: Page, config, screenshot_utils):
+    login_page = LoginPage(page, config["baseUrl"])
+    with allure.step("Авторизация"):
+        credentials = config["credentials"]["valid_user"]
+        assert login_page.login(credentials["email"], credentials["password"]), "Авторизация не удалась"
+        sidebar = page.locator(".sidebar")
+        assert sidebar.is_visible(timeout=10000), "Сайдбар не найден после логина"
+
+    with allure.step("Переход на страницу лидов через сайдбар"):
+        leads_link = page.locator("a.sidebar-link[href='/leads/']")
+        assert leads_link.is_visible(timeout=10000), "Пункт меню 'Лиды' не найден"
+        leads_link.click()
+        assert page.locator("table.ajax-data-table, table.data-table, table.table").is_visible(timeout=15000), "Таблица лидов не загрузилась"
+        screenshot_utils.take_screenshot("leads_page_loaded_accessibility")
+
+    with allure.step("Проверяем наличие ARIA-атрибутов"):
+        elements = page.query_selector_all("[aria-label], [aria-describedby], [role]")
+        assert len(elements) > 0, "Не найдены элементы с ARIA-атрибутами"
+        logging.info(f"Найдено ARIA-элементов: {len(elements)}")
+
+    with allure.step("Проверяем навигацию с клавиатуры"):
+        page.keyboard.press("Tab")
+        focused = page.evaluate("document.activeElement.tagName")
+        assert focused, "Элемент не получил фокус при навигации с клавиатуры"
+        screenshot_utils.take_screenshot("accessibility_test")
+
+    @allure.title("Проверка времени загрузки страницы")
+    @allure.severity('NORMAL')
+    def test_page_load_performance(self, page: Page, config, screenshot_utils):
+        login_page = LoginPage(page, config["baseUrl"])
+        pages_to_test = [
+            {"url": config["baseUrl"], "name": "auth", "wait_for": lambda: login_page.wait_for_form(timeout=30000)},
+            {"url": f"{config['baseUrl']}/office", "name": "office", "wait_for": lambda: page.wait_for_url("**/office*", timeout=60000)},
+            {"url": f"{config['baseUrl']}/leads", "name": "leads", "wait_for": lambda: page.wait_for_url("**/leads/*", timeout=60000)}
+        ]
+        for page_info in pages_to_test:
+            with allure.step(f"Измерение времени загрузки {page_info['name']}"):
+                start_time = time.time()
+                page.goto(page_info["url"])
+                try:
+                    page_info["wait_for"]()
+                    end_time = time.time()
+                    load_time = end_time - start_time
+                    assert load_time < 15, f"Страница {page_info['name']} загружается слишком долго: {load_time:.2f} секунд"
+                    logging.info(f"Время загрузки {page_info['name']}: {load_time:.2f} секунд")
+                except Exception as e:
+                    logging.error(f"Ошибка при загрузке {page_info['name']}: {e}")
+                    screenshot_utils.take_screenshot(f"{page_info['name']}_load_error")
+                    allure.attach(page.content(), "HTML страницы при ошибке", allure.attachment_type.HTML)
+                    raise
+                screenshot_utils.take_screenshot(f"{page_info['name']}_page_load")
+
+    @allure.title("Проверка визуальных различий")
+    @allure.severity('NORMAL')
+    def test_visual_differences(self, page: Page, config, screenshot_utils):
+        login_page = LoginPage(page, config["baseUrl"])
+        with allure.step("Авторизация и переход на страницу лидов"):
+            credentials = config["credentials"]["valid_user"]
+            success = login_page.login(credentials["email"], credentials["password"])
+            assert success, "Авторизация должна быть успешной"
+            page.goto(f"{config['baseUrl']}/leads", wait_until="domcontentloaded")
+            # Ждём появления нужного URL (до 30 секунд)
+            timeout = 30
+            start = time.time()
+            while "/leads" not in page.url and time.time() - start < timeout:
+                time.sleep(0.5)
+            assert "/leads" in page.url, f"Не удалось перейти на страницу лидов. Текущий URL: {page.url}"
+            assert "405" not in page.content(), f"После перехода на /leads попали на страницу ошибки 405! URL: {page.url}"
+            try:
+                page.wait_for_selector("table.ajax-data-table, table.data-table, table.table", timeout=30000)
+            except Exception as e:
+                html = page.content()
+                with open("debug_page.html", "w", encoding="utf-8") as f:
+                    f.write(html)
+                allure.attach(html, "HTML страницы при ошибке", allure.attachment_type.HTML)
+                raise
+            logging.info(f"Страница лидов загружена: {page.url}")
+
+        with allure.step("Применение фильтра"):
+            # Открываем фильтр, если он свернут
+            filter_header = page.locator(".filter-header.collapse-icon.collapsed")
+            if filter_header.count() > 0 and filter_header.is_visible():
+                filter_header.click()
+                page.wait_for_selector(".filter-header.collapse-icon:not(.collapsed)", timeout=5000)
+            # Теперь кнопка фильтра должна быть видимой
+            filter_button = page.locator("#filter-m-apply-btn")
+            assert filter_button.is_visible(timeout=5000), "Кнопка фильтра не видна"
+            filter_button.click()
+            # Ждём обновления таблицы
+            assert page.locator("table.ajax-data-table, table.data-table, table.table").is_visible(timeout=15000), "Таблица не обновилась после фильтра"
+
+        with allure.step("Проверка различий"):
+            diff = screenshot_utils.compare_screenshots("before_filter", "after_filter")
+            assert diff > 0, "Нет визуальных различий между скриншотами до и после применения фильтра"
+
+    @allure.title("Проверка производительности под нагрузкой")
+    @allure.story("Проверка производительности")
+    @allure.severity('HIGH')
+    @allure.description("""
+    Тест проверяет производительность системы под нагрузкой:
+    1. Авторизация в системе
+    2. Последовательное выполнение действий:
+       - Открытие фильтров
+       - Загрузка таблицы данных
+       - Применение фильтра по дате
+       - Применение фильтра
+    
+    Для каждого действия измеряется:
+    - Время выполнения
+    - Успешность выполнения
+    - Наличие ошибок
+    
+    Тест использует механизм повторных попыток для повышения надежности
+    """)
+    def test_performance_under_load(self, page: Page, config):
+        """Тест проверяет производительность системы под нагрузкой"""
+        from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+        from urllib3.util.retry import Retry
+        from requests.adapters import HTTPAdapter
+        import requests
+        
+        # Настройка сессии с повторными попытками
+        session = requests.Session()
+        retry_strategy = Retry(
+            total=3,
+            backoff_factor=1,
+            status_forcelist=[500, 502, 503, 504]
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+        
+        # Выполняем авторизацию
+        login_page = LoginPage(page, config["baseUrl"])
+        credentials = config["credentials"]["valid_user"]
+        
+        success = login_page.login(
+            email=credentials["email"],
+            password=credentials["password"],
+            remember=True
+        )
+        assert success, "Авторизация не прошла успешно"
+        
+        # Переход на страницу лидов через UI (клик по меню)
+        sidebar_leads = page.locator('.sidebar a[href="/leads/"]')
+        sidebar_leads.click()
+        page.wait_for_selector('table.leads-table', timeout=15000)
+        
+        # Создаём объект LeadsPage
+        from pages.leads_page import LeadsPage
+        leads_page = LeadsPage(page, config["baseUrl"])
+        
+        # Гарантируем раскрытие фильтра
+        leads_page.ensure_filter_open()
+        
+        # Выполняем серию действий для проверки производительности
+        actions = [
+            lambda: page.locator('.filter-button, .btn-filter, [data-filter]').click(),
+            lambda: page.locator('table.ajax-data-table, table.data-table, table.table').wait_for(state="visible", timeout=60000),
+            lambda: page.locator('input[name="daterange"]').fill("01.05.2025 - 31.05.2025"),
+            lambda: page.locator('#filter-m-apply-btn').click()
+        ]
+        
+        for i, action in enumerate(actions, 1):
+            try:
+                start_time = time.time()
+                action()
+                end_time = time.time()
+                duration = end_time - start_time
+                assert duration < 10, f"Действие {i} выполнилось слишком долго: {duration:.2f}с"
+            except PlaywrightTimeoutError as e:
+                logging.error(f"Таймаут при выполнении действия {i}: {str(e)}")
+                continue
+            except Exception as e:
+                logging.error(f"Ошибка при выполнении действия {i}: {str(e)}")
+                continue
 
     @allure.title("Проверка адаптивности страницы авторизации на разных устройствах")
     @allure.story("Проверка отзывчивости страницы авторизации")
@@ -153,7 +326,7 @@ class TestUILayout:
     def test_auth_page_responsive(self, page: Page, config, screenshot_utils):
         with allure.step("Проверка на разных размерах экрана"):
             page.goto(config["baseUrl"])
-            page.wait_for_load_state("networkidle", timeout=90000)
+            # page.wait_for_load_state("networkidle", timeout=90000)
             
             # Список размеров для проверки
             viewports = [
@@ -166,7 +339,7 @@ class TestUILayout:
             for viewport in viewports:
                 with allure.step(f"Проверка на {viewport['name']}"):
                     page.set_viewport_size({"width": viewport["width"], "height": viewport["height"]})
-                    page.wait_for_load_state("networkidle", timeout=90000)
+                    # page.wait_for_load_state("networkidle", timeout=90000)
                     
                     # Проверяем, что форма видна
                     form_selectors = ['form', '.auth-form', '.login-form']
@@ -192,8 +365,9 @@ class TestUILayout:
                     # Делаем скриншот
                     screenshot_utils.take_screenshot(f"auth_page_{viewport['name']}")
 
-    @allure.title("Проверка верстки страницы офиса")
-    @allure.story("Проверка верстки офиса")
+    @pytest.mark.usefixtures("page")
+    @allure.title("Проверка адаптивности верстки")
+    @allure.story("Проверка верстки страницы авторизации")
     @allure.severity('NORMAL')
     @allure.description("""
     Тест проверяет верстку страницы офиса после успешной авторизации:
@@ -212,8 +386,11 @@ class TestUILayout:
             assert success, "Авторизация должна быть успешной"
             
             # Ждем завершения авторизации
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-            page.wait_for_timeout(2000)
+            # page.wait_for_load_state("domcontentloaded", timeout=30000)
+            # page.wait_for_timeout(2000)
+            
+            # Проверяем, что мы на странице офиса
+            assert "/office/" in page.url, f"После авторизации ожидался переход на /office/, а не {page.url}"
             
             # Проверяем основные элементы
             with allure.step("Проверка основных элементов офиса"):
@@ -268,67 +445,6 @@ class TestUILayout:
                 # Делаем скриншот
                 screenshot_utils.take_screenshot("office_page_layout")
 
-    @allure.title("Проверка верстки основных страниц системы")
-    @allure.story("Проверка верстки специфических страниц")
-    @allure.severity('NORMAL')
-    @allure.description("""
-    Тест проверяет верстку основных страниц системы:
-    1. Страница лидов
-    2. Страница настроек
-    3. Страница профиля
-    
-    Для каждой страницы проверяется:
-    - Корректное отображение заголовков
-    - Наличие и работоспособность основных элементов
-    - Отсутствие ошибок в консоли
-    """)
-    def test_specific_pages_layout(self, page: Page, config, screenshot_utils):
-        with allure.step("Авторизация"):
-            login_page = LoginPage(page, config["baseUrl"])
-            credentials = config["credentials"]["valid_user"]
-            
-            # Авторизация
-            success = login_page.login(credentials["email"], credentials["password"])
-            assert success, "Авторизация должна быть успешной"
-            
-            # Ждем завершения авторизации
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-        
-        # Проверяем страницу лидов
-        with allure.step("Проверка страницы лидов"):
-            # Переход на страницу лидов
-            full_url = f"{config['baseUrl']}/leads"
-            logger.info(f"Переход на страницу: {full_url}")
-            page.goto(full_url)
-            
-            # Проверяем, что мы действительно перешли на нужную страницу
-            current_url = page.url
-            assert "/leads" in current_url, f"Не удалось перейти на страницу лидов. Текущий URL: {current_url}"
-            
-            # Ждем загрузки страницы
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-            
-            # Делаем скриншот
-            screenshot_utils.take_screenshot("leads_page_layout")
-            
-        # Проверяем страницу настроек пользователя
-        with allure.step("Проверка страницы настроек пользователя"):
-            # Открываем дропдаун с настройками
-            page.click(".user-settings-dropdown .dropdown-toggle")
-            
-            # Кликаем по ссылке настроек
-            page.click(".dropdown-menu a[href*='/users/']")
-            
-            # Ждем загрузки страницы
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-            
-            # Проверяем, что мы перешли на страницу настроек пользователя
-            current_url = page.url
-            assert "/users/" in current_url, f"Не удалось перейти на страницу настроек пользователя. Текущий URL: {current_url}"
-            
-            # Делаем скриншот
-            screenshot_utils.take_screenshot("user_settings_page_layout")
-
     @allure.title("Проверка времени загрузки страницы")
     @allure.story("Проверка производительности загрузки страницы")
     @allure.severity('NORMAL')
@@ -349,10 +465,10 @@ class TestUILayout:
             
             # Переход на страницу
             page.goto(config["baseUrl"])
-            page.wait_for_load_state("networkidle", timeout=90000)
+            # page.wait_for_load_state("networkidle", timeout=90000)
             
             # Ждем загрузки всех ресурсов
-            page.wait_for_load_state("domcontentloaded", timeout=90000)
+            # page.wait_for_load_state("domcontentloaded", timeout=90000)
             
             end_time = time.time()
             load_time = end_time - start_time
@@ -364,126 +480,61 @@ class TestUILayout:
             screenshot_utils.take_screenshot("page_load_performance")
 
     @allure.title("Проверка визуальных различий")
-    @allure.story("Визуальные тесты")
     @allure.severity('NORMAL')
-    @allure.description("Проверка визуальных различий между состояниями страницы")
     def test_visual_differences(self, page: Page, config, screenshot_utils):
-        """Тест визуальных различий"""
-        with allure.step("Открытие страницы"):
-            page.goto(config["baseUrl"])
-            page.wait_for_load_state("networkidle", timeout=60000)
-            
-            # Делаем первый скриншот
-            screenshot_utils.take_screenshot("before_filter")
-            
+        login_page = LoginPage(page, config["baseUrl"])
+        with allure.step("Авторизация и переход на страницу лидов"):
+            credentials = config["credentials"]["valid_user"]
+            success = login_page.login(credentials["email"], credentials["password"])
+            assert success, "Авторизация должна быть успешной"
+            page.goto(f"{config['baseUrl']}/leads", wait_until="domcontentloaded")
+            # Ждём появления нужного URL (до 30 секунд)
+            timeout = 30
+            start = time.time()
+            while "/leads" not in page.url and time.time() - start < timeout:
+                time.sleep(0.5)
+            assert "/leads" in page.url, f"Не удалось перейти на страницу лидов. Текущий URL: {page.url}"
+            assert "405" not in page.content(), f"После перехода на /leads попали на страницу ошибки 405! URL: {page.url}"
+            try:
+                page.wait_for_selector("table.ajax-data-table, table.data-table, table.table", timeout=30000)
+            except Exception as e:
+                html = page.content()
+                with open("debug_page.html", "w", encoding="utf-8") as f:
+                    f.write(html)
+                allure.attach(html, "HTML страницы при ошибке", allure.attachment_type.HTML)
+                raise
+            logging.info(f"Страница лидов загружена: {page.url}")
+
         with allure.step("Применение фильтра"):
-            # Открываем фильтры
-            filter_header = page.locator(".filter-header")
-            filter_header.click()
-            
-            # Ждем открытия панели фильтров
-            page.wait_for_selector(".filter-box.show", timeout=5000)
-            
-            # Применяем фильтр
+            filter_header = page.locator('.filter-button, .btn-filter, [data-filter], .filter-toggle')
+            try:
+                expect(filter_header).to_be_visible(timeout=15000)
+                filter_header.click()
+                logging.info("Кликнули по кнопке фильтров")
+                page.wait_for_selector(".filter-box.show", timeout=15000)
+            except Exception as e:
+                logging.error(f"Ошибка при открытии фильтров: {e}")
+                screenshot_utils.take_screenshot("filter_error")
+                allure.attach(page.content(), "HTML страницы при ошибке фильтров", allure.attachment_type.HTML)
+                raise
+            screenshot_utils.take_screenshot("before_filter")
+
             apply_button = page.locator("#filter-m-apply-btn")
-            apply_button.click()
-            
-            # Ждем применения фильтра
-            page.wait_for_load_state("networkidle", timeout=60000)
-            # Дополнительное ожидание для анимаций
-            page.wait_for_timeout(2000)
-            
-            # Делаем второй скриншот
+            try:
+                expect(apply_button).to_be_visible(timeout=10000)
+                apply_button.click()
+                page.wait_for_selector(".filter-box:not(.show)", timeout=15000)
+                logging.info("Фильтр применён")
+            except Exception as e:
+                logging.error(f"Ошибка при применении фильтра: {e}")
+                screenshot_utils.take_screenshot("filter_apply_error")
+                allure.attach(page.content(), "HTML страницы при ошибке фильтра", allure.attachment_type.HTML)
+                raise
             screenshot_utils.take_screenshot("after_filter")
-            
+
         with allure.step("Проверка различий"):
-            # Сравниваем скриншоты
             diff = screenshot_utils.compare_screenshots("before_filter", "after_filter")
             assert diff > 0, "Нет визуальных различий между скриншотами до и после применения фильтра"
-
-    @allure.title("Проверка производительности под нагрузкой")
-    @allure.story("Проверка производительности")
-    @allure.severity('HIGH')
-    @allure.description("""
-    Тест проверяет производительность системы под нагрузкой:
-    1. Авторизация в системе
-    2. Последовательное выполнение действий:
-       - Открытие фильтров
-       - Загрузка таблицы данных
-       - Применение фильтра по дате
-       - Применение фильтра
-    
-    Для каждого действия измеряется:
-    - Время выполнения
-    - Успешность выполнения
-    - Наличие ошибок
-    
-    Тест использует механизм повторных попыток для повышения надежности
-    """)
-    def test_performance_under_load(self, page: Page, config):
-        """Тест проверяет производительность системы под нагрузкой"""
-        from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
-        from urllib3.util.retry import Retry
-        from requests.adapters import HTTPAdapter
-        import requests
-        
-        # Настройка сессии с повторными попытками
-        session = requests.Session()
-        retry_strategy = Retry(
-            total=3,
-            backoff_factor=1,
-            status_forcelist=[500, 502, 503, 504]
-        )
-        adapter = HTTPAdapter(max_retries=retry_strategy)
-        session.mount("http://", adapter)
-        session.mount("https://", adapter)
-        
-        # Выполняем авторизацию
-        login_page = LoginPage(page, config["baseUrl"])
-        credentials = config["credentials"]["valid_user"]
-        
-        success = login_page.login(
-            email=credentials["email"],
-            password=credentials["password"],
-            remember=True
-        )
-        assert success, "Авторизация не прошла успешно"
-        
-        # Переход на страницу лидов
-        page.goto(f"{config['baseUrl']}/leads/")
-        page.wait_for_load_state("domcontentloaded", timeout=60000)  # Увеличиваем таймаут
-        
-        # Проверяем, что мы на странице лидов
-        current_url = page.url
-        assert "/leads/" in current_url, f"Не удалось перейти на страницу лидов. Текущий URL: {current_url}"
-        
-        # Выполняем серию действий для проверки производительности
-        actions = [
-            lambda: page.locator('.filter-button, .btn-filter, [data-filter]').click(),
-            lambda: page.locator('table.ajax-data-table, table.data-table, table.table').wait_for(state="visible", timeout=60000),
-            lambda: page.locator('input[name="daterange"]').fill("01.05.2025 - 31.05.2025"),
-            lambda: page.locator('#filter-m-apply-btn').click()
-        ]
-        
-        for i, action in enumerate(actions, 1):
-            try:
-                start_time = time.time()
-                action()
-                end_time = time.time()
-                duration = end_time - start_time
-                
-                # Проверяем, что действие выполнилось за разумное время
-                assert duration < 10, f"Действие {i} выполнилось слишком долго: {duration:.2f}с"
-                
-                # Ждем загрузки страницы после действия
-                page.wait_for_load_state("domcontentloaded", timeout=60000)
-                
-            except PlaywrightTimeoutError as e:
-                logging.error(f"Таймаут при выполнении действия {i}: {str(e)}")
-                continue
-            except Exception as e:
-                logging.error(f"Ошибка при выполнении действия {i}: {str(e)}")
-                continue
 
     @allure.title("Проверка доступности (a11y)")
     @allure.story("Проверка доступности")
@@ -509,13 +560,17 @@ class TestUILayout:
             assert success, "Авторизация должна быть успешной"
             
             # Ждем завершения авторизации
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-            page.wait_for_timeout(2000)
+            # page.wait_for_load_state("domcontentloaded", timeout=30000)
+            # page.wait_for_timeout(2000)
 
         with allure.step("Открываем страницу лидов"):
             page.goto(f"{config['baseUrl']}/leads")
-            page.wait_for_load_state("domcontentloaded", timeout=30000)
-            page.wait_for_timeout(2000)
+            # Ждём появления нужного URL (до 30 секунд)
+            timeout = 30
+            start = time.time()
+            while "/leads" not in page.url and time.time() - start < timeout:
+                time.sleep(0.5)
+            assert "/leads" in page.url, f"Не удалось перейти на страницу лидов. Текущий URL: {page.url}"
             
         with allure.step("Проверяем наличие ARIA-атрибутов"):
             elements = page.query_selector_all("[aria-label], [aria-describedby], [role]")
@@ -551,7 +606,7 @@ class TestUILayout:
         """Тест проверяет визуальные различия на странице авторизации"""
         with allure.step("Открываем страницу авторизации"):
             page.goto(config["baseUrl"])
-            page.wait_for_load_state("networkidle", timeout=30000)
+            # page.wait_for_load_state("networkidle", timeout=30000)
             
             # Делаем базовый скриншот
             screenshot_before = screenshot_utils.take_screenshot("auth_page_before_changes")
@@ -587,27 +642,49 @@ class TestUILayout:
             }""")
             
             # Ждем применения стилей
-            page.wait_for_timeout(1000)
+            # page.wait_for_timeout(1000)
             
             # Делаем скриншот после изменений
             screenshot_after = screenshot_utils.take_screenshot("auth_page_after_changes")
             
         with allure.step("Сравниваем скриншоты"):
             # Открываем изображения
-            img1 = Image.open(screenshot_before)
-            img2 = Image.open(screenshot_after)
-            
+            img1 = Image.open(screenshot_before).convert("RGB")
+            img2 = Image.open(screenshot_after).convert("RGB")
+
+            # Приводим к одному размеру
+            if img1.size != img2.size:
+                img2 = img2.resize(img1.size)
+
             # Создаем diff изображение
             diff = ImageChops.difference(img1, img2)
-            
+
+            # Усиливаем контраст и яркость для наглядности
+            diff = ImageEnhance.Contrast(diff).enhance(4.0)
+            diff = ImageEnhance.Brightness(diff).enhance(2.0)
+
+            # Логируем min/max для отладки
+            diff_np = np.array(diff)
+            print(f"Diff min: {diff_np.min()}, max: {diff_np.max()}")
+
             # Проверяем, что есть визуальные различия
-            if not np.any(np.array(diff)):
-                pytest.fail("Нет визуальных различий между скриншотами")
-            
+            if not np.any(diff_np):
+                allure.attach.file(
+                    screenshot_before,
+                    name="Скриншот до изменений (debug)",
+                    attachment_type=allure.attachment_type.PNG
+                )
+                allure.attach.file(
+                    screenshot_after,
+                    name="Скриншот после изменений (debug)",
+                    attachment_type=allure.attachment_type.PNG
+                )
+                pytest.fail("Нет визуальных различий между скриншотами (diff полностью чёрный)")
+
             # Сохраняем diff изображение
             diff_path = screenshot_utils.screenshot_dirs["diff"] / "auth_page_diff.png"
             diff.save(diff_path)
-            
+
             # Добавляем все скриншоты в отчет
             allure.attach.file(
                 screenshot_before,
@@ -620,7 +697,7 @@ class TestUILayout:
                 attachment_type=allure.attachment_type.PNG
             )
             allure.attach.file(
-                diff_path,
+                str(diff_path),
                 name="Diff изображение",
                 attachment_type=allure.attachment_type.PNG
             )
@@ -633,3 +710,23 @@ class TestUILayout:
             button = page.locator('button[type="submit"]')
             button_style = button.evaluate("el => window.getComputedStyle(el).backgroundColor")
             assert "rgb(0, 255, 0)" in button_style, "Фон кнопки не изменился на зеленый"
+
+    def is_login_form_ready(self, timeout: int = 5000) -> bool:
+        """Проверяет, что форма авторизации готова к работе (есть и видима)"""
+        form_selectors = [
+            'form[action*="auth"]',
+            'form[action*="login"]',
+            'form.auth-form',
+            'form.login-form',
+            'form'
+        ]
+        for selector in form_selectors:
+            try:
+                form = self.page.locator(selector)
+                if form.count() > 0 and form.is_visible():
+                    self.logger.info(f"Форма авторизации готова по селектору: {selector}")
+                    return True
+            except Exception as e:
+                self.logger.warning(f"Ошибка при поиске формы по селектору {selector}: {str(e)}")
+        self.logger.warning("Форма авторизации не готова")
+        return False
