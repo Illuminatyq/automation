@@ -6,7 +6,7 @@ allure-python-commons==2.13.2
 requests==2.31.0
 aiohttp==3.14.3
 python-dotenv==1.0.0
-Pillow==10.1.0
+Pillow==13.0.0
 numpy==1.26.2
 pytest-xdist==3.5.0
 pytest-timeout==2.2.0
